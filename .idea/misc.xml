@@ -3,9 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/denis/AndroidStudioProjects/AniFox/app/src/main/res/drawable/anifox.xml" value="0.1535" />
+        <entry key="..\:/Users/denis/AndroidStudioProjects/AniFox/app/src/main/res/drawable/animemanga.xml" value="0.1535" />
+        <entry key="..\:/Users/denis/AndroidStudioProjects/AniFox/app/src/main/res/font/ff.xml" value="0.40974358974358976" />
         <entry key="..\:/Users/denis/AndroidStudioProjects/AniFox/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/Users/denis/AndroidStudioProjects/AniFox/app/src/main/res/layout/fragment_detail_screen.xml" value="0.2015625" />
         <entry key="..\:/Users/denis/AndroidStudioProjects/AniFox/app/src/main/res/layout/fragment_favourite_screen.xml" value="0.38697916666666665" />
+        <entry key="..\:/Users/denis/AndroidStudioProjects/AniFox/app/src/main/res/layout/fragment_main_screen.xml" value="0.2015625" />
+        <entry key="..\:/Users/denis/AndroidStudioProjects/AniFox/app/src/main/res/layout/fragment_splash_screen.xml" value="0.1" />
         <entry key="..\:/Users/denis/AndroidStudioProjects/AniFox/app/src/main/res/layout/fragment_welcome_screen.xml" value="0.38697916666666665" />
       </map>
     </option>

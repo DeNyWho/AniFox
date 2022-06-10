@@ -12,10 +12,6 @@ import com.example.anifox.R
 @SuppressLint("CustomSplashScreen")
 class SplashScreen : Fragment() {
 
-    companion object {
-        fun newInstance() = SplashScreen()
-    }
-
     private lateinit var viewModel: SplashScreenViewModel
 
     override fun onCreateView(
@@ -23,12 +19,6 @@ class SplashScreen : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_splash_screen, container, false)
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(SplashScreenViewModel::class.java)
-        // TODO: Use the ViewModel
     }
 
 }
