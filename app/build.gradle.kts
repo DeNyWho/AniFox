@@ -7,6 +7,7 @@ plugins {
     id(Config.Plugins.navigationSafeArgs)
     id(Config.Plugins.serialization)
     id(Config.Plugins.dagger)
+    id("org.jetbrains.kotlin.android")
 }
 android {
     compileSdk = Versions.compileSdk
@@ -52,6 +53,8 @@ dependencies {
 
     implementation(Libraries.Room.RoomKtx)
     implementation(Libraries.Room.RoomRuntime)
+    implementation("androidx.appcompat:appcompat:1.4.2")
+    implementation("com.google.android.material:material:1.4.0")
     kapt(Libraries.Room.RoomCompiler)
 
     implementation(Libraries.Lifecycle.LifecycleCommon)

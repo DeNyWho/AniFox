@@ -3,10 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/my_nav"
-    app:startDestination="@id/splashScreen">
+    app:startDestination="@id/mainScreen">
+
     <fragment
-        android:id="@+id/splashScreen"
-        android:name="com.example.anifox.presentation.splash.SplashScreen"
-        android:label="fragment_splash_screen"
-        tools:layout="@layout/fragment_splash_screen" />
+        android:id="@+id/mainScreen"
+        android:name="com.example.anifox.presentation.main.MainScreen"
+        android:label="fragment_main_screen"
+        tools:layout="@layout/fragment_main_screen" />
 </navigation>
