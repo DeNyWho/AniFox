@@ -43,6 +43,9 @@ android {
     dataBinding {
         isEnabled = true
     }
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
@@ -51,10 +54,15 @@ dependencies {
     implementation(Libraries.Timber.timber)
     implementation(Libraries.Chucker.chucker)
 
+    implementation(Libraries.RoundedImageView.image)
+
     implementation(Libraries.Room.RoomKtx)
     implementation(Libraries.Room.RoomRuntime)
     implementation("androidx.appcompat:appcompat:1.4.2")
     implementation("com.google.android.material:material:1.4.0")
+    implementation("androidx.annotation:annotation:1.3.0")
+    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+    implementation("androidx.legacy:legacy-support-v4:1.0.0")
     kapt(Libraries.Room.RoomCompiler)
 
     implementation(Libraries.Lifecycle.LifecycleCommon)

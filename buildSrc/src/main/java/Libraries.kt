@@ -36,6 +36,10 @@ object Libraries {
         const val chucker = "com.github.chuckerteam.chucker:library:${Versions.chucker}"
     }
 
+    object RoundedImageView {
+        const val image = "com.makeramen:roundedimageview:${Versions.roundedImageView}"
+    }
+
     object Timber {
         const val timber = "com.jakewharton.timber:timber:${Versions.timber}"
     }
