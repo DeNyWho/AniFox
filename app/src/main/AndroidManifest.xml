@@ -15,7 +15,7 @@
         android:theme="@style/Theme.AniFox"
         tools:targetApi="31">
         <activity
-            android:name=".presentation.splash.SplashScreen"
+            android:name=".presentation.splash.SplashFragment"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

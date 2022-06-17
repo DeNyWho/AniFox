@@ -3,6 +3,7 @@ buildscript {
         google()
         mavenCentral()
         maven { url = uri(Config.Repositories.gradleMaven) }
+        maven { url = uri(Config.Repositories.jitpack) }
     }
     dependencies {
         classpath(Config.Dependencies.androidPlugin)
@@ -11,7 +12,6 @@ buildscript {
         classpath(Config.Dependencies.serialization)
         classpath(Config.Dependencies.navigationSafeArgs)
         classpath(Config.Dependencies.dagger)
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.21")
     }
 }
 
@@ -20,6 +20,7 @@ allprojects {
         google()
         mavenCentral()
         maven { url = uri(Config.Repositories.gradleMaven) }
+        maven { url = uri(Config.Repositories.jitpack) }
     }
 }
 

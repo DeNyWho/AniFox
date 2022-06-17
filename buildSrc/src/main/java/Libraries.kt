@@ -32,15 +32,8 @@ object Libraries {
         const val serialization = "org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.serializationJson}"
     }
 
-    object Chucker {
+    object Logger {
         const val chucker = "com.github.chuckerteam.chucker:library:${Versions.chucker}"
-    }
-
-    object RoundedImageView {
-        const val image = "com.makeramen:roundedimageview:${Versions.roundedImageView}"
-    }
-
-    object Timber {
         const val timber = "com.jakewharton.timber:timber:${Versions.timber}"
     }
 
@@ -52,6 +45,16 @@ object Libraries {
     object Glide {
         const val glide = "com.github.bumptech.glide:glide:${Versions.glide}"
         const val glideCompiler = "com.github.bumptech.glide:compiler:${Versions.glide}"
+    }
+
+    object Groupie {
+        const val groupie = "com.github.lisawray.groupie:groupie:${Versions.groupie}"
+        const val groupieViewBinding = "com.github.lisawray.groupie:groupie-viewbinding:${Versions.groupie}"
+        const val groupieDataBinding = "com.github.lisawray.groupie:groupie-databinding:${Versions.groupie}"
+    }
+
+    object Paging {
+        const val paging = "androidx.paging:paging-runtime:${Versions.paging}"
     }
 
     object Retrofit {

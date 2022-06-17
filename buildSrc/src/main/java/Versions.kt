@@ -12,6 +12,8 @@ object Versions {
 
     const val serializationJson = "1.3.3"
     const val glide = "4.12.0"
+    const val groupie = "2.10.1"
+    const val paging = "3.1.1"
     const val timber = "5.0.1"
     const val dataStore = "1.0.0"
     const val chucker = "3.5.2"

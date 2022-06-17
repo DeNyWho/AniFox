@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/backgroundColor"
+    tools:context=".presentation.login.LoginFragment">
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/fragment_login_imageView"
+        android:background="@drawable/image_20"
+        android:scaleType="centerCrop"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_marginTop="20dp"
+        android:text="@string/headingLogin"
+        android:layout_marginHorizontal="20dp"
+        style="@style/Text.Header" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_marginTop="4dp"
+        style="@style/Text.Secondary"
+        android:layout_marginHorizontal="20dp"
+        android:text="@string/descriptionLogin"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/signIn"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/fragment_login_button"
+        android:background="@drawable/authbutton"
+        android:text="@string/buttonLogin"
+        android:layout_marginHorizontal="60dp"
+        android:layout_marginTop="60dp"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="22sp"/>
+
+</LinearLayout>

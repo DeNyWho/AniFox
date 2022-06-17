@@ -7,7 +7,6 @@ plugins {
     id(Config.Plugins.navigationSafeArgs)
     id(Config.Plugins.serialization)
     id(Config.Plugins.dagger)
-    id("org.jetbrains.kotlin.android")
 }
 android {
     compileSdk = Versions.compileSdk
@@ -51,18 +50,17 @@ android {
 dependencies {
     implementation(fileTree(mapOf("dir" to "../buildSrc/build/libs", "include" to listOf("*.jar"))))
 
-    implementation(Libraries.Timber.timber)
-    implementation(Libraries.Chucker.chucker)
+    implementation(Libraries.Groupie.groupie)
+    implementation(Libraries.Groupie.groupieDataBinding)
+    implementation(Libraries.Groupie.groupieViewBinding)
 
-    implementation(Libraries.RoundedImageView.image)
+    implementation(Libraries.Paging.paging)
+
+    implementation(Libraries.Logger.timber)
+    implementation(Libraries.Logger.chucker)
 
     implementation(Libraries.Room.RoomKtx)
     implementation(Libraries.Room.RoomRuntime)
-    implementation("androidx.appcompat:appcompat:1.4.2")
-    implementation("com.google.android.material:material:1.4.0")
-    implementation("androidx.annotation:annotation:1.3.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-    implementation("androidx.legacy:legacy-support-v4:1.0.0")
     kapt(Libraries.Room.RoomCompiler)
 
     implementation(Libraries.Lifecycle.LifecycleCommon)
