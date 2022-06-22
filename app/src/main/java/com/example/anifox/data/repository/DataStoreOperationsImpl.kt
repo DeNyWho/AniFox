@@ -67,12 +67,4 @@ class DataStoreOperationsImpl (context: Context): DataStoreOperations {
                 onLoginState
             }
     }
-
-    override suspend fun saveOnLoginState(completed: Boolean) {
-        TODO("Not yet implemented")
-    }
-
-    override fun saveOnLoginState(): Flow<Boolean> {
-        TODO("Not yet implemented")
-    }
 }

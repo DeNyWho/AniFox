@@ -7,6 +7,4 @@ interface DataStoreOperations {
     fun readOnBoardingState(): Flow<Boolean>
     suspend fun saveLoginState(completed: Boolean)
     fun readOnLoginState(): Flow<Boolean>
-    suspend fun saveOnLoginState(completed: Boolean)
-    fun saveOnLoginState(): Flow<Boolean>
 }

@@ -1,9 +1,6 @@
 package com.example.anifox.di
 
-import com.example.anifox.core.Endpoints.BASE_URL
-import com.example.anifox.core.SafeCall
-import com.example.anifox.data.repository.Repository
-import com.example.anifox.domain.useCase.splash.ReadOnBoardingUseCase
+import com.example.anifox.BuildConfig
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -21,7 +18,7 @@ object NetworkModule {
     @Provides
     fun provideRetrofit(): Retrofit {
         return Retrofit.Builder()
-            .baseUrl(BASE_URL)
+            .baseUrl(BuildConfig.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
@@ -36,9 +33,4 @@ object NetworkModule {
             .build()
     }
 
-    @Provides
-    @Singleton
-    fun provideCall(): SafeCall {
-        return SafeCall()
-    }
 }

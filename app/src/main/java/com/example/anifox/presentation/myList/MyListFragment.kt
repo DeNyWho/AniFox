@@ -1,15 +1,13 @@
 package com.example.anifox.presentation.myList
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.example.anifox.R
 
 class MyListFragment : Fragment() {
-
-    private lateinit var viewModel: MyListFragmentViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

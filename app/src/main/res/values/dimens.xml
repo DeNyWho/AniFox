@@ -3,5 +3,7 @@
     <dimen name="fragment_horizontal_margin">16dp</dimen>
     <dimen name="fragment_vertical_margin">16dp</dimen>
     <dimen name="fragment_login_imageView">200dp</dimen>
-    <dimen name="fragment_login_button">56dp</dimen>
+    <dimen name="fragment_login_button">44dp</dimen>
+    <dimen name="fragment_auth_button">56dp</dimen>
+    <dimen name="fragment_login_textInputEditText">56dp</dimen>
 </resources>

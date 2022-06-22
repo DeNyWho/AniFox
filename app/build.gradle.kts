@@ -20,7 +20,12 @@ android {
         testInstrumentationRunner = Config.testRunner
         vectorDrawables.useSupportLibrary = true
 
-        testInstrumentationRunner = Config.testRunner
+
+        buildConfigField("String", "BASE_URL", "\"https://shikimori.one/api/\"")
+        buildConfigField("String", "APP_LINK", "\"https://shikimori.one/oauth/authorize?client_id=sGl1uO_SjvpI5sDgKynbVFc8NrRd2e-_BPa_nj75DTk&redirect_uri=urn%3Aietf%3Awg%3Aoauth%3A2.0%3Aoob&response_type=code&scope=user_rates+comments+topics\"")
+        buildConfigField("String", "AUTH_CODE", "\"authorization_code\"")
+        buildConfigField("String", "CLIENT_ID", "sGl1uO_SjvpI5sDgKynbVFc8NrRd2e-_BPa_nj75DTk")
+        buildConfigField("String", "CLIENT_SECRET", "6hvA2F3_Aw3sOnafBLrL9HIpVmUTS4_5Xgz0dXySPVk")
     }
 
     buildTypes {

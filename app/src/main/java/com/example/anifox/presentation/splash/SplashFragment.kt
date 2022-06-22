@@ -2,10 +2,10 @@ package com.example.anifox.presentation.splash
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import androidx.appcompat.app.AppCompatActivity
 import com.example.anifox.MainActivity
 
 @SuppressLint("CustomSplashScreen")

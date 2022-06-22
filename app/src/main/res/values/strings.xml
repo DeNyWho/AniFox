@@ -12,6 +12,14 @@
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
     <string name="descriptionLogin">We felt your obsence, log in to\ncontinue</string>
+    <string name="descriptionAuthCode">Enter code from the website</string>
     <string name="headingLogin">Welcome back\nAnime researcher!</string>
     <string name="buttonLogin">Sign In</string>
+    <string name="buttonCode">Get code</string>
+    <string name="shikimori_redirect_scheme">shimori</string>
+    <string name="shikimori_redirect_host">oauth</string>
+    <string name="shikimori_redirect_path">/shikimori</string>
+    <string name="auth_canceled">Authentication failed</string>
+    <string name="enter_code">Enter code</string>
+    <string name="empty_view">Enter your code here from the website</string>
 </resources>

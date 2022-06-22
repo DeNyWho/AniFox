@@ -3,4 +3,5 @@
     <color name="textColor">#ffffff</color>
     <color name="backgroundColor">#111016</color>
     <color name="descriptionTextColor">#BFB9B9</color>
+    <color name="cornerTextInput">#FFFFFFFF</color>
 </resources>

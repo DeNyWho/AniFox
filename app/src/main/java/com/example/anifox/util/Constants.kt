@@ -1,7 +1,11 @@
 package com.example.anifox.util
 
 object Constants {
-
+    const val KEY_STATE = "state"
+    const val KEY_TOKEN = "token"
+    const val REFRESH_TOKEN = "refresh_token"
+    const val APP_NAME = "AniFox"
+    const val REDIRECT_URI = "urn:ietf:wg:oauth:2.0:oob"
     const val PREFERENCES_NAME = "anime_preferences"
 
 }

@@ -18,13 +18,48 @@
         android:layout_marginTop="20dp"
         android:text="@string/headingLogin"
         android:layout_marginHorizontal="20dp"
-        style="@style/Text.Header" />
+        style="@style/TextView.Header" />
 
     <com.google.android.material.textview.MaterialTextView
         android:layout_marginTop="4dp"
-        style="@style/Text.Secondary"
+        style="@style/TextView.Secondary"
         android:layout_marginHorizontal="20dp"
         android:text="@string/descriptionLogin"/>
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_marginTop="8dp"
+        style="@style/TextView"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginHorizontal="20dp"
+        android:text="@string/descriptionAuthCode"/>
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:layout_width="match_parent"
+        android:id="@+id/codeTie"
+        android:layout_height="@dimen/fragment_login_textInputEditText"
+        android:layout_marginTop="8dp"
+        android:maxLines="1"
+        android:inputType="text"
+        android:layout_marginHorizontal="60dp"
+        android:hint="@string/enter_code"
+        android:paddingHorizontal="10dp"
+        android:background="@drawable/background_textinput"
+        android:textColorHint="@color/textColor"/>
+
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/codeBtn"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/fragment_auth_button"
+        android:background="@drawable/authbutton"
+        android:text="@string/buttonCode"
+        android:layout_marginHorizontal="60dp"
+        android:layout_marginTop="20dp"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="22sp"/>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/signIn"
@@ -33,7 +68,7 @@
         android:background="@drawable/authbutton"
         android:text="@string/buttonLogin"
         android:layout_marginHorizontal="60dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="40dp"
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="22sp"/>

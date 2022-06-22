@@ -1,7 +1,28 @@
 package com.example.anifox.presentation.login
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.anifox.domain.model.auth.AuthState
+import com.example.anifox.domain.useCase.login.GetTokenUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
+import javax.inject.Inject
 
-class LoginFragmentViewModel : ViewModel() {
-    // TODO: Implement the ViewModel
+@HiltViewModel
+class LoginFragmentViewModel @Inject constructor(
+    private val getTokenUseCase: GetTokenUseCase,
+): ViewModel() {
+    private val _tokenState : MutableSharedFlow<AuthState> = MutableSharedFlow()
+    val tokenState: MutableSharedFlow<AuthState> = _tokenState
+
+
+    suspend fun getTokens(authCode: String){
+        getTokenUseCase(authCode).onEach { value ->
+            _tokenState.tryEmit(value)
+        }.launchIn(viewModelScope)
+    }
+
+
 }
