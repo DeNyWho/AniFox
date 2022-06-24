@@ -9,14 +9,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.example.anifox.BuildConfig.APP_LINK
+import com.example.anifox.BuildConfig.*
 import com.example.anifox.R
 import com.example.anifox.databinding.FragmentLoginFragmentBinding
+import com.example.anifox.util.Constants.REDIRECT_URI
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class LoginFragment : Fragment() {
@@ -32,32 +29,37 @@ class LoginFragment : Fragment() {
     ): View {
         _binding = FragmentLoginFragmentBinding.inflate(inflater, container, false)
 
-        initListeners()
-
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initListeners()
     }
 
     private fun initListeners() {
         binding.codeBtn.setOnClickListener {
             val intent = Intent(Intent.ACTION_VIEW)
-            intent.data = Uri.parse(APP_LINK)
+            intent.data = Uri.parse("$APP_LINK?client_id=$CLIENT_ID&redirect_uri=$REDIRECT_URI&response_type=$RESPONSE_TYPE")
             startActivity(intent)
         }
 
         binding.signIn.setOnClickListener {
-            val authCode = binding.codeTie.text.toString()
-            if (authCode == "") {
-                binding.codeTie.error = getString(R.string.empty_view)
-            } else {
-                CoroutineScope(Dispatchers.Main).launch {
-                    viewModel.getTokens(authCode)
-                    viewModel.tokenState.collectLatest {
-                        if (it.token != null) {
-                            findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
-                        }
-                    }
-                }
-            }
+//            val authCode = binding.codeTie.text.toString()
+//            if (authCode == "") {
+//                binding.codeTie.error = getString(R.string.empty_view)
+//            } else {
+//                CoroutineScope(Dispatchers.Main).launch {
+//                    viewModel.getTokens(authCode)
+//                    viewModel.tokenState.collectLatest {
+//                        if (it.token != null) {
+//                            findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
+//                        }
+//                    }
+//                }
+//            }
+            findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
+
         }
     }
 

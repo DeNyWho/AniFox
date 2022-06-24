@@ -17,4 +17,16 @@
         <item name="android:textColor">@color/descriptionTextColor</item>
         <item name="android:fontFamily">@font/poppins_regular</item>
     </style>
+
+    <style name="Text.Smaller">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/descriptionTextColor</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
+
+    <style name="Text.Smallest">
+        <item name="android:textSize">11sp</item>
+        <item name="android:textColor">@color/descriptionTextColor</item>
+        <item name="android:fontFamily">@font/poppins_regular</item>
+    </style>
 </resources>

@@ -22,10 +22,12 @@ android {
 
 
         buildConfigField("String", "BASE_URL", "\"https://shikimori.one/api/\"")
-        buildConfigField("String", "APP_LINK", "\"https://shikimori.one/oauth/authorize?client_id=sGl1uO_SjvpI5sDgKynbVFc8NrRd2e-_BPa_nj75DTk&redirect_uri=urn%3Aietf%3Awg%3Aoauth%3A2.0%3Aoob&response_type=code&scope=user_rates+comments+topics\"")
+        buildConfigField("String", "APP_LINK", "\"https://shikimori.one/oauth/authorize\"")
         buildConfigField("String", "AUTH_CODE", "\"authorization_code\"")
-        buildConfigField("String", "CLIENT_ID", "sGl1uO_SjvpI5sDgKynbVFc8NrRd2e-_BPa_nj75DTk")
-        buildConfigField("String", "CLIENT_SECRET", "6hvA2F3_Aw3sOnafBLrL9HIpVmUTS4_5Xgz0dXySPVk")
+        buildConfigField("String", "REDIRECT_URI", "\"urn%3Aietf%3Awg%3Aoauth%3A2.0%3Aoob\"")
+        buildConfigField("String", "RESPONSE_TYPE", "\"code&scope=user_rates+comments+topics\"")
+        buildConfigField("String", "CLIENT_ID", "\"sGl1uO_SjvpI5sDgKynbVFc8NrRd2e-_BPa_nj75DTk\"")
+        buildConfigField("String", "CLIENT_SECRET", "\"6hvA2F3_Aw3sOnafBLrL9HIpVmUTS4_5Xgz0dXySPVk\"")
     }
 
     buildTypes {
@@ -54,6 +56,7 @@ android {
 
 dependencies {
     implementation(fileTree(mapOf("dir" to "../buildSrc/build/libs", "include" to listOf("*.jar"))))
+    implementation(Libraries.SwipeRefresh.swipeRefresh)
 
     implementation(Libraries.Groupie.groupie)
     implementation(Libraries.Groupie.groupieDataBinding)

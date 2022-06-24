@@ -22,4 +22,5 @@
     <string name="auth_canceled">Authentication failed</string>
     <string name="enter_code">Enter code</string>
     <string name="empty_view">Enter your code here from the website</string>
+    <string name="popular_anime">Popular anime</string>
 </resources>

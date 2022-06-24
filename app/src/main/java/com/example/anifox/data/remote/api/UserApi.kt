@@ -6,15 +6,13 @@ import com.example.anifox.util.Constants
 import retrofit2.Response
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
-import retrofit2.http.Header
 import retrofit2.http.POST
 
-interface UserService {
+interface UserApi {
 
     @FormUrlEncoded
     @POST("oauth/token")
     suspend fun getTokens(
-        @Header("User-Agent") userAgent: String = Constants.APP_NAME,
         @Field("grant_type") grantType: String = BuildConfig.AUTH_CODE,
         @Field("client_id") clientId: String = BuildConfig.CLIENT_ID,
         @Field("client_secret") clientSecret: String = BuildConfig.CLIENT_SECRET,
@@ -25,7 +23,6 @@ interface UserService {
     @FormUrlEncoded
     @POST("oauth/token")
     suspend fun updateTokens(
-        @Header("User-Agent") userAgent: String = Constants.APP_NAME,
         @Field("grant_type") grantType: String = "refresh_token",
         @Field("client_id") clientId: String = BuildConfig.CLIENT_ID,
         @Field("client_secret") clientSecret: String = BuildConfig.CLIENT_SECRET,

@@ -1,6 +1,7 @@
 package com.example.anifox.di
 
 import com.example.anifox.BuildConfig
+import com.example.anifox.util.Constants
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -28,6 +29,12 @@ object NetworkModule {
     fun provideHttpClient(): OkHttpClient {
 
         return OkHttpClient().newBuilder()
+            .addInterceptor { chain ->
+                val newRequest = chain.request().newBuilder()
+                    .addHeader("User-Agent", Constants.APP_NAME )
+                    .build()
+                chain.proceed(newRequest)
+            }
             .followRedirects(true)
             .followSslRedirects(false)
             .build()

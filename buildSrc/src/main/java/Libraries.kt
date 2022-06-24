@@ -47,6 +47,10 @@ object Libraries {
         const val glideCompiler = "com.github.bumptech.glide:compiler:${Versions.glide}"
     }
 
+    object SwipeRefresh {
+        const val swipeRefresh = "androidx.swiperefreshlayout:swiperefreshlayout:${Versions.swipeRefresh}"
+    }
+
     object Groupie {
         const val groupie = "com.github.lisawray.groupie:groupie:${Versions.groupie}"
         const val groupieViewBinding = "com.github.lisawray.groupie:groupie-viewbinding:${Versions.groupie}"

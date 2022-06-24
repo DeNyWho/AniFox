@@ -2,12 +2,12 @@ package com.example.anifox.data.repository
 
 import android.content.Context
 import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.Preferences
-import androidx.datastore.preferences.core.booleanPreferencesKey
-import androidx.datastore.preferences.core.edit
-import androidx.datastore.preferences.core.emptyPreferences
+import androidx.datastore.preferences.core.*
 import androidx.datastore.preferences.preferencesDataStore
+import com.example.anifox.data.repository.DataStoreOperationsImpl.PreferencesKey.keyToken
+import com.example.anifox.data.repository.DataStoreOperationsImpl.PreferencesKey.refreshToken
 import com.example.anifox.domain.repository.DataStoreOperations
+import com.example.anifox.util.Constants
 import com.example.anifox.util.Constants.PREFERENCES_NAME
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
@@ -21,10 +21,23 @@ class DataStoreOperationsImpl (context: Context): DataStoreOperations {
     private object PreferencesKey {
         val onBoardingKey = booleanPreferencesKey(name = PREFERENCES_NAME)
         val onLoginKey = booleanPreferencesKey(name = PREFERENCES_NAME)
+        val keyToken = stringPreferencesKey(Constants.KEY_TOKEN)
+        val refreshToken = stringPreferencesKey(Constants.REFRESH_TOKEN)
     }
 
     private val dataStore = context.datastore
 
+    suspend fun saveToken(token: String) {
+        dataStore.edit { preferences ->
+            preferences[keyToken] = token
+        }
+    }
+
+    suspend fun saveRefreshToken(token: String) {
+        dataStore.edit { preferences ->
+            preferences[refreshToken] = token
+        }
+    }
 
     override suspend fun saveOnBoardingState(completed: Boolean) {
         dataStore.edit { preferences ->

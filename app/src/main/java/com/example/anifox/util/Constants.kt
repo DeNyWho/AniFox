@@ -7,5 +7,6 @@ object Constants {
     const val APP_NAME = "AniFox"
     const val REDIRECT_URI = "urn:ietf:wg:oauth:2.0:oob"
     const val PREFERENCES_NAME = "anime_preferences"
-
+    const val STARTING_PAGE_INDEX = 1
+    const val HOME_PAGE_SIZE = 25
 }

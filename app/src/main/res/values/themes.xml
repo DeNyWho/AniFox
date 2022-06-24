@@ -33,6 +33,18 @@
         <item name="android:textAppearance">@style/Text.Secondary</item>
     </style>
 
+    <style name="TextView.Smaller">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAppearance">@style/Text.Smaller</item>
+    </style>
+
+    <style name="TextView.Smallest">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAppearance">@style/Text.Smallest</item>
+    </style>
+
     <style name="MyCardView" parent="@style/Widget.MaterialComponents.CardView">
         <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay.MaterialCardView.Cut</item>
     </style>

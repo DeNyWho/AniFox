@@ -10,6 +10,7 @@ object Versions {
     const val nav = "2.4.2"
     const val serialization = kotlin
 
+    const val swipeRefresh = "1.1.0"
     const val serializationJson = "1.3.3"
     const val glide = "4.12.0"
     const val groupie = "2.10.1"
