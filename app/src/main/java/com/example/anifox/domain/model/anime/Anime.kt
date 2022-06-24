@@ -6,17 +6,28 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class Anime(
-    @SerializedName("id") val id: Int,
-    @SerializedName("name") val name: String,
-    @SerializedName("russian") val russian: String,
-    @SerializedName("image") val image: ShikimoriImage,
-    @SerializedName("url") val url: String,
-    @SerializedName("kind") val kind: String,
-    @SerializedName("score") val score: String,
-    @SerializedName("status") val released: String,
-    @SerializedName("episodes") val episodes: String,
-    @SerializedName("episodes_aired") val episodes_aired: String,
-    @SerializedName("aired_on") val aired_on: String,
+    @SerializedName("id")
+    val id: Int,
+    @SerializedName("name")
+    val name: String,
+    @SerializedName("russian")
+    val russian: String,
+    @SerializedName("image")
+    val image: ShikimoriImage,
+    @SerializedName("url")
+    val url: String,
+    @SerializedName("kind")
+    val kind: String,
+    @SerializedName("score")
+    val score: String,
+    @SerializedName("status")
+    val released: String,
+    @SerializedName("episodes")
+    val episodes: String,
+    @SerializedName("episodes_aired")
+    val episodes_aired: String,
+    @SerializedName("aired_on")
+    val aired_on: String?
 )
 
 fun Anime.toPopular(): Anime {
@@ -24,7 +35,7 @@ fun Anime.toPopular(): Anime {
         id = id,
         name = name,
         russian = russian,
-        image = image,
+        image = ShikimoriImage(original = "https://shikimori.one${image.original}", preview = "https://shikimori.one${image.preview}"),
         url = url,
         kind = kind,
         score = score,

@@ -11,17 +11,30 @@ import java.io.IOException
 import javax.inject.Inject
 
 class AnimeDataSource @Inject constructor(
-    private val animeApi: AnimeApi
+    private val animeApi: AnimeApi,
+    private val order: String?,
+    private val status: String?
 ) : PagingSource<Int, Anime>() {
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Anime> {
         val page = params.key ?: STARTING_PAGE_INDEX
         return try {
-            val response = animeApi.getAnimes(page, params.loadSize)
-            val anime = response
-            Timber.d("ANIME = $anime")
+
+            val response: List<Anime> = when {
+                order != null && status != null -> {
+                    animeApi.getAnimes(page, params.loadSize, order, status).body()!!
+                }
+                order != null && status == null -> {
+                    animeApi.getAnimes(page, params.loadSize, order, null).body()!!
+                }
+                else -> {
+                    animeApi.getAnimes(page, params.loadSize, null, null).body()!!
+                }
+            }
+
+            Timber.d("ANIME = $response")
             LoadResult.Page(
-                data = anime,
+                data = response,
                 prevKey = if (page == STARTING_PAGE_INDEX) null else page - 1,
                 nextKey = page + 1
             )

@@ -9,4 +9,9 @@ object Constants {
     const val PREFERENCES_NAME = "anime_preferences"
     const val STARTING_PAGE_INDEX = 1
     const val HOME_PAGE_SIZE = 25
+    const val REVIEW_PAGE = 1
+    const val REVIEW_LIMIT = 15
+    const val DISCOVER_LIMIT = 10
+    const val ORDER_BY_POPULAR = "popularity"
+    const val STATUS_BY_ONGOING = "ongoing"
 }

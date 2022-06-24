@@ -6,8 +6,9 @@
     <dimen name="fragment_login_button">44dp</dimen>
     <dimen name="fragment_auth_button">56dp</dimen>
     <dimen name="fragment_login_textInputEditText">56dp</dimen>
-    <dimen name="card_width">120dp</dimen>
+    <dimen name="card_width">140dp</dimen>
     <dimen name="card_height">220dp</dimen>
+    <dimen name="discover_height">180dp</dimen>
     <dimen name="cardImage_width">120dp</dimen>
     <dimen name="cardImage_height">180dp</dimen>
 </resources>

@@ -2,8 +2,10 @@ package com.example.anifox.presentation.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.anifox.domain.useCase.home.GetAnimeByPopularReview
-import com.example.anifox.presentation.home.state.popular.AnimePopularState
+import com.example.anifox.domain.useCase.home.GetDiscoverAnime
+import com.example.anifox.domain.useCase.home.GetNewPopularAnimeUseCase
+import com.example.anifox.presentation.home.state.discover.AnimeDiscoverState
+import com.example.anifox.presentation.home.state.popular.NewPopularAnimeState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -13,23 +15,26 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeFragmentViewModel @Inject constructor(
-    private val getAnimeByPopularReview: GetAnimeByPopularReview
+    private val getNewAnimeByPopularReview: GetNewPopularAnimeUseCase,
+    private val getDiscoverAnime: GetDiscoverAnime
 ) : ViewModel() {
-
-    private val _animePopularReview = MutableStateFlow(AnimePopularState())
+    private val _animePopularReview = MutableStateFlow(NewPopularAnimeState())
     val animePopularReview = _animePopularReview.asStateFlow()
 
+    private val _animeDiscover = MutableStateFlow(AnimeDiscoverState())
+    val animeDiscover = _animeDiscover.asStateFlow()
+
+
+    fun getDiscover(){
+        getDiscoverAnime.invoke().onEach {
+            value -> _animeDiscover.tryEmit(value)
+        }.launchIn(viewModelScope)
+    }
+
     fun getPopularReview(){
-        getAnimeByPopularReview.invoke().onEach {
+        getNewAnimeByPopularReview.invoke().onEach {
                 value -> _animePopularReview.tryEmit(value)
         } .launchIn(viewModelScope)
     }
-
-//    fun getAnimes(): Flow<PagingData<Anime>> {
-//        val newResult: Flow<PagingData<Anime>> =
-//            getAnimesUseCase.invoke()
-//        currentResult = newResult
-//        return newResult
-//    }
 
 }

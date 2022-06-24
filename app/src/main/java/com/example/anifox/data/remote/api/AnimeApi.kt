@@ -10,22 +10,8 @@ interface AnimeApi {
     suspend fun getAnimes(
         @Query("page") page: Int?,
         @Query("limit") limit: Int?,
-    ): List<Anime>
-
-    @GET("animes")
-    suspend fun getAnimesPopular(
-        @Query("page") page: Int?,
-        @Query("limit") limit: Int?,
         @Query("order") order: String?,
-    ): List<Anime>
-
-    @GET("animes")
-    suspend fun getAnimesPreview(
-        @Query("page") page: Int?,
-        @Query("limit") limit: Int?,
-        @Query("order") order: String?,
+        @Query("status") status: String?
     ): Response<List<Anime>>
-
-
 
 }
