@@ -30,7 +30,7 @@ data class Anime(
     val aired_on: String?
 )
 
-fun Anime.toPopular(): Anime {
+fun Anime.toData(): Anime {
     return Anime(
         id = id,
         name = name,

@@ -7,6 +7,7 @@ plugins {
     id(Config.Plugins.navigationSafeArgs)
     id(Config.Plugins.serialization)
     id(Config.Plugins.dagger)
+    id("org.jetbrains.kotlin.android")
 }
 android {
     compileSdk = Versions.compileSdk
@@ -55,7 +56,6 @@ android {
 }
 
 dependencies {
-    implementation(fileTree(mapOf("dir" to "../buildSrc/build/libs", "include" to listOf("*.jar"))))
     implementation(Libraries.SwipeRefresh.swipeRefresh)
 
     implementation(Libraries.Groupie.groupie)
@@ -69,6 +69,9 @@ dependencies {
 
     implementation(Libraries.Room.RoomKtx)
     implementation(Libraries.Room.RoomRuntime)
+    implementation("androidx.legacy:legacy-support-v4:1.0.0")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.4.1")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1")
     kapt(Libraries.Room.RoomCompiler)
 
     implementation(Libraries.Lifecycle.LifecycleCommon)

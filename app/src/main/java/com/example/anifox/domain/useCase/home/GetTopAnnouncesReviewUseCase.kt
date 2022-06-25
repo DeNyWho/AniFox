@@ -1,8 +1,8 @@
 package com.example.anifox.domain.useCase.home
 
 import com.example.anifox.data.repository.AnimeRepository
-import com.example.anifox.domain.model.anime.toPopular
-import com.example.anifox.presentation.home.state.discover.AnimeDiscoverState
+import com.example.anifox.domain.model.anime.toData
+import com.example.anifox.presentation.home.state.announces.AnnouncesState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -10,23 +10,22 @@ import kotlinx.coroutines.flow.flowOn
 import timber.log.Timber
 import javax.inject.Inject
 
-class GetDiscoverAnime @Inject constructor(
+class GetTopAnnouncesReviewUseCase @Inject constructor(
     private val repository: AnimeRepository
 ) {
-    operator fun invoke(): Flow<AnimeDiscoverState> {
+    operator fun invoke(): Flow<AnnouncesState> {
         return flow {
-            emit(AnimeDiscoverState(isLoading = true))
-            val res = repository.getDiscoverAnime()
+            emit(AnnouncesState(isLoading = true))
+            val res = repository.getTopAnnouncesReview()
 
             if (res.isSuccessful){
-                val data = res.body()?.map { it.toPopular() }.orEmpty()
+                val data = res.body()?.map { it.toData() }.orEmpty()
                 Timber.d("DATA = $data")
-                val state = AnimeDiscoverState(data, isLoading = false)
+                val state = AnnouncesState(data, isLoading = false)
                 emit(state)
             } else {
-                val state = AnimeDiscoverState(isLoading = false, error = res.message())
+                val state = AnnouncesState(isLoading = false, error = res.message())
                 emit(state)
-
             }
 
         }.flowOn(Dispatchers.IO)

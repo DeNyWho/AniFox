@@ -1,8 +1,8 @@
-package com.example.anifox.presentation.home.state.popular
+package com.example.anifox.presentation.home.state.announces
 
 import com.example.anifox.domain.model.anime.Anime
 
-data class NewPopularAnimeState(
+data class AnnouncesState(
     val data: List<Anime>? = null,
     val isLoading: Boolean = false,
     val error: String? = null

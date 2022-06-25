@@ -15,7 +15,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onEach
-import timber.log.Timber
 
 @AndroidEntryPoint
 open class HomeFragment : Fragment() {
@@ -23,8 +22,10 @@ open class HomeFragment : Fragment() {
     private var _binding: FragmentHomeFragmentBinding? = null
     private val binding get() = _binding!!
 
+    private var popularAiringAdapter: GroupieAdapter? = null
     private var popularAdapter: GroupieAdapter? = null
     private var discoverAdapter: GroupieAdapter? = null
+    private var announcesAdapter: GroupieAdapter? = null
 
 
     private val viewModel: HomeFragmentViewModel by viewModels()
@@ -38,22 +39,59 @@ open class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.getPopularReview()
         viewModel.getDiscover()
-        Timber.d("Popular data:  ${viewModel.animePopularReview.value.data}")
-        observePopularOnState()
+        viewModel.getPopularAiring()
+        viewModel.getPopular()
+        viewModel.getAnnounces()
         observeDiscoverOnState()
+        observePopularAiringOnState()
+        observePopularOnState()
+        observeAnnouncesOnState()
+    }
+
+    private fun observePopularAiringOnState(){
+        popularAiringAdapter = GroupieAdapter()
+        binding.popularAiringRecycler.adapter = popularAiringAdapter
+        viewModel.animeAiringPopular.onEach { state ->
+            when(state.isLoading) {
+                true -> {}
+                false -> {
+                    if(state.data != null) {
+                        viewModel.animeAiringPopular.value.data?.onEach {
+                            popularAiringAdapter?.add(AnimeItem(it))
+                        }
+                    }
+                }
+            }
+        }.launchWhenStarted()
+    }
+
+    private fun observeAnnouncesOnState(){
+        announcesAdapter = GroupieAdapter()
+        binding.announcesRecycler.adapter = announcesAdapter
+        viewModel.announcesPopular.onEach { state ->
+            when(state.isLoading) {
+                true -> {}
+                false -> {
+                    if(state.data != null) {
+                        viewModel.announcesPopular.value.data?.onEach {
+                            announcesAdapter?.add(AnimeItem(it))
+                        }
+                    }
+                }
+            }
+        }.launchWhenStarted()
     }
 
     private fun observePopularOnState(){
         popularAdapter = GroupieAdapter()
         binding.popularRecycler.adapter = popularAdapter
-        viewModel.animePopularReview.onEach { state ->
+        viewModel.animePopular.onEach { state ->
             when(state.isLoading) {
                 true -> {}
                 false -> {
                     if(state.data != null) {
-                        viewModel.animePopularReview.value.data?.onEach {
+                        viewModel.animePopular.value.data?.onEach {
                             popularAdapter?.add(AnimeItem(it))
                         }
                     }

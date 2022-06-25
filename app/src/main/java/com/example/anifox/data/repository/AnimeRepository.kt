@@ -9,8 +9,10 @@ import com.example.anifox.domain.model.anime.Anime
 import com.example.anifox.domain.repository.RemoteDataSource
 import com.example.anifox.util.Constants
 import com.example.anifox.util.Constants.ORDER_BY_POPULAR
+import com.example.anifox.util.Constants.ORDER_BY_RANKED
 import com.example.anifox.util.Constants.REVIEW_LIMIT
 import com.example.anifox.util.Constants.REVIEW_PAGE
+import com.example.anifox.util.Constants.STATUS_BY_ANONS
 import com.example.anifox.util.Constants.STATUS_BY_ONGOING
 import kotlinx.coroutines.flow.Flow
 import retrofit2.Response
@@ -34,11 +36,19 @@ class AnimeRepository @Inject constructor(
     }
 
     override suspend fun getAnimeByPopularReview(): Response<List<Anime>> {
-        return animeApi.getAnimes(page = REVIEW_PAGE, limit = REVIEW_LIMIT, order = ORDER_BY_POPULAR, status = STATUS_BY_ONGOING)
+        return animeApi.getAnimes(page = REVIEW_PAGE, limit = REVIEW_LIMIT, order = ORDER_BY_POPULAR, status = null)
     }
 
     override suspend fun getDiscoverAnime(): Response<List<Anime>> {
-        return animeApi.getAnimes(page = REVIEW_PAGE, limit = REVIEW_LIMIT, order = ORDER_BY_POPULAR, status = null)
+        return animeApi.getAnimes(page = REVIEW_PAGE, limit = REVIEW_LIMIT, order = ORDER_BY_RANKED, status = null)
+    }
+
+    override suspend fun getTopAiringReview(): Response<List<Anime>> {
+        return animeApi.getAnimes(page = REVIEW_PAGE, limit = REVIEW_LIMIT, order = ORDER_BY_POPULAR, status = STATUS_BY_ONGOING)
+    }
+
+    override suspend fun getTopAnnouncesReview(): Response<List<Anime>> {
+        return animeApi.getAnimes(page = REVIEW_PAGE, limit = REVIEW_LIMIT, order = ORDER_BY_POPULAR, status = STATUS_BY_ANONS)
     }
 
 

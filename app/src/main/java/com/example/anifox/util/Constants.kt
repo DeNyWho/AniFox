@@ -13,5 +13,7 @@ object Constants {
     const val REVIEW_LIMIT = 15
     const val DISCOVER_LIMIT = 10
     const val ORDER_BY_POPULAR = "popularity"
+    const val ORDER_BY_RANKED = "ranked"
     const val STATUS_BY_ONGOING = "ongoing"
+    const val STATUS_BY_ANONS = "anons"
 }

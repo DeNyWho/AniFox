@@ -23,5 +23,9 @@
     <string name="enter_code">Enter code</string>
     <string name="empty_view">Enter your code here from the website</string>
     <string name="popular_anime">Popular anime</string>
-    <string name="currently_airing">Currently Airing</string>
+    <string name="top_airing">Top Airing</string>
+    <string name="popular">Popular</string>
+    <string name="announces">Popular Announces</string>
+    <string name="discover">Discover</string>
+    <string name="morePage">see more</string>
 </resources>

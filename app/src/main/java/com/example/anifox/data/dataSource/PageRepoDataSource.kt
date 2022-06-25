@@ -6,7 +6,6 @@ import com.example.anifox.data.remote.api.AnimeApi
 import com.example.anifox.domain.model.anime.Anime
 import com.example.anifox.util.Constants.STARTING_PAGE_INDEX
 import retrofit2.HttpException
-import timber.log.Timber
 import java.io.IOException
 import javax.inject.Inject
 
@@ -32,11 +31,10 @@ class AnimeDataSource @Inject constructor(
                 }
             }
 
-            Timber.d("ANIME = $response")
             LoadResult.Page(
                 data = response,
                 prevKey = if (page == STARTING_PAGE_INDEX) null else page - 1,
-                nextKey = page + 1
+                nextKey = if(response.isEmpty()) null else  page + 1
             )
 
         } catch (exception: IOException) {
