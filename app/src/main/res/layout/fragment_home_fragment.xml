@@ -1,103 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:background="@color/backgroundColor"
     android:layout_height="match_parent"
     tools:context=".presentation.home.HomeFragment">
 
-    <LinearLayout
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
+        android:layout_marginStart="16dp"
         android:layout_height="wrap_content"
-        android:paddingHorizontal="15dp"
-        android:orientation="vertical">
+        android:id="@+id/HomeRecycler"
+        />
 
-        <com.google.android.material.textview.MaterialTextView
-            android:layout_marginVertical="8dp"
-            android:text = "@string/discover"
-            style="@style/TextView.Header"/>
 
-        <androidx.recyclerview.widget.RecyclerView
-            style="@style/ReviewRecycler.Discover"
-            android:id="@+id/discoverRecycler"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/card_discover"/>
 
-        <RelativeLayout
-            style="@style/RelativeLayout">
-
-            <com.google.android.material.textview.MaterialTextView
-                style="@style/TextView.Secondary"
-                android:layout_alignParentStart="true"
-                android:text="@string/top_airing" />
-
-            <TextView
-                style="@style/TextView.MorePage"
-                android:layout_toStartOf="@+id/arrowFirst"
-                android:text="@string/morePage" />
-
-            <ImageView
-                android:id="@+id/arrowFirst"
-                style="@style/ArrowImageView" />
-
-        </RelativeLayout>
-
-        <androidx.recyclerview.widget.RecyclerView
-            style="@style/ReviewRecycler"
-            android:id="@+id/popularAiringRecycler"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/card_item_anime"/>
-        <RelativeLayout
-            style="@style/RelativeLayout">
-
-            <com.google.android.material.textview.MaterialTextView
-                style="@style/TextView.Secondary"
-                android:layout_alignParentStart="true"
-                android:text="@string/popular" />
-
-            <TextView
-                style="@style/TextView.MorePage"
-                android:layout_toStartOf="@+id/arrowSecond"
-                android:text="@string/morePage" />
-
-            <ImageView
-                android:id="@+id/arrowSecond"
-                style="@style/ArrowImageView" />
-
-        </RelativeLayout>
-
-        <androidx.recyclerview.widget.RecyclerView
-            style="@style/ReviewRecycler"
-            android:id="@+id/popularRecycler"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/card_item_anime"/>
-
-        <RelativeLayout
-            style="@style/RelativeLayout">
-
-            <com.google.android.material.textview.MaterialTextView
-                style="@style/TextView.Secondary"
-                android:layout_alignParentStart="true"
-                android:text="@string/announces" />
-
-            <TextView
-                style="@style/TextView.MorePage"
-                android:layout_toStartOf="@+id/arrowThird"
-                android:text="@string/morePage" />
-
-            <ImageView
-                android:id="@+id/arrowThird"
-                style="@style/ArrowImageView" />
-
-        </RelativeLayout>
-
-        <androidx.recyclerview.widget.RecyclerView
-            style="@style/ReviewRecycler"
-            android:id="@+id/announcesRecycler"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/card_item_anime"/>
-    </LinearLayout>
-
-</ScrollView>
+</FrameLayout>

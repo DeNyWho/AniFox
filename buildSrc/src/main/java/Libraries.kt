@@ -73,6 +73,7 @@ object Libraries {
         const val LifecycleCommon = "androidx.lifecycle:lifecycle-common-java8:${Versions.lifecycle}"
         const val LifecycleExtensions = "androidx.lifecycle:lifecycle-extensions:${Versions.lifecycleExtensions}"
         const val LiveDataCore = "androidx.lifecycle:lifecycle-livedata-core-ktx:${Versions.lifecycle}"
+        const val LifeCycleRunTime = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycle}"
     }
 
     object ViewPager {

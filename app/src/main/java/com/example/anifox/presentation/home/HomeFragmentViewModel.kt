@@ -6,6 +6,7 @@ import com.example.anifox.domain.useCase.home.GetDiscoverAnimeUseCase
 import com.example.anifox.domain.useCase.home.GetPopularReviewUseCase
 import com.example.anifox.domain.useCase.home.GetTopAiringReviewUseCase
 import com.example.anifox.domain.useCase.home.GetTopAnnouncesReviewUseCase
+import com.example.anifox.presentation.home.state.HomeState
 import com.example.anifox.presentation.home.state.announces.AnnouncesState
 import com.example.anifox.presentation.home.state.discover.DiscoverState
 import com.example.anifox.presentation.home.state.popular.AiringPopularAnimeState
@@ -24,39 +25,68 @@ class HomeFragmentViewModel @Inject constructor(
     private val getPopular: GetPopularReviewUseCase,
     private val getTopAnnounces: GetTopAnnouncesReviewUseCase
 ) : ViewModel() {
-    private val _animeAiringPopular = MutableStateFlow(AiringPopularAnimeState())
-    val animeAiringPopular = _animeAiringPopular.asStateFlow()
 
-    private val _animePopular = MutableStateFlow(PopularAnimeState())
-    val animePopular = _animePopular.asStateFlow()
+    private val _state = MutableStateFlow(
+        HomeState(
+            airingPopularState = AiringPopularAnimeState(isLoading = true, data = null),
+            popularState = PopularAnimeState (isLoading = true, data = null),
+            announcesState = AnnouncesState(isLoading = true, data = null),
+            discoverState = DiscoverState(isLoading = true, data = null)
+        )
+    )
+    val state = _state.asStateFlow()
 
-    private val _announcesPopular = MutableStateFlow(AnnouncesState())
-    val announcesPopular = _announcesPopular.asStateFlow()
-
-    private val _animeDiscover = MutableStateFlow(DiscoverState())
-    val animeDiscover = _animeDiscover.asStateFlow()
 
     fun getPopular(){
-        getPopular.invoke().onEach {
-            value -> _animePopular.tryEmit(value)
+        getPopular.invoke().onEach { value ->
+            _state.tryEmit(
+                _state.value.copy(
+                    popularState = _state.value.popularState.copy(
+                        isLoading = false,
+                        data = value.data
+                    )
+                )
+            )
         }.launchIn(viewModelScope)
     }
 
+
     fun getAnnounces(){
-        getTopAnnounces.invoke().onEach {
-            value -> _announcesPopular.tryEmit(value)
+        getTopAnnounces.invoke().onEach { value ->
+            _state.tryEmit(
+                _state.value.copy(
+                    announcesState = _state.value.announcesState.copy(
+                        isLoading = false,
+                        data = value.data
+                    )
+                )
+            )
         }.launchIn(viewModelScope)
     }
 
     fun getDiscover(){
-        getDiscoverAnime.invoke().onEach {
-            value -> _animeDiscover.tryEmit(value)
+        getDiscoverAnime.invoke().onEach { value ->
+            _state.tryEmit(
+                _state.value.copy(
+                    discoverState = _state.value.discoverState.copy(
+                        isLoading = false,
+                        data = value.data
+                    )
+                )
+            )
         }.launchIn(viewModelScope)
     }
 
     fun getPopularAiring(){
-        getTopAiring.invoke().onEach {
-                value -> _animeAiringPopular.tryEmit(value)
+        getTopAiring.invoke().onEach { value ->
+            _state.tryEmit(
+                _state.value.copy(
+                    airingPopularState = _state.value.airingPopularState.copy(
+                        isLoading = false,
+                        data = value.data
+                    )
+                )
+            )
         } .launchIn(viewModelScope)
     }
 

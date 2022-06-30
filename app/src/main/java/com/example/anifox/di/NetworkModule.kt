@@ -32,9 +32,9 @@ object NetworkModule {
 
     @Provides
     @Singleton
-    fun provideHttpClient(): OkHttpClient {
+    fun provideHttpClient(@UserAgentInterceptorOkHttpClient headerAgent: Interceptor): OkHttpClient {
         return OkHttpClient().newBuilder()
-            .addInterceptor(providesUserAgentInterceptor())
+            .addInterceptor(headerAgent)
             .followRedirects(true)
             .followSslRedirects(false)
             .build()

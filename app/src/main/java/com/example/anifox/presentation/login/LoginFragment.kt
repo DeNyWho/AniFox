@@ -8,9 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import com.example.anifox.BuildConfig.*
-import com.example.anifox.R
 import com.example.anifox.databinding.FragmentLoginFragmentBinding
 import com.example.anifox.util.Constants.REDIRECT_URI
 import dagger.hilt.android.AndroidEntryPoint
@@ -58,7 +56,7 @@ class LoginFragment : Fragment() {
 //                    }
 //                }
 //            }
-            findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
+//            findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
 
         }
     }

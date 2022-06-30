@@ -1,11 +1,11 @@
 package com.example.anifox.domain.useCase.splash
 
-import com.example.anifox.data.repository.Repository
+import com.example.anifox.data.repository.DataStoreRepository
 
 class SaveOnBoardingUseCase(
-    private val repository: Repository
+    private val dataStoreRepository: DataStoreRepository
 ) {
     suspend operator fun invoke(completed: Boolean) {
-        repository.saveOnBoardingState(completed = completed)
+        dataStoreRepository.saveOnBoardingState(completed = completed)
     }
 }

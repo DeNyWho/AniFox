@@ -7,10 +7,19 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import com.example.anifox.adapters.AnimeItem
-import com.example.anifox.adapters.DiscoverItem
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.anifox.R
+import com.example.anifox.adapters.HeaderItem
+import com.example.anifox.adapters.HeaderMoreItem
+import com.example.anifox.adapters.HorizontalItem
 import com.example.anifox.databinding.FragmentHomeFragmentBinding
-import com.xwray.groupie.GroupieAdapter
+import com.example.anifox.util.Constants
+import com.example.anifox.util.Constants.ORDER_BY_POPULAR
+import com.example.anifox.util.Constants.STATUS_BY_ANONS
+import com.example.anifox.util.Constants.STATUS_BY_ONGOING
+import com.xwray.groupie.GroupAdapter
+import com.xwray.groupie.GroupieViewHolder
+import com.xwray.groupie.Item
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
@@ -22,11 +31,7 @@ open class HomeFragment : Fragment() {
     private var _binding: FragmentHomeFragmentBinding? = null
     private val binding get() = _binding!!
 
-    private var popularAiringAdapter: GroupieAdapter? = null
-    private var popularAdapter: GroupieAdapter? = null
-    private var discoverAdapter: GroupieAdapter? = null
-    private var announcesAdapter: GroupieAdapter? = null
-
+    private val groupAdapter = GroupAdapter<GroupieViewHolder>()
 
     private val viewModel: HomeFragmentViewModel by viewModels()
     override fun onCreateView(
@@ -39,81 +44,51 @@ open class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         viewModel.getDiscover()
         viewModel.getPopularAiring()
         viewModel.getPopular()
         viewModel.getAnnounces()
-        observeDiscoverOnState()
-        observePopularAiringOnState()
-        observePopularOnState()
-        observeAnnouncesOnState()
+
+        observeOnState()
+        initRecycler()
+
     }
 
-    private fun observePopularAiringOnState(){
-        popularAiringAdapter = GroupieAdapter()
-        binding.popularAiringRecycler.adapter = popularAiringAdapter
-        viewModel.animeAiringPopular.onEach { state ->
-            when(state.isLoading) {
-                true -> {}
-                false -> {
-                    if(state.data != null) {
-                        viewModel.animeAiringPopular.value.data?.onEach {
-                            popularAiringAdapter?.add(AnimeItem(it))
-                        }
-                    }
-                }
-            }
-        }.launchWhenStarted()
+    private fun initRecycler(){
+        binding.HomeRecycler.adapter = groupAdapter
+        binding.HomeRecycler.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
     }
 
-    private fun observeAnnouncesOnState(){
-        announcesAdapter = GroupieAdapter()
-        binding.announcesRecycler.adapter = announcesAdapter
-        viewModel.announcesPopular.onEach { state ->
-            when(state.isLoading) {
-                true -> {}
-                false -> {
-                    if(state.data != null) {
-                        viewModel.announcesPopular.value.data?.onEach {
-                            announcesAdapter?.add(AnimeItem(it))
-                        }
-                    }
+    private fun observeOnState() {
+        viewModel.state.onEach { state ->
+            val list = mutableListOf<Item<*>>().apply {
+                this += HeaderItem(R.string.discover)
+                this += HorizontalItem(state.discoverState.data ?: emptyList(), type = Constants.STYLE_BIGGER_RECYCLER)
+                if(state.airingPopularState.data?.isNotEmpty() == true) {
+                    this += HeaderMoreItem(R.string.top_airing, this@HomeFragment, order = Constants.ORDER_BY_POPULAR, status = STATUS_BY_ONGOING)
+                    this += HorizontalItem(
+                        listData = state.airingPopularState.data,
+                        type = Constants.STYLE_SMALLER_RECYCLER
+                    )
+                }
+                if(state.popularState.data?.isNotEmpty() == true) {
+                    this += HeaderMoreItem(R.string.popular, this@HomeFragment, order = Constants.ORDER_BY_POPULAR, status = null)
+                    this += HorizontalItem(
+                        listData = state.popularState.data,
+                        type = Constants.STYLE_SMALLER_RECYCLER
+                    )
+                }
+                if(state.announcesState.data?.isNotEmpty() == true) {
+                    this += HeaderMoreItem(R.string.announces, this@HomeFragment, order = ORDER_BY_POPULAR, status = STATUS_BY_ANONS)
+                    this += HorizontalItem(
+                        listData = state.announcesState.data,
+                        type = Constants.STYLE_SMALLER_RECYCLER
+                    )
                 }
             }
-        }.launchWhenStarted()
-    }
+            groupAdapter.update(list)
 
-    private fun observePopularOnState(){
-        popularAdapter = GroupieAdapter()
-        binding.popularRecycler.adapter = popularAdapter
-        viewModel.animePopular.onEach { state ->
-            when(state.isLoading) {
-                true -> {}
-                false -> {
-                    if(state.data != null) {
-                        viewModel.animePopular.value.data?.onEach {
-                            popularAdapter?.add(AnimeItem(it))
-                        }
-                    }
-                }
-            }
-        }.launchWhenStarted()
-    }
-
-    private fun observeDiscoverOnState(){
-        discoverAdapter = GroupieAdapter()
-        binding.discoverRecycler.adapter = discoverAdapter
-        viewModel.animeDiscover.onEach { state ->
-            when(state.isLoading) {
-                true -> {}
-                false -> {
-                    if(state.data != null) {
-                        viewModel.animeDiscover.value.data?.onEach {
-                            discoverAdapter?.add(DiscoverItem(it))
-                        }
-                    }
-                }
-            }
         }.launchWhenStarted()
     }
 

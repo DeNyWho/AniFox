@@ -9,7 +9,10 @@ import com.xwray.groupie.viewbinding.BindableItem
 
 class DiscoverItem(var anime: Anime): BindableItem<CardDiscoverBinding>() {
     override fun bind(binding: CardDiscoverBinding, position: Int) {
-        Glide.with(binding.root.context).load(anime.image.original).into(binding.animeImage)
+        Glide
+            .with(binding.root.context)
+            .load(anime.image.original)
+            .into(binding.ivImage)
     }
 
     override fun getLayout(): Int {

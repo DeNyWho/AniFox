@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:background="@color/backgroundColor"
+    android:orientation="horizontal">
+
+    <com.google.android.material.textview.MaterialTextView
+        style="@style/TextView.Secondary"
+        android:layout_weight="1"
+        android:id="@+id/tvTitle"
+        android:text="@string/announces" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvSeeMore"
+        style="@style/TextView.MorePage"
+        android:layout_gravity="center_vertical"
+        android:text="@string/morePage" />
+
+    <ImageView
+        android:id="@+id/ivImage"
+        android:layout_marginBottom="1dp"
+        style="@style/ArrowImageView" />
+</LinearLayout>

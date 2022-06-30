@@ -1,11 +1,12 @@
 package com.example.anifox.di
 
 import android.content.Context
+import com.example.anifox.data.dataSource.AnimeDataSource
 import com.example.anifox.data.remote.api.AnimeApi
 import com.example.anifox.data.remote.api.UserApi
 import com.example.anifox.data.repository.AnimeRepository
 import com.example.anifox.data.repository.DataStoreOperationsImpl
-import com.example.anifox.data.repository.Repository
+import com.example.anifox.data.repository.DataStoreRepository
 import com.example.anifox.domain.repository.DataStoreOperations
 import dagger.Module
 import dagger.Provides
@@ -27,15 +28,16 @@ object RepositoryModule {
 
     @Provides
     @Singleton
-    fun provideRepository(
+    fun provideDataStoreRepository(
         dataStore: DataStoreOperations
-    ) = Repository(dataStore)
+    ) = DataStoreRepository(dataStore)
 
     @Provides
     @Singleton
     fun provideAnimeRepository(
-        animeApi: AnimeApi
-    ) = AnimeRepository(animeApi)
+        animeApi: AnimeApi,
+        animeDataSource: AnimeDataSource.Factory
+    ) = AnimeRepository(animeApi, animeDataSource)
 
     @Provides
     fun provideUserService(retrofit: Retrofit) : UserApi {

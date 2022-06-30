@@ -9,8 +9,11 @@ import com.xwray.groupie.viewbinding.BindableItem
 
 class AnimeItem(var anime: Anime): BindableItem<CardItemAnimeBinding>() {
     override fun bind(binding: CardItemAnimeBinding, position: Int) {
-        binding.name.text = anime.name
-        Glide.with(binding.root.context).load(anime.image.original).into(binding.animeImage)
+        binding.tvName.text = anime.name
+        Glide
+            .with(binding.root.context)
+            .load(anime.image.original)
+            .into(binding.ivImage)
     }
 
     override fun getLayout(): Int {

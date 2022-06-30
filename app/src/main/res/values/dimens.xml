@@ -7,11 +7,14 @@
     <dimen name="fragment_auth_button">56dp</dimen>
     <dimen name="fragment_login_textInputEditText">56dp</dimen>
     <dimen name="card_width">140dp</dimen>
+    <dimen name="card_width_smaller">120dp</dimen>
     <dimen name="card_height">220dp</dimen>
+    <dimen name="card_height_smaller">200dp</dimen>
     <dimen name="discover_height">180dp</dimen>
     <dimen name="cardImage_width">120dp</dimen>
     <dimen name="cardImage_height">180dp</dimen>
     <dimen name="card_discover_width">200dp</dimen>
     <dimen name="card_discover_height">300dp</dimen>
+    <dimen name="card_item_height_smaller">220dp</dimen>
     <dimen name="card_item_height">260dp</dimen>
 </resources>

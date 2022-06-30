@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.textview.MaterialTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:text = "@string/discover"
+    android:layout_margin="8dp"
+    android:id="@+id/tvName"
+    android:background="@color/backgroundColor"
+    android:elevation="1dp"
+    style="@style/TextView.Header"/>
+
