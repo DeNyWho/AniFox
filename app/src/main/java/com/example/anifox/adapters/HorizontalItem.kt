@@ -1,18 +1,20 @@
 package com.example.anifox.adapters
 
 import android.view.View
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.anifox.R
 import com.example.anifox.databinding.HorizontalItemBinding
-import com.example.anifox.domain.model.anime.Anime
+import com.example.anifox.domain.model.manga.Manga
 import com.example.anifox.util.Constants
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
 import com.xwray.groupie.viewbinding.BindableItem
 
 class HorizontalItem(
-    private val listData: List<Anime>,
-    private val type: String
+    private val listData: List<Manga>,
+    private val type: String,
+    private val fragment: Fragment
 ) : BindableItem<HorizontalItemBinding>() {
     private val horizontalAdapter by lazy { GroupAdapter <GroupieViewHolder>() }
     override fun getLayout(): Int {
@@ -24,11 +26,15 @@ class HorizontalItem(
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             adapter = horizontalAdapter
         }
+        if(listData.isNotEmpty()) {
+            println(listData.last())
+        }
+
         if (type == Constants.STYLE_BIGGER_RECYCLER) {
-            horizontalAdapter.replaceAll(listData.map { DiscoverItem(it) })
+            horizontalAdapter.replaceAll(listData.map { DiscoverItem(it, fragment) })
         }
         else {
-            horizontalAdapter.replaceAll(listData.map { AnimeItem(it) })
+            horizontalAdapter.replaceAll(listData.map { MangaItem(it, fragment) })
         }
     }
 

@@ -3,7 +3,6 @@
     android:text = "@string/discover"
     android:layout_margin="8dp"
     android:id="@+id/tvName"
-    android:background="@color/backgroundColor"
     android:elevation="1dp"
     style="@style/TextView.Header"/>
 

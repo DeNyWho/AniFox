@@ -12,7 +12,8 @@ object Versions {
 
     const val swipeRefresh = "1.1.0"
     const val serializationJson = "1.3.3"
-    const val glide = "4.12.0"
+    const val picasso = "2.8"
+    const val glide = "4.13.2"
     const val groupie = "2.10.1"
     const val paging = "3.1.1"
     const val timber = "5.0.1"

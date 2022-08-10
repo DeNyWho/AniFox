@@ -1,0 +1,52 @@
+package com.example.anifox.data.repository
+
+import androidx.paging.PagingSource
+import com.example.anifox.data.dataSource.AnimeDataSource
+import com.example.anifox.data.remote.api.MainApi
+import com.example.anifox.domain.model.manga.Manga
+import com.example.anifox.domain.model.responses.MangaResponse
+import com.example.anifox.domain.repository.RemoteDataSource
+import com.example.anifox.util.Constants.REVIEW_LIMIT
+import com.example.anifox.util.Constants.REVIEW_PAGE
+import com.example.anifox.util.Constants.SORT_BY_RATE
+import com.example.anifox.util.Constants.SORT_BY_VIEWS
+import com.example.anifox.util.Constants.STATUS_BY_FINAL
+import com.example.anifox.util.Constants.STATUS_BY_ONGOING
+import retrofit2.Response
+import javax.inject.Inject
+
+class MangaRepository @Inject constructor(
+    private val mainApi: MainApi,
+    private val animeDataSourceFactory: AnimeDataSource.Factory
+): RemoteDataSource {
+
+    override fun getAnimePager(order: String?, status: String?): PagingSource<Int, Manga> {
+        return animeDataSourceFactory.create(order, status)
+    }
+
+    override suspend fun getMangaByIdRu(id: String): Response<MangaResponse> {
+        return mainApi.getDetailManga(id.toInt())
+    }
+
+    override suspend fun getMangaByPopularReview(): Response<MangaResponse> {
+        return mainApi.getManga(page = REVIEW_PAGE, countCard = REVIEW_LIMIT, status = null, order = SORT_BY_RATE)
+    }
+
+    override suspend fun getDiscoverAnime(): Response<MangaResponse> {
+        return mainApi.getManga(page = REVIEW_PAGE, countCard = REVIEW_LIMIT, status = STATUS_BY_FINAL, order = SORT_BY_RATE)
+    }
+
+    override suspend fun getMostReadManga(): Response<MangaResponse> {
+        return mainApi.getManga(page = REVIEW_PAGE, countCard = REVIEW_LIMIT, status = null, order = SORT_BY_VIEWS)
+    }
+
+    override suspend fun getTopAiringReview(): Response<MangaResponse> {
+        return mainApi.getManga(page = REVIEW_PAGE, countCard = REVIEW_LIMIT, status = STATUS_BY_ONGOING, order = SORT_BY_RATE)
+    }
+//
+//    override suspend fun getTopAnnouncesReview(): Response<List<Manga>> {
+//        return animeApiShikimori.getAnimes(page = REVIEW_PAGE, limit = REVIEW_LIMIT, order = ORDER_BY_POPULAR, status = STATUS_BY_ANONS)
+//    }
+
+
+}

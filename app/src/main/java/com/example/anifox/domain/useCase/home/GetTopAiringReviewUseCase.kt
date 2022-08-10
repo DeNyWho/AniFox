@@ -1,7 +1,7 @@
 package com.example.anifox.domain.useCase.home
 
-import com.example.anifox.data.repository.AnimeRepository
-import com.example.anifox.domain.model.anime.toData
+import com.example.anifox.data.repository.MangaRepository
+import com.example.anifox.domain.model.manga.toData
 import com.example.anifox.presentation.home.state.popular.AiringPopularAnimeState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -11,7 +11,7 @@ import timber.log.Timber
 import javax.inject.Inject
 
 class GetTopAiringReviewUseCase @Inject constructor(
-    private val repository: AnimeRepository
+    private val repository: MangaRepository
 ) {
     operator fun invoke(): Flow<AiringPopularAnimeState> {
         return flow {
@@ -19,7 +19,7 @@ class GetTopAiringReviewUseCase @Inject constructor(
             val res = repository.getTopAiringReview()
 
             if (res.isSuccessful){
-                val data = res.body()?.map { it.toData() }.orEmpty()
+                val data = res.body()?.data?.map { it.toData() }.orEmpty()
                 Timber.d("DATA = $data")
                 val state = AiringPopularAnimeState(data, isLoading = false)
                 emit(state)

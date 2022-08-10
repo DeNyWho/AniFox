@@ -1,18 +1,27 @@
 package com.example.anifox.adapters
 
 import android.view.View
+import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.example.anifox.R
 import com.example.anifox.databinding.CardDiscoverBinding
-import com.example.anifox.domain.model.anime.Anime
+import com.example.anifox.domain.model.manga.Manga
 import com.xwray.groupie.viewbinding.BindableItem
 
-class DiscoverItem(var anime: Anime): BindableItem<CardDiscoverBinding>() {
+class DiscoverItem(var manga: Manga, var fragment: Fragment): BindableItem<CardDiscoverBinding>() {
     override fun bind(binding: CardDiscoverBinding, position: Int) {
+        println(manga.image)
         Glide
             .with(binding.root.context)
-            .load(anime.image.original)
+            .load(manga.image)
             .into(binding.ivImage)
+
+//        binding.root.setOnClickListener {
+//            val bundle = Bundle()
+//            bundle.putInt("animeUrl", manga.url)
+//
+//            fragment.findNavController().navigate(R.id.detailFragment, bundle)
+//        }
     }
 
     override fun getLayout(): Int {

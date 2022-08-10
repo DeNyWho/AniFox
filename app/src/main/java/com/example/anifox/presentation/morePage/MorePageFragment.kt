@@ -50,7 +50,7 @@ class MorePageFragment : Fragment() {
     }
 
     private fun observeAnnouncesOnState(){
-        viewModel.animes.onEach {
+        viewModel.mangas.onEach {
             adapter.submitData(it)
         }.launchWhenStarted()
     }

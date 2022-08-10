@@ -7,9 +7,9 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.anifox.databinding.CardItemAnimeSmallerBinding
-import com.example.anifox.domain.model.anime.Anime
+import com.example.anifox.domain.model.manga.Manga
 
-class SmallerAnimeItem : PagingDataAdapter<Anime, SmallerAnimeItemViewHolder>(ArticleDiffItemCallback) {
+class SmallerAnimeItem : PagingDataAdapter<Manga, SmallerAnimeItemViewHolder>(ArticleDiffItemCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SmallerAnimeItemViewHolder {
        return  SmallerAnimeItemViewHolder(CardItemAnimeSmallerBinding.inflate(LayoutInflater.from(parent.context), parent, false))
@@ -22,23 +22,23 @@ class SmallerAnimeItem : PagingDataAdapter<Anime, SmallerAnimeItemViewHolder>(Ar
 
 class SmallerAnimeItemViewHolder(private val itemBinding: CardItemAnimeSmallerBinding) : RecyclerView.ViewHolder(itemBinding.root) {
 
-    fun bind(anime: Anime?) {
-        itemBinding.tvName.text = anime?.name
+    fun bind(manga: Manga?) {
+        itemBinding.tvName.text = manga?.title
         Glide
             .with(itemBinding.root.context)
-            .load(anime?.image?.original)
+            .load(manga?.image)
             .into(itemBinding.ivImage)
     }
 }
 
-private object ArticleDiffItemCallback : DiffUtil.ItemCallback<Anime>() {
+private object ArticleDiffItemCallback : DiffUtil.ItemCallback<Manga>() {
 
-    override fun areItemsTheSame(oldItem: Anime, newItem: Anime): Boolean {
+    override fun areItemsTheSame(oldItem: Manga, newItem: Manga): Boolean {
         return oldItem == newItem
     }
 
-    override fun areContentsTheSame(oldItem: Anime, newItem: Anime): Boolean {
-        return oldItem.url == newItem.url && oldItem.name == newItem.name
+    override fun areContentsTheSame(oldItem: Manga, newItem: Manga): Boolean {
+        return oldItem.title == newItem.title && oldItem.title == newItem.title
     }
 }
 

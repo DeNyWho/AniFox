@@ -1,6 +1,6 @@
 package com.example.anifox.di
 
-import com.example.anifox.BuildConfig
+import com.example.anifox.BuildConfig.BASE_URL_Main_API
 import com.example.anifox.core.interceptors.UserAgentInterceptor
 import dagger.Module
 import dagger.Provides
@@ -10,6 +10,7 @@ import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Named
 import javax.inject.Singleton
 
 @Module
@@ -18,9 +19,10 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun provideRetrofit(): Retrofit {
+    @Named("RetrofitMainApi")
+    fun provideMainRetrofit(): Retrofit {
         return Retrofit.Builder()
-            .baseUrl(BuildConfig.BASE_URL)
+            .baseUrl(BASE_URL_Main_API)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }

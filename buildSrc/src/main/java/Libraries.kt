@@ -42,6 +42,10 @@ object Libraries {
         const val hiltCompiler = "com.google.dagger:hilt-compiler:${Versions.dagger}"
     }
 
+    object Picasso {
+        const val picasso = "com.squareup.picasso:picasso:${Versions.picasso}"
+    }
+
     object Glide {
         const val glide = "com.github.bumptech.glide:glide:${Versions.glide}"
         const val glideCompiler = "com.github.bumptech.glide:compiler:${Versions.glide}"

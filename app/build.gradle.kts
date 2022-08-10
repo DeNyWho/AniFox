@@ -21,14 +21,7 @@ android {
         testInstrumentationRunner = Config.testRunner
         vectorDrawables.useSupportLibrary = true
 
-
-        buildConfigField("String", "BASE_URL", "\"https://shikimori.one/api/\"")
-        buildConfigField("String", "APP_LINK", "\"https://shikimori.one/oauth/authorize\"")
-        buildConfigField("String", "AUTH_CODE", "\"authorization_code\"")
-        buildConfigField("String", "REDIRECT_URI", "\"urn%3Aietf%3Awg%3Aoauth%3A2.0%3Aoob\"")
-        buildConfigField("String", "RESPONSE_TYPE", "\"code&scope=user_rates+comments+topics\"")
-        buildConfigField("String", "CLIENT_ID", "\"sGl1uO_SjvpI5sDgKynbVFc8NrRd2e-_BPa_nj75DTk\"")
-        buildConfigField("String", "CLIENT_SECRET", "\"6hvA2F3_Aw3sOnafBLrL9HIpVmUTS4_5Xgz0dXySPVk\"")
+        buildConfigField("String", "BASE_URL_Main_API", "\"http://192.168.0.43:8054/api2/\"")
     }
 
     buildTypes {
@@ -40,6 +33,7 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -82,7 +76,11 @@ dependencies {
     implementation(Libraries.DataStore.DataStorePreferences)
     implementation(Libraries.DataStore.DataStorePreferencesCore)
 
+    implementation(Libraries.Picasso.picasso)
+
     implementation(Libraries.Glide.glide)
+    implementation( "com.squareup.okhttp3:okhttp:4.10.0")
+    implementation ("com.github.bumptech.glide:okhttp3-integration:4.7.1")
     kapt(Libraries.Glide.glideCompiler)
 
     implementation(Libraries.Hilt.hiltAndroid)

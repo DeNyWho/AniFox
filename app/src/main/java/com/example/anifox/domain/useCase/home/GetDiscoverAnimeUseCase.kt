@@ -1,7 +1,7 @@
 package com.example.anifox.domain.useCase.home
 
-import com.example.anifox.data.repository.AnimeRepository
-import com.example.anifox.domain.model.anime.toData
+import com.example.anifox.data.repository.MangaRepository
+import com.example.anifox.domain.model.manga.toData
 import com.example.anifox.presentation.home.state.discover.DiscoverState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -11,7 +11,7 @@ import timber.log.Timber
 import javax.inject.Inject
 
 class GetDiscoverAnimeUseCase @Inject constructor(
-    private val repository: AnimeRepository
+    private val repository: MangaRepository
 ) {
     operator fun invoke(): Flow<DiscoverState> {
         return flow {
@@ -19,7 +19,7 @@ class GetDiscoverAnimeUseCase @Inject constructor(
             val res = repository.getDiscoverAnime()
 
             if (res.isSuccessful){
-                val data = res.body()?.map { it.toData() }.orEmpty()
+                val data = res.body()?.data?.map { it.toData() }.orEmpty()
                 Timber.d("DATA = $data")
                 val state = DiscoverState(data, isLoading = false)
                 emit(state)

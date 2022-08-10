@@ -14,6 +14,12 @@
             app:destination="@id/morePageFragment" />
         <argument android:name="order" app:argType="string"/>
         <argument android:name="status" app:argType="string"/>
+        <action
+            android:id="@+id/action_homeFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+        <argument
+            android:name="animeId"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/morePageFragment"
@@ -23,5 +29,17 @@
 
     <argument android:name="order" app:argType="string"/>
     <argument android:name="status" app:argType="string"/>
+        <action
+            android:id="@+id/action_morePageFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.example.anifox.presentation.detail.DetailFragment"
+        android:label="fragment_detail_fragment"
+        tools:layout="@layout/fragment_detail_fragment" >
+        <argument
+            android:name="animeId"
+            app:argType="integer" />
     </fragment>
 </navigation>

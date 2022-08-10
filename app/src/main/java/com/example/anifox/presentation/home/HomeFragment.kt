@@ -15,6 +15,8 @@ import com.example.anifox.adapters.HorizontalItem
 import com.example.anifox.databinding.FragmentHomeFragmentBinding
 import com.example.anifox.util.Constants
 import com.example.anifox.util.Constants.ORDER_BY_POPULAR
+import com.example.anifox.util.Constants.SORT_BY_RATE
+import com.example.anifox.util.Constants.SORT_BY_VIEWS
 import com.example.anifox.util.Constants.STATUS_BY_ANONS
 import com.example.anifox.util.Constants.STATUS_BY_ONGOING
 import com.xwray.groupie.GroupAdapter
@@ -45,10 +47,12 @@ open class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.getDiscover()
+//        viewModel.getDiscover()
         viewModel.getPopularAiring()
         viewModel.getPopular()
-        viewModel.getAnnounces()
+        viewModel.getMostRead()
+//        Thread.sleep(1000)
+//        viewModel.getAnnounces()
 
         observeOnState()
         initRecycler()
@@ -63,27 +67,66 @@ open class HomeFragment : Fragment() {
     private fun observeOnState() {
         viewModel.state.onEach { state ->
             val list = mutableListOf<Item<*>>().apply {
-                this += HeaderItem(R.string.discover)
-                this += HorizontalItem(state.discoverState.data ?: emptyList(), type = Constants.STYLE_BIGGER_RECYCLER)
+
+                if(state.discoverState.data?.isNotEmpty() == true) {
+                    this += HeaderItem(R.string.discover)
+                    println(state.discoverState.data)
+                    this += HorizontalItem(
+                        listData = state.discoverState.data ?: emptyList(),
+                        type = Constants.STYLE_BIGGER_RECYCLER,
+                        fragment = this@HomeFragment
+                    )
+                }
+                if(state.mostRead.data?.isNotEmpty() == true) {
+                    this += HeaderMoreItem(
+                        titleStringResId = R.string.most_read,
+                        homeFragment = this@HomeFragment,
+                        order = SORT_BY_VIEWS,
+                        status = null
+                    )
+                    this += HorizontalItem(
+                        listData = state.mostRead.data,
+                        type = Constants.STYLE_SMALLER_RECYCLER,
+                        fragment = this@HomeFragment
+                    )
+                }
                 if(state.airingPopularState.data?.isNotEmpty() == true) {
-                    this += HeaderMoreItem(R.string.top_airing, this@HomeFragment, order = Constants.ORDER_BY_POPULAR, status = STATUS_BY_ONGOING)
+                    this += HeaderMoreItem(
+                        titleStringResId = R.string.top_airing,
+                        homeFragment = this@HomeFragment,
+                        order = SORT_BY_RATE,
+                        status = STATUS_BY_ONGOING
+                    )
                     this += HorizontalItem(
                         listData = state.airingPopularState.data,
-                        type = Constants.STYLE_SMALLER_RECYCLER
+                        type = Constants.STYLE_SMALLER_RECYCLER,
+                        fragment = this@HomeFragment
                     )
                 }
                 if(state.popularState.data?.isNotEmpty() == true) {
-                    this += HeaderMoreItem(R.string.popular, this@HomeFragment, order = Constants.ORDER_BY_POPULAR, status = null)
+                    this += HeaderMoreItem(
+                        titleStringResId = R.string.popular,
+                        homeFragment = this@HomeFragment,
+                        order = SORT_BY_RATE,
+                        status = null
+                    )
                     this += HorizontalItem(
                         listData = state.popularState.data,
-                        type = Constants.STYLE_SMALLER_RECYCLER
+                        type = Constants.STYLE_SMALLER_RECYCLER,
+                        fragment = this@HomeFragment
                     )
                 }
                 if(state.announcesState.data?.isNotEmpty() == true) {
-                    this += HeaderMoreItem(R.string.announces, this@HomeFragment, order = ORDER_BY_POPULAR, status = STATUS_BY_ANONS)
+                    this += HeaderMoreItem(
+                        titleStringResId = R.string.announces,
+                        homeFragment = this@HomeFragment,
+                        order = ORDER_BY_POPULAR,
+                        status = STATUS_BY_ANONS
+                    )
                     this += HorizontalItem(
                         listData = state.announcesState.data,
-                        type = Constants.STYLE_SMALLER_RECYCLER
+                        type = Constants.STYLE_SMALLER_RECYCLER,
+                        fragment = this@HomeFragment
                     )
                 }
             }
