@@ -40,10 +40,11 @@ class MorePageFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.setQueries(args.order, args.status)
+        viewModel.setQueries(args.order, args.status, args.genre)
 
         Timber.d("order = ${args.order}")
         Timber.d("status = ${args.status}")
+        Timber.d("genre = ${args.genre}")
 
         observeAnnouncesOnState()
         initRecycler()

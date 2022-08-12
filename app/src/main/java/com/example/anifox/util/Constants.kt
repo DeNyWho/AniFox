@@ -6,7 +6,7 @@ object Constants {
     const val REFRESH_TOKEN = "refresh_token"
     const val APP_NAME = "AniFox"
     const val PREFERENCES_NAME = "anime_preferences"
-    const val STARTING_PAGE_INDEX = 1
+    const val STARTING_PAGE_INDEX = 0
     const val MORE_PAGE_SIZE = 50
     const val REVIEW_PAGE = 0
     const val REVIEW_LIMIT = 10

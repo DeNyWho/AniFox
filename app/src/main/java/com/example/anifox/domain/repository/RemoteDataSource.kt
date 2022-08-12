@@ -7,10 +7,10 @@ import retrofit2.Response
 
 interface RemoteDataSource {
 //    fun getAnimePager(order: String?, status: String?): PagingSource<Int, Manga>
-    suspend fun getMangaByIdRu(url: String): Response<MangaResponse>
     suspend fun getMangaByPopularReview(): Response<MangaResponse>
     suspend fun getDiscoverAnime(): Response<MangaResponse>
     suspend fun getTopAiringReview(): Response<MangaResponse>
-    fun getAnimePager(order: String?, status: String?): PagingSource<Int, Manga>
     suspend fun getMostReadManga(): Response<MangaResponse>
+    suspend fun getMangaByIdRu(id: Int): Response<MangaResponse>
+    fun getAnimePager(order: String?, status: String?, genre: String?): PagingSource<Int, Manga>
 }

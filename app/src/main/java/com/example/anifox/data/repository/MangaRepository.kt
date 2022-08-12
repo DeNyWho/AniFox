@@ -20,28 +20,28 @@ class MangaRepository @Inject constructor(
     private val animeDataSourceFactory: AnimeDataSource.Factory
 ): RemoteDataSource {
 
-    override fun getAnimePager(order: String?, status: String?): PagingSource<Int, Manga> {
-        return animeDataSourceFactory.create(order, status)
+    override fun getAnimePager(order: String?, status: String?, genre: String?): PagingSource<Int, Manga> {
+        return animeDataSourceFactory.create(order, status, genre)
     }
 
-    override suspend fun getMangaByIdRu(id: String): Response<MangaResponse> {
-        return mainApi.getDetailManga(id.toInt())
+    override suspend fun getMangaByIdRu(id: Int): Response<MangaResponse> {
+        return mainApi.getDetailManga(id)
     }
 
     override suspend fun getMangaByPopularReview(): Response<MangaResponse> {
-        return mainApi.getManga(page = REVIEW_PAGE, countCard = REVIEW_LIMIT, status = null, order = SORT_BY_RATE)
+        return mainApi.getManga(page = REVIEW_PAGE, countCard = REVIEW_LIMIT, status = null, order = SORT_BY_RATE, genre = null)
     }
 
     override suspend fun getDiscoverAnime(): Response<MangaResponse> {
-        return mainApi.getManga(page = REVIEW_PAGE, countCard = REVIEW_LIMIT, status = STATUS_BY_FINAL, order = SORT_BY_RATE)
+        return mainApi.getManga(page = REVIEW_PAGE, countCard = REVIEW_LIMIT, status = STATUS_BY_FINAL, order = SORT_BY_RATE,  genre = null)
     }
 
     override suspend fun getMostReadManga(): Response<MangaResponse> {
-        return mainApi.getManga(page = REVIEW_PAGE, countCard = REVIEW_LIMIT, status = null, order = SORT_BY_VIEWS)
+        return mainApi.getManga(page = REVIEW_PAGE, countCard = REVIEW_LIMIT, status = null, order = SORT_BY_VIEWS,  genre = null)
     }
 
     override suspend fun getTopAiringReview(): Response<MangaResponse> {
-        return mainApi.getManga(page = REVIEW_PAGE, countCard = REVIEW_LIMIT, status = STATUS_BY_ONGOING, order = SORT_BY_RATE)
+        return mainApi.getManga(page = REVIEW_PAGE, countCard = REVIEW_LIMIT, status = STATUS_BY_ONGOING, order = SORT_BY_RATE,  genre = null)
     }
 //
 //    override suspend fun getTopAnnouncesReview(): Response<List<Manga>> {

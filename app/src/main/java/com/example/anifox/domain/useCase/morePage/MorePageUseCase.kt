@@ -9,7 +9,7 @@ class MorePageUseCase @Inject constructor(
     private val repository: MangaRepository,
 ) {
 
-    operator fun invoke(order: String?, status: String?): PagingSource<Int, Manga> {
-        return repository.getAnimePager(order, status)
+    operator fun invoke(order: String?, status: String?, genre: String?): PagingSource<Int, Manga> {
+        return repository.getAnimePager(order, status, genre)
     }
 }

@@ -5,5 +5,6 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class PagerQuery(
     val order: String?,
-    val status: String?
+    val status: String?,
+    val genre: String?
 )

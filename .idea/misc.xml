@@ -14,6 +14,7 @@
         <entry key="..\:/Users/denis/AndroidStudioProjects/AniFox/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1265" />
         <entry key="..\:/Users/denis/AndroidStudioProjects/AniFox/app/src/main/res/drawable/loginshape.xml" value="0.2315" />
         <entry key="..\:/Users/denis/AndroidStudioProjects/AniFox/app/src/main/res/drawable/logo_textview.xml" value="0.1265" />
+        <entry key="..\:/Users/denis/AndroidStudioProjects/AniFox/app/src/main/res/drawable/shadow_background.xml" value="0.176" />
         <entry key="..\:/Users/denis/AndroidStudioProjects/AniFox/app/src/main/res/drawable/splashscreen.xml" value="0.2005" />
         <entry key="..\:/Users/denis/AndroidStudioProjects/AniFox/app/src/main/res/drawable/splashscreen_night.xml" value="0.101" />
         <entry key="..\:/Users/denis/AndroidStudioProjects/AniFox/app/src/main/res/font/ff.xml" value="0.40974358974358976" />
@@ -22,6 +23,7 @@
         <entry key="..\:/Users/denis/AndroidStudioProjects/AniFox/app/src/main/res/layout/card_discover.xml" value="0.25" />
         <entry key="..\:/Users/denis/AndroidStudioProjects/AniFox/app/src/main/res/layout/card_item_anime.xml" value="0.16" />
         <entry key="..\:/Users/denis/AndroidStudioProjects/AniFox/app/src/main/res/layout/card_item_anime_smaller.xml" value="0.22554347826086957" />
+        <entry key="..\:/Users/denis/AndroidStudioProjects/AniFox/app/src/main/res/layout/card_item_genres.xml" value="0.25" />
         <entry key="..\:/Users/denis/AndroidStudioProjects/AniFox/app/src/main/res/layout/fragment_detail_fragment.xml" value="0.18135764944275581" />
         <entry key="..\:/Users/denis/AndroidStudioProjects/AniFox/app/src/main/res/layout/fragment_detail_screen.xml" value="0.2015625" />
         <entry key="..\:/Users/denis/AndroidStudioProjects/AniFox/app/src/main/res/layout/fragment_favourite_screen.xml" value="0.38697916666666665" />
@@ -40,8 +42,9 @@
         <entry key="..\:/Users/denis/AndroidStudioProjects/AniFox/app/src/main/res/layout/fragment_splash_screen.xml" value="0.22" />
         <entry key="..\:/Users/denis/AndroidStudioProjects/AniFox/app/src/main/res/layout/fragment_welcome_fragment.xml" value="0.18819655521783182" />
         <entry key="..\:/Users/denis/AndroidStudioProjects/AniFox/app/src/main/res/layout/fragment_welcome_screen.xml" value="0.38697916666666665" />
+        <entry key="..\:/Users/denis/AndroidStudioProjects/AniFox/app/src/main/res/layout/genres_item.xml" value="0.24954710144927536" />
         <entry key="..\:/Users/denis/AndroidStudioProjects/AniFox/app/src/main/res/layout/header_item.xml" value="0.18" />
-        <entry key="..\:/Users/denis/AndroidStudioProjects/AniFox/app/src/main/res/layout/header_more_item.xml" value="0.67" />
+        <entry key="..\:/Users/denis/AndroidStudioProjects/AniFox/app/src/main/res/layout/header_more_item.xml" value="0.3361522198731501" />
         <entry key="..\:/Users/denis/AndroidStudioProjects/AniFox/app/src/main/res/layout/horizontal_bigger_item.xml" value="0.1" />
         <entry key="..\:/Users/denis/AndroidStudioProjects/AniFox/app/src/main/res/layout/horizontal_item.xml" value="0.21920289855072464" />
         <entry key="..\:/Users/denis/AndroidStudioProjects/AniFox/app/src/main/res/layout/horizontal_smaller_item.xml" value="0.1" />

@@ -1,17 +1,15 @@
 package com.example.anifox.adapters
 
+import android.os.Bundle
 import android.view.View
 import androidx.annotation.StringRes
-import androidx.navigation.fragment.findNavController
+import androidx.navigation.findNavController
 import com.example.anifox.R
 import com.example.anifox.databinding.HeaderMoreItemBinding
-import com.example.anifox.presentation.home.HomeFragment
-import com.example.anifox.presentation.home.HomeFragmentDirections
 import com.xwray.groupie.viewbinding.BindableItem
 
 open class HeaderMoreItem(
     @StringRes private val titleStringResId: Int,
-    private val homeFragment: HomeFragment,
     private val order:  String?,
     private val status: String?
 ): BindableItem<HeaderMoreItemBinding>() {
@@ -26,21 +24,16 @@ open class HeaderMoreItem(
 
     override fun bind(viewBinding: HeaderMoreItemBinding, position: Int) {
         viewBinding.tvTitle.setText(titleStringResId)
-
-        viewBinding.ivImage.setOnClickListener {
-            val action = HomeFragmentDirections.actionHomeFragmentToMorePageFragment(
-                order ?: "",
-                status ?: ""
-            )
-            homeFragment.findNavController().navigate(action)
-        }
+        val bundle = Bundle()
+        bundle.putString("order", order ?: "")
+        bundle.putString("status", status ?: "")
 
         viewBinding.tvSeeMore.setOnClickListener {
-            val action = HomeFragmentDirections.actionHomeFragmentToMorePageFragment(
-                order ?: "",
-                status ?: ""
-            )
-            homeFragment.findNavController().navigate(action)
+            viewBinding.root.findNavController().navigate(R.id.action_homeFragment_to_morePageFragment, bundle)
+        }
+
+        viewBinding.ivImage.setOnClickListener {
+            viewBinding.root.findNavController().navigate(R.id.action_homeFragment_to_morePageFragment, bundle)
         }
     }
 }

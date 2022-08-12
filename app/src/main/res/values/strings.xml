@@ -24,9 +24,15 @@
     <string name="empty_view">Enter your code here from the website</string>
     <string name="popular_anime">Popular anime</string>
     <string name="top_airing">Top Airing</string>
-    <string name="most_read">💥Most Read</string>
-    <string name="popular">Popular</string>
+    <string name="most_read">💥Популярные</string>
+    <string name="most_rated">Популярно сейчас</string>
     <string name="announces">Popular Announces</string>
-    <string name="discover">Discover</string>
-    <string name="morePage">see more</string>
+    <string name="discover">Исследуйте</string>
+    <string name="morePage">Показать все</string>
+    <string name="Genre_Comedy">Комедия</string>
+    <string name="Genre_Romance">Романтика</string>
+    <string name="Genre_Fantasy">Фэнтези</string>
+    <string name="Genre_Horror">Ужасы</string>
+    <string name="Genre_Mystic">Мистика</string>
+    <string name="Genre_All_Genres">Все жанры</string>
 </resources>

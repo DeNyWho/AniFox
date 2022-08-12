@@ -12,8 +12,10 @@
         <action
             android:id="@+id/action_homeFragment_to_morePageFragment"
             app:destination="@id/morePageFragment" />
-        <argument android:name="order" app:argType="string"/>
-        <argument android:name="status" app:argType="string"/>
+        <argument android:name="order" app:argType="string"
+            android:defaultValue='""' />
+        <argument android:name="status" app:argType="string"
+            android:defaultValue='""' />
         <action
             android:id="@+id/action_homeFragment_to_detailFragment"
             app:destination="@id/detailFragment" />
@@ -27,11 +29,17 @@
         android:label="fragment_more_page"
         tools:layout="@layout/fragment_more_page">
 
-    <argument android:name="order" app:argType="string"/>
-    <argument android:name="status" app:argType="string"/>
+    <argument android:name="order" app:argType="string"
+        android:defaultValue='""' />
+    <argument android:name="status" app:argType="string"
+        android:defaultValue='""' />
         <action
             android:id="@+id/action_morePageFragment_to_detailFragment"
             app:destination="@id/detailFragment" />
+        <argument
+            android:name="genre"
+            app:argType="string"
+            android:defaultValue='""' />
     </fragment>
     <fragment
         android:id="@+id/detailFragment"

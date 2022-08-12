@@ -21,12 +21,12 @@ class MorePageViewModel @Inject constructor(
     private val getMorePage: MorePageUseCase,
 ) : ViewModel() {
 
-    private val _queries = MutableStateFlow(PagerQuery(null, null))
+    private val _queries = MutableStateFlow(PagerQuery(null, null, null))
 
     private var newPagingSource: PagingSource<*, *>? = null
 
-    fun setQueries(order: String?, status: String?) {
-        _queries.tryEmit(PagerQuery(order, status))
+    fun setQueries(order: String?, status: String?, genre: String?) {
+        _queries.tryEmit(PagerQuery(order, status, genre))
     }
 
     @OptIn(ExperimentalCoroutinesApi::class)
@@ -38,7 +38,7 @@ class MorePageViewModel @Inject constructor(
     private fun newPager(queries: PagerQuery): Pager<Int, Manga> {
         return Pager(PagingConfig(Constants.MORE_PAGE_SIZE, enablePlaceholders = false)) {
             Timber.d("newPager: order = ${queries.order}, status = ${queries.status}")
-            getMorePage.invoke(queries.order, queries.status).also { newPagingSource = it }
+            getMorePage.invoke(queries.order, queries.status, queries.genre).also { newPagingSource = it }
         }
     }
 

@@ -1,7 +1,8 @@
 package com.example.anifox.adapters
 
+import android.os.Bundle
 import android.view.View
-import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
 import com.example.anifox.R
 import com.example.anifox.databinding.CardItemAnimeBinding
@@ -9,22 +10,20 @@ import com.example.anifox.domain.model.manga.Manga
 import com.xwray.groupie.viewbinding.BindableItem
 
 
-class MangaItem(var manga: Manga, var fragment: Fragment): BindableItem<CardItemAnimeBinding>() {
+class MangaItem(var manga: Manga): BindableItem<CardItemAnimeBinding>() {
     override fun bind(binding: CardItemAnimeBinding, position: Int) {
         binding.tvName.text = manga.title
-        println("Manga url =${manga.image}")
 
         Glide
             .with(binding.root.context)
-                .load(manga.image)
-                .into(binding.ivImage)
+            .load(manga.image)
+            .into(binding.ivImage)
+        val bundle = Bundle()
+        bundle.putInt("animeId", manga.id)
 
-//        binding.root.setOnClickListener {
-//            val bundle = Bundle()
-//            bundle.putInt("animeId", manga.id)
-//
-//            fragment.findNavController().navigate(R.id.detailFragment, bundle)
-//        }
+        binding.root.setOnClickListener {
+            binding.root.findNavController().navigate(R.id.action_homeFragment_to_morePageFragment, bundle)
+        }
     }
 
     override fun getLayout(): Int {
