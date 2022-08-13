@@ -12,6 +12,7 @@ buildscript {
         classpath(Config.Dependencies.serialization)
         classpath(Config.Dependencies.navigationSafeArgs)
         classpath(Config.Dependencies.dagger)
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.21")
     }
 }
 

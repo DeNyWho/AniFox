@@ -35,4 +35,6 @@
     <string name="Genre_Horror">Ужасы</string>
     <string name="Genre_Mystic">Мистика</string>
     <string name="Genre_All_Genres">Все жанры</string>
+    <string name="comic">COMIC</string>
+    <string name="search">SEARCH</string>
 </resources>

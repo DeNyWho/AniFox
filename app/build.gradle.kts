@@ -63,6 +63,9 @@ dependencies {
 
     implementation(Libraries.Room.RoomKtx)
     implementation(Libraries.Room.RoomRuntime)
+    implementation("androidx.legacy:legacy-support-v4:1.0.0")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.5.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.0")
     kapt(Libraries.Room.RoomCompiler)
 
     implementation(Libraries.Lifecycle.LifecycleCommon)

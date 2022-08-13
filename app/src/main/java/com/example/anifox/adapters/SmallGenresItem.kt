@@ -10,7 +10,6 @@ import com.example.anifox.databinding.CardItemGenresBinding
 import com.example.anifox.domain.model.common.GenresCard
 import com.xwray.groupie.viewbinding.BindableItem
 
-
 class SmallGenresItem(var genre: GenresCard): BindableItem<CardItemGenresBinding>() {
     override fun bind(binding: CardItemGenresBinding, position: Int) {
 
