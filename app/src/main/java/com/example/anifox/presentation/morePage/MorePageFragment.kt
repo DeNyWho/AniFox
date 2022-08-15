@@ -6,16 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.GridLayoutManager
-import com.example.anifox.adapters.SmallerAnimeItem
+import com.example.anifox.R
+import com.example.anifox.adapters.MorePageAdapter
 import com.example.anifox.databinding.FragmentMorePageBinding
+import com.example.anifox.util.LifecycleViewPager
+import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.onEach
-import timber.log.Timber
 
 @AndroidEntryPoint
 class MorePageFragment : Fragment() {
@@ -23,12 +20,8 @@ class MorePageFragment : Fragment() {
 
     private var _binding: FragmentMorePageBinding? = null
     private val binding get() = _binding!!
+    private var mediator: TabLayoutMediator? = null
 
-    private val adapter by lazy(LazyThreadSafetyMode.NONE) {
-        SmallerAnimeItem()
-    }
-
-    private val viewModel: MorePageViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,31 +31,42 @@ class MorePageFragment : Fragment() {
         return binding.root
     }
 
+    private val viewModel: MorePageViewModel by viewModels()
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.setQueries(args.order, args.status, args.genre)
 
-        Timber.d("order = ${args.order}")
-        Timber.d("status = ${args.status}")
-        Timber.d("genre = ${args.genre}")
+        println("order = ${args.order}")
+        println("status = ${args.status}")
+        println("genre = ${args.genre}")
 
-        observeAnnouncesOnState()
-        initRecycler()
+//        viewModel.setQueriesOnGoing(args.order, args.genre)
+//        viewModel.setQueriesOnPopular(args.status, args.genre)
+//        viewModel.setQueriesOnCompleted(args.order, args.genre)
+
+        println(viewModel.queries.value)
+
+        initPager()
+        setUpTitle()
     }
 
-    private fun observeAnnouncesOnState(){
-        viewModel.mangas.onEach {
-            adapter.submitData(it)
-        }.launchWhenStarted()
+    private fun setUpTitle(){
+        binding.tvTitle.text = if(args.title != binding.root.context.getString(R.string.Genre_All_Genres)) args.title else "Жанры"
+        if(args.title != getString(R.string.Genre_All_Genres)){
+            binding.recyclerGenres.visibility = View.GONE
+        }
     }
 
-    private fun initRecycler(){
-        binding.recyclerView.adapter = adapter
-        binding.recyclerView.layoutManager = GridLayoutManager(context, 3)
-    }
+    private fun initPager(){
+        binding.viewPager.adapter = MorePageAdapter(fragment = this, order = args.order, genre = args.genre)
+        viewLifecycleOwner.lifecycle.addObserver(LifecycleViewPager(binding.viewPager))
 
-    private fun <T> Flow<T>.launchWhenStarted() {
-        viewLifecycleOwner.lifecycleScope.launchWhenStarted { collect () }
+        mediator = TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
+            val tabTitles = listOf(getString(R.string.tab_status_popular),getString(R.string.tab_status_airing), getString(R.string.tab_status_completed))
+            tab.text = tabTitles[position]
+        }
+
+        mediator?.attach()
     }
 
     override fun onDestroyView() {

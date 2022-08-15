@@ -27,6 +27,8 @@
     <string name="most_read">💥Популярные</string>
     <string name="most_rated">Популярно сейчас</string>
     <string name="announces">Popular Announces</string>
+    <string name="toolbar_manga">Манга</string>
+    <string name="toolbar_genre">Жанры</string>
     <string name="discover">Исследуйте</string>
     <string name="morePage">Показать все</string>
     <string name="Genre_Comedy">Комедия</string>
@@ -37,4 +39,7 @@
     <string name="Genre_All_Genres">Все жанры</string>
     <string name="comic">COMIC</string>
     <string name="search">SEARCH</string>
+    <string name="tab_status_airing">Новинки</string>
+    <string name="tab_status_popular">Популярно</string>
+    <string name="tab_status_completed">Завершенны</string>
 </resources>

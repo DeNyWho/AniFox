@@ -11,7 +11,8 @@ import com.xwray.groupie.viewbinding.BindableItem
 open class HeaderMoreItem(
     @StringRes private val titleStringResId: Int,
     private val order:  String?,
-    private val status: String?
+    private val status: String?,
+    private val title: String?
 ): BindableItem<HeaderMoreItemBinding>() {
 
     override fun getLayout(): Int {
@@ -27,6 +28,7 @@ open class HeaderMoreItem(
         val bundle = Bundle()
         bundle.putString("order", order ?: "")
         bundle.putString("status", status ?: "")
+        bundle.putString("title", title ?: "")
 
         viewBinding.tvSeeMore.setOnClickListener {
             viewBinding.root.findNavController().navigate(R.id.action_homeFragment_to_morePageFragment, bundle)

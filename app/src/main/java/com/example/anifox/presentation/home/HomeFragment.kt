@@ -10,16 +10,12 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.anifox.R
 import com.example.anifox.adapters.GenresItem
-import com.example.anifox.adapters.HeaderItem
 import com.example.anifox.adapters.HeaderMoreItem
 import com.example.anifox.adapters.HorizontalItem
 import com.example.anifox.databinding.FragmentHomeFragmentBinding
 import com.example.anifox.domain.model.common.GenresCard
 import com.example.anifox.util.Constants
-import com.example.anifox.util.Constants.ORDER_BY_POPULAR
-import com.example.anifox.util.Constants.SORT_BY_RATE
 import com.example.anifox.util.Constants.SORT_BY_VIEWS
-import com.example.anifox.util.Constants.STATUS_BY_ANONS
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
 import com.xwray.groupie.Item
@@ -67,8 +63,6 @@ open class HomeFragment : Fragment() {
         val list = mutableListOf<Item<*>>().apply {
 
             if(state.airingPopularState.data?.isNotEmpty() == true) {
-                this += HeaderItem(R.string.discover)
-                println(state.airingPopularState.data)
                 this += HorizontalItem(
                     listData = state.airingPopularState.data,
                     type = Constants.STYLE_BIGGER_RECYCLER
@@ -114,33 +108,11 @@ open class HomeFragment : Fragment() {
                 this += HeaderMoreItem(
                     titleStringResId = R.string.most_read,
                     order = SORT_BY_VIEWS,
-                    status = null
+                    status = null,
+                    title = "Популярные"
                 )
                 this += HorizontalItem(
                     listData = state.mostRead.data,
-                    type = Constants.STYLE_SMALLER_RECYCLER
-                )
-            }
-
-            if(state.popularState.data?.isNotEmpty() == true) {
-                this += HeaderMoreItem(
-                    titleStringResId = R.string.most_rated,
-                    order = SORT_BY_RATE,
-                    status = null
-                )
-                this += HorizontalItem(
-                    listData = state.popularState.data,
-                    type = Constants.STYLE_SMALLER_RECYCLER
-                )
-            }
-            if(state.announcesState.data?.isNotEmpty() == true) {
-                this += HeaderMoreItem(
-                    titleStringResId = R.string.announces,
-                    order = ORDER_BY_POPULAR,
-                    status = STATUS_BY_ANONS
-                )
-                this += HorizontalItem(
-                    listData = state.announcesState.data,
                     type = Constants.STYLE_SMALLER_RECYCLER
                 )
             }

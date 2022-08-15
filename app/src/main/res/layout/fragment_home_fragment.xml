@@ -1,18 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/backgroundColor"
     android:layout_height="match_parent"
     tools:context=".presentation.home.HomeFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar_layout"
         android:layout_width="match_parent"
-        android:layout_marginStart="12dp"
+        app:elevation="0dp"
         android:layout_height="wrap_content"
-        android:id="@+id/HomeRecycler"
-        />
+        android:background="@color/backgroundColor">
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/collapsing_toolbar"
+            android:layout_width="match_parent"
+            app:elevation="0dp"
+            android:layout_height="wrap_content"
+            app:contentScrim="@color/backgroundColor"
+            app:layout_scrollFlags="scroll|enterAlways">
+                <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginVertical="8dp"
+                    android:background="@color/backgroundColor"
+                    android:orientation="horizontal">
 
+                    <com.google.android.material.textview.MaterialTextView
+                        android:layout_marginStart="12dp"
+                        style="@style/TextView.Header"
+                        android:layout_weight="1"
+                        android:id="@+id/tvTitle"
+                        android:text="@string/toolbar_manga" />
 
+                    <ImageView
+                        android:id="@+id/ivSearch"
+                        android:layout_marginBottom="1dp"
+                        android:layout_width="30dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_height="30dp"
+                        android:layout_marginEnd="20dp"
+                        android:src="@drawable/search"/>
 
-</FrameLayout>
+                    <ImageView
+                        android:id="@+id/ivGenres"
+                        android:layout_width="20dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginEnd="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginBottom="1dp"
+                        android:src="@drawable/elements" />
+                </LinearLayout>
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/HomeRecycler"
+            android:layout_marginStart="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"/>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

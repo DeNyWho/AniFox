@@ -43,6 +43,9 @@
             android:name="genre"
             app:argType="string"
             android:defaultValue='""' />
+        <argument
+            android:name="title"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/detailFragment"

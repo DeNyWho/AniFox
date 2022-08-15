@@ -65,19 +65,6 @@ class HomeFragmentViewModel @Inject constructor(
         }.launchIn(viewModelScope)
     }
 
-//    fun getDiscover(){
-//        getDiscoverAnime.invoke().onEach { value ->
-//            _state.tryEmit(
-//                _state.value.copy(
-//                    discoverState = _state.value.discoverState.copy(
-//                        isLoading = false,
-//                        data = value.data
-//                    )
-//                )
-//            )
-//        }.launchIn(viewModelScope)
-//    }
-
     fun getPopularAiring(){
         getTopAiring.invoke().onEach { value ->
             _state.tryEmit(

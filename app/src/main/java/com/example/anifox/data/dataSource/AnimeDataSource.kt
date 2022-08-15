@@ -29,7 +29,7 @@ class AnimeDataSource @AssistedInject constructor(
         val pageSize = params.loadSize.coerceAtMost(MORE_PAGE_SIZE)
         return try {
 
-            Timber.d("page = $page, loadSize = ${pageSize}, order = $order, status = $status, genre = $genre")
+            println("page = $page, loadSize = ${pageSize}, order = $order, status = $status, genre = $genre")
 
             val response: List<Manga> = mainApi.getManga(
                 page = page,

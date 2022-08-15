@@ -20,10 +20,10 @@ class SmallGenresItem(var genre: GenresCard): BindableItem<CardItemGenresBinding
         binding.ivImage.layoutParams.height = genre.imageHeight
         binding.ivImage.layoutParams.width = genre.imageWidth
         val bundle = Bundle()
-        bundle.putString("genre", genre.title)
+        if(genre.title != binding.root.context.getString(R.string.Genre_All_Genres)) bundle.putString("genre", genre.title)
+        bundle.putString("title", genre.title)
 
         binding.root.setOnClickListener {
-            if(genre.title != binding.root.context.resources.getString(R.string.Genre_All_Genres))
             binding.root.findNavController().navigate(R.id.action_homeFragment_to_morePageFragment, bundle)
         }
     }
