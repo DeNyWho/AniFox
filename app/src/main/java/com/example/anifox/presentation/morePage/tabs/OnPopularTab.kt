@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.anifox.adapters.SmallerAnimeItem
@@ -17,7 +17,7 @@ import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onEach
 
 @AndroidEntryPoint
-class OnPopularTab(private val genre: String?) : Fragment() {
+class OnPopularTab : Fragment() {
 
     private var _binding: FragmentOnPopularTabBinding? = null
     private val binding get() = _binding!!
@@ -26,7 +26,7 @@ class OnPopularTab(private val genre: String?) : Fragment() {
         SmallerAnimeItem()
     }
 
-    private val viewModel: MorePageViewModel by viewModels()
+    private val viewModel: MorePageViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,7 +38,6 @@ class OnPopularTab(private val genre: String?) : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.setQueriesOnPopular(genre = genre)
 
         observeOnState()
         initRecycler()

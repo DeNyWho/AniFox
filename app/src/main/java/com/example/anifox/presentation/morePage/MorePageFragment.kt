@@ -5,13 +5,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.anifox.R
+import com.example.anifox.adapters.GenresTypeItem
 import com.example.anifox.adapters.MorePageAdapter
 import com.example.anifox.databinding.FragmentMorePageBinding
 import com.example.anifox.util.LifecycleViewPager
 import com.google.android.material.tabs.TabLayoutMediator
+import com.xwray.groupie.GroupAdapter
+import com.xwray.groupie.GroupieViewHolder
+import com.xwray.groupie.Item
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -22,6 +28,7 @@ class MorePageFragment : Fragment() {
     private val binding get() = _binding!!
     private var mediator: TabLayoutMediator? = null
 
+    private val groupAdapter = GroupAdapter<GroupieViewHolder>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,7 +38,7 @@ class MorePageFragment : Fragment() {
         return binding.root
     }
 
-    private val viewModel: MorePageViewModel by viewModels()
+    private val viewModel: MorePageViewModel by activityViewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -39,26 +46,58 @@ class MorePageFragment : Fragment() {
         println("order = ${args.order}")
         println("status = ${args.status}")
         println("genre = ${args.genre}")
+        viewModel.setQueriesOnCompleted(genre = args.genre, order = args.order)
+        viewModel.setQueriesOnGoing(genre = args.genre, order = args.order)
+        viewModel.setQueriesOnPopular(genre = args.genre)
 
-//        viewModel.setQueriesOnGoing(args.order, args.genre)
-//        viewModel.setQueriesOnPopular(args.status, args.genre)
-//        viewModel.setQueriesOnCompleted(args.order, args.genre)
-
-        println(viewModel.queries.value)
-
+        initListeners()
         initPager()
+        initRecycler()
         setUpTitle()
+    }
+
+    private fun initRecycler() {
+        binding.recyclerGenres.adapter = groupAdapter
+        binding.recyclerGenres.layoutManager = GridLayoutManager(context, 3)
+
+        val list = mutableListOf<Item<*>>().apply {
+            this += GenresTypeItem(
+                genre = getString(R.string.Genre_Comedy)
+            )
+            this += GenresTypeItem(
+                genre = getString(R.string.Genre_Fantasy)
+            )
+            this += GenresTypeItem(
+                genre = getString(R.string.Genre_Comedy)
+            )
+            this += GenresTypeItem(
+                genre = getString(R.string.Genre_Comedy)
+            )
+        }
+        groupAdapter.update(list)
+
+    }
+
+    private fun initListeners(){
+        binding.ivBack.setOnClickListener {
+            findNavController().navigate(R.id.action_morePageFragment_to_homeFragment)
+        }
+
+        binding.ivSearch.setOnClickListener {
+            findNavController().navigate(R.id.action_morePageFragment_to_searchFragment)
+        }
+
     }
 
     private fun setUpTitle(){
         binding.tvTitle.text = if(args.title != binding.root.context.getString(R.string.Genre_All_Genres)) args.title else "Жанры"
-        if(args.title != getString(R.string.Genre_All_Genres)){
-            binding.recyclerGenres.visibility = View.GONE
-        }
+//        if(args.title != getString(R.string.Genre_All_Genres)){
+//            binding.recyclerGenres.visibility = View.GONE
+//        }
     }
 
     private fun initPager(){
-        binding.viewPager.adapter = MorePageAdapter(fragment = this, order = args.order, genre = args.genre)
+        binding.viewPager.adapter = MorePageAdapter(fragment = this)
         viewLifecycleOwner.lifecycle.addObserver(LifecycleViewPager(binding.viewPager))
 
         mediator = TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
