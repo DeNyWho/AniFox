@@ -47,7 +47,9 @@ open class HomeFragment : Fragment() {
 
         viewModel.getPopularAiring()
         viewModel.getPopular()
-        viewModel.getMostRead()
+//        viewModel.getMostRead()
+        viewModel.getMagic()
+        viewModel.getMonsters()
 
         observeOnState()
         initRecycler()
@@ -81,7 +83,7 @@ open class HomeFragment : Fragment() {
                         ),
                         GenresCard(
                             title = getString(R.string.Genre_Fantasy),
-                            image = R.drawable.book,
+                            image = R.drawable.magic,
                             color = R.color.purple_light
                         ),
                         GenresCard(
@@ -104,15 +106,27 @@ open class HomeFragment : Fragment() {
                     )
                 )
             }
-            if(state.mostRead.data?.isNotEmpty() == true) {
+            if(state.magic.data?.isNotEmpty() == true) {
                 this += HeaderMoreItem(
-                    titleStringResId = R.string.most_read,
+                    image = R.drawable.book,
+                    title = requireContext().getString(R.string.title_Magic),
                     order = SORT_BY_VIEWS,
                     status = null,
-                    title = "Популярные"
                 )
                 this += HorizontalItem(
-                    listData = state.mostRead.data,
+                    listData = state.magic.data,
+                    type = Constants.STYLE_SMALLER_RECYCLER
+                )
+            }
+            if(state.monsters.data?.isNotEmpty() == true) {
+                this += HeaderMoreItem(
+                    image = R.drawable.monster,
+                    title = requireContext().getString(R.string.Genre_Monsters),
+                    order = SORT_BY_VIEWS,
+                    status = null,
+                )
+                this += HorizontalItem(
+                    listData = state.monsters.data,
                     type = Constants.STYLE_SMALLER_RECYCLER
                 )
             }

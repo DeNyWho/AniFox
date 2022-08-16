@@ -24,7 +24,8 @@
     <string name="empty_view">Enter your code here from the website</string>
     <string name="popular_anime">Popular anime</string>
     <string name="top_airing">Top Airing</string>
-    <string name="most_read">💥Популярные</string>
+    <string name="most_read">Популярные</string>
+    <string name="title_Magic">Магия</string>
     <string name="most_rated">Популярно сейчас</string>
     <string name="announces">Popular Announces</string>
     <string name="toolbar_manga">Манга</string>
@@ -42,4 +43,6 @@
     <string name="tab_status_airing">Новинки</string>
     <string name="tab_status_popular">Популярно</string>
     <string name="tab_status_completed">Завершенны</string>
+    <string name="Genre_Magic">Магия</string>
+    <string name="Genre_Monsters">Монстры</string>
 </resources>

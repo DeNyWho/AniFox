@@ -46,6 +46,12 @@ object RepositoryModule {
 
     @Provides
     @Singleton
+    fun providesApplicationContext(@ApplicationContext context: Context): Context {
+        return context
+    }
+
+    @Provides
+    @Singleton
     fun provideDataStoreOperations(
         @ApplicationContext context: Context
     ): DataStoreOperations {

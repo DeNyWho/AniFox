@@ -28,6 +28,10 @@ class MangaRepository @Inject constructor(
         return mainApi.getDetailManga(id)
     }
 
+    override suspend fun getManga(genre: String?, order: String?): Response<MangaResponse>{
+        return mainApi.getManga(page = REVIEW_PAGE, countCard = REVIEW_LIMIT, status = null, genre = genre, order = order)
+    }
+
     override suspend fun getMangaByPopularReview(): Response<MangaResponse> {
         return mainApi.getManga(page = REVIEW_PAGE, countCard = REVIEW_LIMIT, status = null, order = SORT_BY_RATE, genre = null)
     }
@@ -43,10 +47,7 @@ class MangaRepository @Inject constructor(
     override suspend fun getTopAiringReview(): Response<MangaResponse> {
         return mainApi.getManga(page = REVIEW_PAGE, countCard = REVIEW_LIMIT, status = STATUS_BY_ONGOING, order = SORT_BY_RATE,  genre = null)
     }
-//
-//    override suspend fun getTopAnnouncesReview(): Response<List<Manga>> {
-//        return animeApiShikimori.getAnimes(page = REVIEW_PAGE, limit = REVIEW_LIMIT, order = ORDER_BY_POPULAR, status = STATUS_BY_ANONS)
-//    }
+
 
 
 }

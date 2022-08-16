@@ -10,10 +10,10 @@
     <color name="white">#FFFFFFFF</color>
     <color name="greeny">#72E7B2</color>
     <color name="pink">#F78B89</color>
-    <color name="purple_light">#C2A2F5</color>
+    <color name="purple_light">#9863ED</color>
     <color name="bluest">#889CFB</color>
-    <color name="yellow">#FFFFC85F</color>
-    <color name="orange_light">#FFFFC85F</color>
+    <color name="yellow">#E7CFA0</color>
+    <color name="orange_light">#FFBF56</color>
     <color name="grey_light">#8E8E8E</color>
     <color name="cloud">#FFC8D4F3</color>
     <color name="dark">#FF111016</color>

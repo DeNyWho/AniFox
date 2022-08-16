@@ -91,9 +91,9 @@ class MorePageFragment : Fragment() {
 
     private fun setUpTitle(){
         binding.tvTitle.text = if(args.title != binding.root.context.getString(R.string.Genre_All_Genres)) args.title else "Жанры"
-//        if(args.title != getString(R.string.Genre_All_Genres)){
-//            binding.recyclerGenres.visibility = View.GONE
-//        }
+        if(args.title != getString(R.string.Genre_All_Genres)){
+            binding.recyclerGenres.visibility = View.GONE
+        }
     }
 
     private fun initPager(){
