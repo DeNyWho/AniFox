@@ -15,7 +15,6 @@ import com.example.anifox.adapters.HorizontalItem
 import com.example.anifox.databinding.FragmentHomeFragmentBinding
 import com.example.anifox.domain.model.common.GenresCard
 import com.example.anifox.util.Constants
-import com.example.anifox.util.Constants.SORT_BY_VIEWS
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
 import com.xwray.groupie.Item
@@ -50,6 +49,7 @@ open class HomeFragment : Fragment() {
 //        viewModel.getMostRead()
         viewModel.getMagic()
         viewModel.getMonsters()
+        viewModel.getMiddleAges()
 
         observeOnState()
         initRecycler()
@@ -110,8 +110,9 @@ open class HomeFragment : Fragment() {
                 this += HeaderMoreItem(
                     image = R.drawable.book,
                     title = requireContext().getString(R.string.title_Magic),
-                    order = SORT_BY_VIEWS,
+                    order = Constants.ORDER_BY_POPULAR,
                     status = null,
+                    genre = requireContext().getString(R.string.Genre_Magic)
                 )
                 this += HorizontalItem(
                     listData = state.magic.data,
@@ -122,11 +123,25 @@ open class HomeFragment : Fragment() {
                 this += HeaderMoreItem(
                     image = R.drawable.monster,
                     title = requireContext().getString(R.string.Genre_Monsters),
-                    order = SORT_BY_VIEWS,
+                    order = Constants.ORDER_BY_POPULAR,
                     status = null,
+                    genre = requireContext().getString(R.string.Genre_Monsters)
                 )
                 this += HorizontalItem(
                     listData = state.monsters.data,
+                    type = Constants.STYLE_SMALLER_RECYCLER
+                )
+            }
+            if(state.middleAgesState.data?.isNotEmpty() == true) {
+                this += HeaderMoreItem(
+                    image = R.drawable.knight,
+                    title = requireContext().getString(R.string.Genre_MiddleAges),
+                    order = Constants.ORDER_BY_POPULAR,
+                    status = null,
+                    genre = requireContext().getString(R.string.Genre_MiddleAges)
+                )
+                this += HorizontalItem(
+                    listData = state.middleAgesState.data,
                     type = Constants.STYLE_SMALLER_RECYCLER
                 )
             }

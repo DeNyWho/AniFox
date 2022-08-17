@@ -8,6 +8,11 @@ object Libraries {
         const val constraintlayout = "androidx.constraintlayout:constraintlayout:${Versions.constraintlayout}"
     }
 
+    object UI {
+        const val neomorphic = "com.github.4inodev:Neomorphic-FrameLayout-Android:${Versions.neomorphic}"
+        const val advancedCardView = "com.github.sina-seyfi:AdvancedCardView:${Versions.advancedCardView}"
+    }
+
     object Room {
         const val RoomKtx = "androidx.room:room-ktx:${Versions.room}"
         const val RoomRuntime = "androidx.room:room-runtime:${Versions.room}"

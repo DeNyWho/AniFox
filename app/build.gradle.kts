@@ -50,6 +50,9 @@ android {
 }
 
 dependencies {
+    implementation(Libraries.UI.neomorphic)
+    implementation(Libraries.UI.advancedCardView)
+
     implementation(Libraries.SwipeRefresh.swipeRefresh)
 
     implementation(Libraries.Groupie.groupie)

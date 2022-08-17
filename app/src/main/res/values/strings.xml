@@ -45,4 +45,5 @@
     <string name="tab_status_completed">Завершенны</string>
     <string name="Genre_Magic">Магия</string>
     <string name="Genre_Monsters">Монстры</string>
+    <string name="Genre_MiddleAges">Средневековье</string>
 </resources>

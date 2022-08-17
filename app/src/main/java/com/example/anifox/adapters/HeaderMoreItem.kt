@@ -12,6 +12,7 @@ open class HeaderMoreItem(
     private val title: String,
     private val order: String?,
     private val status: String?,
+    private val genre: String?,
     @DrawableRes private val image: Int
 ): BindableItem<HeaderMoreItemBinding>() {
 
@@ -30,6 +31,7 @@ open class HeaderMoreItem(
         bundle.putString("order", order ?: "")
         bundle.putString("status", status ?: "")
         bundle.putString("title", title)
+        bundle.putString("genre", genre)
 
         viewBinding.tvSeeMore.setOnClickListener {
             viewBinding.root.findNavController().navigate(R.id.action_homeFragment_to_morePageFragment, bundle)

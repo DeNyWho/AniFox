@@ -15,6 +15,7 @@ class SmallGenresItem(var genre: GenresCard): BindableItem<CardItemGenresBinding
 
         binding.tvTitle.text = genre.title
         binding.cardView.setCardBackgroundColor(ContextCompat.getColor(binding.root.context, genre.color))
+        binding.card.setCardBackgroundColor(ContextCompat.getColor(binding.root.context, genre.color))
         binding.tvTitle.setTextSize(TypedValue.COMPLEX_UNIT_PX, 35F)
         binding.ivImage.setBackgroundResource(genre.image)
         binding.ivImage.layoutParams.height = genre.imageHeight

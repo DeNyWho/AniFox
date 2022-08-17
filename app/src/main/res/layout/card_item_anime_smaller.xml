@@ -12,7 +12,7 @@
         android:layout_width="@dimen/card_width_smaller"
         android:layout_height="@dimen/card_height_smaller"
         app:cardCornerRadius="16dp"
-        app:cardElevation="0dp"
+        app:cardElevation="3dp"
         android:background="@color/backgroundColor">
 
         <LinearLayout

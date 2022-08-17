@@ -17,7 +17,8 @@
     <dimen name="card_discover_height">200dp</dimen>
     <dimen name="card_item_height_smaller">220dp</dimen>
     <dimen name="card_item_height">220dp</dimen>
-    <dimen name="card_item_genres_height">50dp</dimen>
+    <dimen name="card_item_genres_height">58dp</dimen>
+    <dimen name="card_item_genres_height_small">50dp</dimen>
     <dimen name="card_item_genres_width">140dp</dimen>
     <dimen name="chip_genres_height">40dp</dimen>
 </resources>
