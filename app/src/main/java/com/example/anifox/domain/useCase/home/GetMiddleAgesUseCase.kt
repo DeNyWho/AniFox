@@ -7,20 +7,19 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
-import timber.log.Timber
 import javax.inject.Inject
 
 class GetMiddleAgesUseCase @Inject constructor(
     private val repository: MangaRepository
 ) {
-    operator fun invoke(genre: String?, order: String?): Flow<MiddleAgesState> {
+    operator fun invoke(genre: String?, order: String?, status: String?): Flow<MiddleAgesState> {
         return flow {
             emit(MiddleAgesState(isLoading = true))
-            val res = repository.getManga(genre = genre, order = order)
+            val res = repository.getManga(genre = genre, order = order, status = status)
 
             if (res.isSuccessful){
                 val data = res.body()?.data?.map { it.toData() }.orEmpty()
-                Timber.d("DATA = $data")
+                println("DATA = $data")
                 val state = MiddleAgesState(data, isLoading = false)
                 emit(state)
             } else {

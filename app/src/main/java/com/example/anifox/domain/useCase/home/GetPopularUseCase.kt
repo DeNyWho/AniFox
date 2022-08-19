@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.flowOn
 import timber.log.Timber
 import javax.inject.Inject
 
-class GetMagicUseCase @Inject constructor(
+class GetPopularUseCase @Inject constructor(
     private val repository: MangaRepository
 ) {
     operator fun invoke(genre: String?, order: String?, status: String?): Flow<MagicState> {

@@ -50,8 +50,8 @@ android {
 }
 
 dependencies {
-    implementation(Libraries.UI.neomorphic)
     implementation(Libraries.UI.advancedCardView)
+    implementation(Libraries.UI.tabSync)
 
     implementation(Libraries.SwipeRefresh.swipeRefresh)
 
@@ -66,9 +66,6 @@ dependencies {
 
     implementation(Libraries.Room.RoomKtx)
     implementation(Libraries.Room.RoomRuntime)
-    implementation("androidx.legacy:legacy-support-v4:1.0.0")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.5.0")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.0")
     kapt(Libraries.Room.RoomCompiler)
 
     implementation(Libraries.Lifecycle.LifecycleCommon)
@@ -85,8 +82,7 @@ dependencies {
     implementation(Libraries.Picasso.picasso)
 
     implementation(Libraries.Glide.glide)
-    implementation( "com.squareup.okhttp3:okhttp:4.10.0")
-    implementation ("com.github.bumptech.glide:okhttp3-integration:4.7.1")
+    implementation (Libraries.Glide.glideOkhttp)
     kapt(Libraries.Glide.glideCompiler)
 
     implementation(Libraries.Hilt.hiltAndroid)
@@ -95,6 +91,8 @@ dependencies {
     implementation(Libraries.Retrofit.Retrofit)
     implementation(Libraries.Retrofit.RetrofitConverter)
     implementation(Libraries.Retrofit.Gson)
+    implementation(Libraries.Retrofit.okhttp)
+
 
     implementation(Libraries.Serialization.serialization)
 

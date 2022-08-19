@@ -1,0 +1,72 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:layout_marginBottom="8dp"
+    android:layout_height="@dimen/card_item_ranking_height">
+
+    <ImageView
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginEnd="10dp"
+        android:id="@+id/ivRate"/>
+
+    <TextView
+        android:visibility="gone"
+        android:layout_gravity="center"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="6dp"
+        style="@style/TextView.Ranking"
+        android:id="@+id/tvRate"/>
+    <androidx.cardview.widget.CardView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="3dp"
+        android:background="@color/backgroundColor">
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivImage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="?selectableItemBackgroundBorderless"
+                android:scaleType="centerCrop"
+                tools:src="@tools:sample/avatars" />
+
+    </androidx.cardview.widget.CardView>
+
+    <LinearLayout
+        android:layout_marginStart="8dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Marry One Get One Free"
+            style="@style/TextView.Card"/>
+
+        <TextView
+            android:id="@+id/tvDescription"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Marry One Get One Free"
+            style="@style/TextView.CardDescription"/>
+
+        <TextView
+            android:id="@+id/tvCountViews"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Marry One Get One Free"
+            style="@style/TextView.CardDescription"/>
+    </LinearLayout>
+
+</LinearLayout>

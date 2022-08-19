@@ -10,11 +10,14 @@
     <color name="white">#FFFFFFFF</color>
     <color name="greeny">#72E7B2</color>
     <color name="pink">#F78B89</color>
+    <color name="reder">#FC536D</color>
     <color name="purple_light">#9863ED</color>
     <color name="bluest">#889CFB</color>
     <color name="yellow">#E7CFA0</color>
     <color name="orange_light">#FFBF56</color>
     <color name="grey_light">#8E8E8E</color>
+    <color name="grey_lighter">#A1A1A1</color>
+    <color name="grey_lightest">#F6F6F6</color>
     <color name="cloud">#FFC8D4F3</color>
     <color name="dark">#FF111016</color>
     <color name="textColor">#FF111016</color>
@@ -24,7 +27,9 @@
     <color name="lightGray">#FFD9D9D9</color>
     <color name="cornerTextInput">#FF000000</color>
     <color name="morePage">#FF868383</color>
+    <color name="transparent">#00000000</color>
 
+    <color name="colorTextTabs">#7e8186</color>
 
     <color name="grey_500">#151D25</color>
     <color name="grey_200">#4f5b62</color>

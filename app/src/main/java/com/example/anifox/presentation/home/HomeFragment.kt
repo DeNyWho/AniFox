@@ -7,11 +7,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.anifox.R
-import com.example.anifox.adapters.GenresItem
-import com.example.anifox.adapters.HeaderMoreItem
-import com.example.anifox.adapters.HorizontalItem
+import com.example.anifox.adapters.*
 import com.example.anifox.databinding.FragmentHomeFragmentBinding
 import com.example.anifox.domain.model.common.GenresCard
 import com.example.anifox.util.Constants
@@ -46,13 +45,28 @@ open class HomeFragment : Fragment() {
 
         viewModel.getPopularAiring()
         viewModel.getPopular()
-//        viewModel.getMostRead()
         viewModel.getMagic()
         viewModel.getMonsters()
         viewModel.getMiddleAges()
+        viewModel.getMostRead()
+        viewModel.getPopularCompleted()
 
         observeOnState()
         initRecycler()
+        initListeners()
+    }
+
+    private fun initListeners(){
+
+        binding.ivGenres.setOnClickListener {
+            val bundle = Bundle()
+            bundle.putString("title", "Все жанры")
+            findNavController().navigate(R.id.action_homeFragment_to_morePageFragment, bundle)
+        }
+
+        binding.ivSearch.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_searchFragment)
+        }
 
     }
 
@@ -145,7 +159,22 @@ open class HomeFragment : Fragment() {
                     type = Constants.STYLE_SMALLER_RECYCLER
                 )
             }
+            if(state.airingPopularState.data?.isNotEmpty() == true && state.popularState.data?.isNotEmpty() == true && state.mostRead.data?.isNotEmpty() == true && state.popularCompleted.data?.isNotEmpty() == true){
+                this += HeaderLightItem(
+                    title = requireContext().getString(R.string.Ranking),
+                    image = R.drawable.ranking,
+                )
+                this += RankingItems(
+                    state.mostRead.data.take(5),
+                    state.popularState.data.take(5),
+                    state.airingPopularState.data.take(5),
+                    state.popularCompleted.data.take(5),
+                )
+
+            }
+
         }
+
         groupAdapter.update(list)
 
     }.launchWhenStarted()

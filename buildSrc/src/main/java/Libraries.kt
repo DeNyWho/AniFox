@@ -9,8 +9,8 @@ object Libraries {
     }
 
     object UI {
-        const val neomorphic = "com.github.4inodev:Neomorphic-FrameLayout-Android:${Versions.neomorphic}"
         const val advancedCardView = "com.github.sina-seyfi:AdvancedCardView:${Versions.advancedCardView}"
+        const val tabSync = "io.github.ahmad-hamwi:tabsync:${Versions.tabSync}"
     }
 
     object Room {
@@ -54,6 +54,7 @@ object Libraries {
     object Glide {
         const val glide = "com.github.bumptech.glide:glide:${Versions.glide}"
         const val glideCompiler = "com.github.bumptech.glide:compiler:${Versions.glide}"
+        const val glideOkhttp = "com.github.bumptech.glide:okhttp3-integration:${Versions.glideOkHttp}"
     }
 
     object SwipeRefresh {
@@ -74,6 +75,8 @@ object Libraries {
         const val Gson = "com.google.code.gson:gson:${Versions.retrofit}"
         const val Retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
         const val RetrofitConverter = "com.squareup.retrofit2:converter-gson:${Versions.retrofit}"
+        const val okhttp = "com.squareup.okhttp3:okhttp:${Versions.okHttp}"
+
     }
 
     object Lifecycle {

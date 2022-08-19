@@ -13,10 +13,10 @@ import javax.inject.Inject
 class GetMonstersUseCase @Inject constructor(
     private val repository: MangaRepository
 ) {
-    operator fun invoke(genre: String?, order: String?): Flow<MonstersState> {
+    operator fun invoke(genre: String?, order: String?, status: String?): Flow<MonstersState> {
         return flow {
             emit(MonstersState(isLoading = true))
-            val res = repository.getManga(genre = genre, order = order)
+            val res = repository.getManga(genre = genre, order = order, status = status)
 
             if (res.isSuccessful){
                 val data = res.body()?.data?.map { it.toData() }.orEmpty()

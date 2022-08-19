@@ -41,6 +41,12 @@
         <item name="android:textAppearance">@style/Text.Secondary</item>
     </style>
 
+    <style name="TextView.Ranking">
+        <item name="android:layout_width">20dp</item>
+        <item name="android:layout_height">25dp</item>
+        <item name="android:textAppearance">@style/Text.Secondary</item>
+    </style>
+
     <style name="TextView.Smaller">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -63,6 +69,12 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:textAppearance">@style/Text.Card</item>
+    </style>
+
+    <style name="TextView.CardDescription">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAppearance">@style/Text.CardDescription</item>
     </style>
 
     <style name="MyCardView" parent="@style/Widget.MaterialComponents.CardView">

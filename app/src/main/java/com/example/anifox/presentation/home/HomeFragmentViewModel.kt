@@ -11,7 +11,11 @@ import com.example.anifox.presentation.home.state.manga.middleAges.MiddleAgesSta
 import com.example.anifox.presentation.home.state.manga.monsters.MonstersState
 import com.example.anifox.presentation.home.state.mostRead.MostReadState
 import com.example.anifox.presentation.home.state.popular.AiringPopularAnimeState
+import com.example.anifox.presentation.home.state.popular.PopularCompletedState
 import com.example.anifox.presentation.home.state.popular.PopularMangaState
+import com.example.anifox.util.Constants
+import com.example.anifox.util.Constants.ORDER_BY_POPULAR
+import com.example.anifox.util.Constants.STATUS_BY_FINAL
 import com.example.anifox.util.StringResourcesProvider
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -24,10 +28,11 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeFragmentViewModel @Inject constructor(
     private val stringResourcesProvider: StringResourcesProvider,
+    private val getPopularCompleted: GetPopularCompleted,
     private val getTopAiring: GetTopAiringReviewUseCase,
     private val getMiddleAges: GetMiddleAgesUseCase,
-    private val getPopular: GetPopularReviewUseCase,
-    private val getMostRead: GetMostReviewUseCase,
+    private val getPopular: GetPopularUseCase,
+    private val getMostRead: GetMostViewReviewUseCase,
     private val getMonsters: GetMonstersUseCase,
     private val getMagic: GetMagicUseCase,
 ) : ViewModel() {
@@ -35,6 +40,7 @@ class HomeFragmentViewModel @Inject constructor(
     private val _state = MutableStateFlow(
         HomeState(
             airingPopularState = AiringPopularAnimeState(isLoading = true, data = null),
+            popularCompleted = PopularCompletedState(isLoading = true, data = null),
             middleAgesState = MiddleAgesState(isLoading = true, data = null),
             popularState = PopularMangaState (isLoading = true, data = null),
             announcesState = AnnouncesState(isLoading = true, data = null),
@@ -46,10 +52,24 @@ class HomeFragmentViewModel @Inject constructor(
     val state = _state.asStateFlow()
 
     fun getPopular(){
-        getPopular.invoke().onEach { value ->
+        getPopular.invoke(genre = null, order = ORDER_BY_POPULAR, status = null).onEach { value ->
             _state.tryEmit(
                 _state.value.copy(
                     popularState = _state.value.popularState.copy(
+                        isLoading = false,
+                        data = value.data
+                    )
+                )
+            )
+        }.launchIn(viewModelScope)
+    }
+
+
+    fun getMostRead(){
+        getMostRead.invoke(genre = null, order = Constants.ORDER_BY_VIEWS, status = null).onEach { value ->
+            _state.tryEmit(
+                _state.value.copy(
+                    mostRead = _state.value.mostRead.copy(
                         isLoading = false,
                         data = value.data
                     )
@@ -71,8 +91,22 @@ class HomeFragmentViewModel @Inject constructor(
         } .launchIn(viewModelScope)
     }
 
+
+    fun getPopularCompleted(){
+        getPopularCompleted.invoke(genre = null, order = ORDER_BY_POPULAR, status = STATUS_BY_FINAL).onEach { value ->
+            _state.tryEmit(
+                _state.value.copy(
+                    popularCompleted = _state.value.popularCompleted.copy(
+                        isLoading = false,
+                        data = value.data
+                    )
+                )
+            )
+        } .launchIn(viewModelScope)
+    }
+
     fun getMagic(){
-        getMagic.invoke(genre = stringResourcesProvider.getString(R.string.Genre_Magic), order = null).onEach { value ->
+        getMagic.invoke(genre = stringResourcesProvider.getString(R.string.Genre_Magic), order = null, status = null).onEach { value ->
             _state.tryEmit(
                 _state.value.copy(
                     magic = _state.value.magic.copy(
@@ -85,7 +119,7 @@ class HomeFragmentViewModel @Inject constructor(
     }
 
     fun getMonsters(){
-        getMonsters.invoke(genre = stringResourcesProvider.getString(R.string.Genre_Monsters), order = null).onEach { value ->
+        getMonsters.invoke(genre = stringResourcesProvider.getString(R.string.Genre_Monsters), order = null, status = null).onEach { value ->
             _state.tryEmit(
                 _state.value.copy(
                     monsters = _state.value.monsters.copy(
@@ -98,7 +132,7 @@ class HomeFragmentViewModel @Inject constructor(
     }
 
     fun getMiddleAges(){
-        getMiddleAges.invoke(genre = stringResourcesProvider.getString(R.string.Genre_MiddleAges), order = null).onEach { value ->
+        getMiddleAges.invoke(genre = stringResourcesProvider.getString(R.string.Genre_MiddleAges), order = null, status = null).onEach { value ->
             _state.tryEmit(
                 _state.value.copy(
                     middleAgesState = _state.value.middleAgesState.copy(

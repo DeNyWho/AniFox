@@ -11,9 +11,9 @@ object Constants {
     const val MORE_PAGE_SIZE = 50
     const val REVIEW_PAGE = 0
     const val REVIEW_LIMIT = 10
-    const val ORDER_BY_POPULAR = "popularity"
+    const val ORDER_BY_POPULAR = "popular"
     const val SORT_BY_RATE = "popular"
-    const val SORT_BY_VIEWS = "views"
+    const val ORDER_BY_VIEWS = "views"
     const val STATUS_BY_FINAL = "завершён"
     const val STATUS_BY_UPDATED = "обновлен"
     const val STATUS_BY_ONGOING = "онгоинг"

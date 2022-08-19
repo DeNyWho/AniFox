@@ -17,7 +17,7 @@ data class Manga(
     val description: String = "",
     @SerializedName("chaptersCount")
     val chaptersCount: String = "",
-    @SerializedName("views")
+    @SerializedName("countViews")
     val views: String = "",
     @SerializedName("rate")
     val rate: String = "",
@@ -31,5 +31,9 @@ fun Manga.toData(): Manga {
         title = title,
         image = image,
         url = url,
+        rate = rate,
+        countRate = countRate,
+        description = description,
+        views = views
     )
 }

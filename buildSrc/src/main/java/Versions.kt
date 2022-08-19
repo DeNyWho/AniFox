@@ -10,12 +10,14 @@ object Versions {
     const val nav = "2.4.2"
     const val serialization = kotlin
 
-    const val neomorphic = "1.03"
+    const val tabSync = "1.0.1"
     const val advancedCardView = "1.0.1"
     const val swipeRefresh = "1.1.0"
     const val serializationJson = "1.3.3"
     const val picasso = "2.8"
     const val glide = "4.13.2"
+    const val glideOkHttp = "4.7.1"
+    const val okHttp = "4.10.0"
     const val groupie = "2.10.1"
     const val paging = "3.1.1"
     const val timber = "5.0.1"

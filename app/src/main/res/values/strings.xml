@@ -32,18 +32,27 @@
     <string name="toolbar_genre">Жанры</string>
     <string name="discover">Исследуйте</string>
     <string name="morePage">Показать все</string>
+
     <string name="Genre_Comedy">Комедия</string>
     <string name="Genre_Romance">Романтика</string>
     <string name="Genre_Fantasy">Фэнтези</string>
     <string name="Genre_Horror">Ужасы</string>
     <string name="Genre_Mystic">Мистика</string>
     <string name="Genre_All_Genres">Все жанры</string>
-    <string name="comic">COMIC</string>
-    <string name="search">SEARCH</string>
-    <string name="tab_status_airing">Новинки</string>
-    <string name="tab_status_popular">Популярно</string>
-    <string name="tab_status_completed">Завершенны</string>
     <string name="Genre_Magic">Магия</string>
     <string name="Genre_Monsters">Монстры</string>
     <string name="Genre_MiddleAges">Средневековье</string>
+
+    <string name="Ranking">Рейтинг</string>
+    <string name="completed">Завершено</string>
+    <string name="ongoing">Онгоинг</string>
+    <string name="popular">Популярно</string>
+
+    <string name="views">Просмотры</string>
+    <string name="comic">comic</string>
+    <string name="search">SEARCH</string>
+
+    <string name="tab_status_airing">Новинки</string>
+    <string name="tab_status_popular">Популярно</string>
+    <string name="tab_status_completed">Завершенны</string>
 </resources>
