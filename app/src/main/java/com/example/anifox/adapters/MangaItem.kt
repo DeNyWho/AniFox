@@ -2,7 +2,6 @@ package com.example.anifox.adapters
 
 import android.os.Bundle
 import android.view.View
-import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
 import com.example.anifox.R
 import com.example.anifox.databinding.CardItemAnimeBinding
@@ -21,9 +20,9 @@ class MangaItem(var manga: Manga): BindableItem<CardItemAnimeBinding>() {
         val bundle = Bundle()
         bundle.putInt("animeId", manga.id)
 
-        binding.root.setOnClickListener {
-            binding.root.findNavController().navigate(R.id.action_homeFragment_to_morePageFragment, bundle)
-        }
+//        binding.root.setOnClickListener {
+//            binding.root.findNavController().navigate(R.id.action_homeFragment_to_morePageFragment, bundle)
+//        }
     }
 
     override fun getLayout(): Int {

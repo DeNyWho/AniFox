@@ -8,6 +8,7 @@ import com.example.anifox.presentation.home.state.mostRead.MostReadState
 import com.example.anifox.presentation.home.state.popular.AiringPopularAnimeState
 import com.example.anifox.presentation.home.state.popular.PopularCompletedState
 import com.example.anifox.presentation.home.state.popular.PopularMangaState
+import com.example.anifox.presentation.home.state.random.RandomState
 
 data class HomeState (
     val airingPopularState: AiringPopularAnimeState,
@@ -15,6 +16,7 @@ data class HomeState (
     val middleAgesState: MiddleAgesState,
     val popularState: PopularMangaState,
     val announcesState: AnnouncesState,
+    val randomState: RandomState,
     val mostRead: MostReadState,
     val monsters: MonstersState,
     val magic: MagicState,

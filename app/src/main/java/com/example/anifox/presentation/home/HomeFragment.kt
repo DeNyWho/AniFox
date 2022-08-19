@@ -50,6 +50,7 @@ open class HomeFragment : Fragment() {
         viewModel.getMiddleAges()
         viewModel.getMostRead()
         viewModel.getPopularCompleted()
+        viewModel.getRandom()
 
         observeOnState()
         initRecycler()
@@ -170,7 +171,17 @@ open class HomeFragment : Fragment() {
                     state.airingPopularState.data.take(5),
                     state.popularCompleted.data.take(5),
                 )
+            }
 
+            if(state.randomState.data?.isNotEmpty() == true ){
+                this += HeaderLightItem(
+                    title = requireContext().getString(R.string.Randomize),
+                    image = R.drawable.map
+                )
+
+                this += RandomizeItem(
+                    state.randomState.data
+                )
             }
 
         }

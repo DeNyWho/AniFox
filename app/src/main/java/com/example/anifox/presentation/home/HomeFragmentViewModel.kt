@@ -13,9 +13,14 @@ import com.example.anifox.presentation.home.state.mostRead.MostReadState
 import com.example.anifox.presentation.home.state.popular.AiringPopularAnimeState
 import com.example.anifox.presentation.home.state.popular.PopularCompletedState
 import com.example.anifox.presentation.home.state.popular.PopularMangaState
+import com.example.anifox.presentation.home.state.random.RandomState
 import com.example.anifox.util.Constants
 import com.example.anifox.util.Constants.ORDER_BY_POPULAR
+import com.example.anifox.util.Constants.REVIEW_LIMIT
+import com.example.anifox.util.Constants.REVIEW_LIMIT_RANDOMIZE
+import com.example.anifox.util.Constants.SORT_BY_RATE
 import com.example.anifox.util.Constants.STATUS_BY_FINAL
+import com.example.anifox.util.Constants.STATUS_BY_ONGOING
 import com.example.anifox.util.StringResourcesProvider
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -31,9 +36,10 @@ class HomeFragmentViewModel @Inject constructor(
     private val getPopularCompleted: GetPopularCompleted,
     private val getTopAiring: GetTopAiringReviewUseCase,
     private val getMiddleAges: GetMiddleAgesUseCase,
-    private val getPopular: GetPopularUseCase,
     private val getMostRead: GetMostViewReviewUseCase,
     private val getMonsters: GetMonstersUseCase,
+    private val getPopular: GetPopularUseCase,
+    private val getRandom: GetRandomUseCase,
     private val getMagic: GetMagicUseCase,
 ) : ViewModel() {
 
@@ -46,13 +52,14 @@ class HomeFragmentViewModel @Inject constructor(
             announcesState = AnnouncesState(isLoading = true, data = null),
             mostRead = MostReadState(isLoading = true, data = null),
             monsters = MonstersState(isLoading = true, data = null),
+            randomState = RandomState(isLoading = true, data = null),
             magic = MagicState(isLoading = true, data = null),
         )
     )
     val state = _state.asStateFlow()
 
     fun getPopular(){
-        getPopular.invoke(genre = null, order = ORDER_BY_POPULAR, status = null).onEach { value ->
+        getPopular.invoke(genre = null, order = ORDER_BY_POPULAR, status = null, countCard = REVIEW_LIMIT).onEach { value ->
             _state.tryEmit(
                 _state.value.copy(
                     popularState = _state.value.popularState.copy(
@@ -64,22 +71,8 @@ class HomeFragmentViewModel @Inject constructor(
         }.launchIn(viewModelScope)
     }
 
-
-    fun getMostRead(){
-        getMostRead.invoke(genre = null, order = Constants.ORDER_BY_VIEWS, status = null).onEach { value ->
-            _state.tryEmit(
-                _state.value.copy(
-                    mostRead = _state.value.mostRead.copy(
-                        isLoading = false,
-                        data = value.data
-                    )
-                )
-            )
-        }.launchIn(viewModelScope)
-    }
-
     fun getPopularAiring(){
-        getTopAiring.invoke().onEach { value ->
+        getTopAiring.invoke(genre = null, order = SORT_BY_RATE, status = STATUS_BY_ONGOING, countCard = REVIEW_LIMIT).onEach { value ->
             _state.tryEmit(
                 _state.value.copy(
                     airingPopularState = _state.value.airingPopularState.copy(
@@ -93,7 +86,7 @@ class HomeFragmentViewModel @Inject constructor(
 
 
     fun getPopularCompleted(){
-        getPopularCompleted.invoke(genre = null, order = ORDER_BY_POPULAR, status = STATUS_BY_FINAL).onEach { value ->
+        getPopularCompleted.invoke(genre = null, order = ORDER_BY_POPULAR, status = STATUS_BY_FINAL, countCard = REVIEW_LIMIT).onEach { value ->
             _state.tryEmit(
                 _state.value.copy(
                     popularCompleted = _state.value.popularCompleted.copy(
@@ -106,7 +99,7 @@ class HomeFragmentViewModel @Inject constructor(
     }
 
     fun getMagic(){
-        getMagic.invoke(genre = stringResourcesProvider.getString(R.string.Genre_Magic), order = null, status = null).onEach { value ->
+        getMagic.invoke(genre = stringResourcesProvider.getString(R.string.Genre_Magic), order = null, status = null, countCard = REVIEW_LIMIT).onEach { value ->
             _state.tryEmit(
                 _state.value.copy(
                     magic = _state.value.magic.copy(
@@ -119,7 +112,7 @@ class HomeFragmentViewModel @Inject constructor(
     }
 
     fun getMonsters(){
-        getMonsters.invoke(genre = stringResourcesProvider.getString(R.string.Genre_Monsters), order = null, status = null).onEach { value ->
+        getMonsters.invoke(genre = stringResourcesProvider.getString(R.string.Genre_Monsters), order = null, status = null, countCard = REVIEW_LIMIT).onEach { value ->
             _state.tryEmit(
                 _state.value.copy(
                     monsters = _state.value.monsters.copy(
@@ -132,7 +125,7 @@ class HomeFragmentViewModel @Inject constructor(
     }
 
     fun getMiddleAges(){
-        getMiddleAges.invoke(genre = stringResourcesProvider.getString(R.string.Genre_MiddleAges), order = null, status = null).onEach { value ->
+        getMiddleAges.invoke(genre = stringResourcesProvider.getString(R.string.Genre_MiddleAges), order = null, status = null, countCard = REVIEW_LIMIT).onEach { value ->
             _state.tryEmit(
                 _state.value.copy(
                     middleAgesState = _state.value.middleAgesState.copy(
@@ -143,6 +136,34 @@ class HomeFragmentViewModel @Inject constructor(
             )
         } .launchIn(viewModelScope)
     }
+
+    fun getRandom(){
+        getRandom.invoke(genre = stringResourcesProvider.getString(R.string.Genre_Random), order = null, status = null, countCard = REVIEW_LIMIT_RANDOMIZE).onEach { value ->
+            _state.tryEmit(
+                _state.value.copy(
+                    randomState = _state.value.randomState.copy(
+                        isLoading = false,
+                        data = value.data
+                    )
+                )
+            )
+        }.launchIn(viewModelScope)
+    }
+
+
+    fun getMostRead(){
+        getMostRead.invoke(genre = null, order = Constants.ORDER_BY_VIEWS, status = null, countCard = REVIEW_LIMIT).onEach { value ->
+            _state.tryEmit(
+                _state.value.copy(
+                    mostRead = _state.value.mostRead.copy(
+                        isLoading = false,
+                        data = value.data
+                    )
+                )
+            )
+        }.launchIn(viewModelScope)
+    }
+
 
 }
 

@@ -13,10 +13,10 @@ import javax.inject.Inject
 class GetPopularUseCase @Inject constructor(
     private val repository: MangaRepository
 ) {
-    operator fun invoke(genre: String?, order: String?, status: String?): Flow<MagicState> {
+    operator fun invoke(genre: String?, order: String?, status: String?, countCard: Int): Flow<MagicState> {
         return flow {
             emit(MagicState(isLoading = true))
-            val res = repository.getManga(genre = genre, order = order, status = status)
+            val res = repository.getManga(genre = genre, order = order, status = status, countCard = countCard)
 
             if (res.isSuccessful){
                 val data = res.body()?.data?.map { it.toData() }.orEmpty()

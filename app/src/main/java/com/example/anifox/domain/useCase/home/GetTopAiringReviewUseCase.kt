@@ -13,10 +13,10 @@ import javax.inject.Inject
 class GetTopAiringReviewUseCase @Inject constructor(
     private val repository: MangaRepository
 ) {
-    operator fun invoke(): Flow<AiringPopularAnimeState> {
+    operator fun invoke(genre: String?, order: String?, status: String?, countCard: Int): Flow<AiringPopularAnimeState> {
         return flow {
             emit(AiringPopularAnimeState(isLoading = true))
-            val res = repository.getTopAiringReview()
+            val res = repository.getManga(genre = genre, order = order, status = status, countCard = countCard)
 
             if (res.isSuccessful){
                 val data = res.body()?.data?.map { it.toData() }.orEmpty()
@@ -26,7 +26,6 @@ class GetTopAiringReviewUseCase @Inject constructor(
             } else {
                 val state = AiringPopularAnimeState(isLoading = false, error = res.message())
                 emit(state)
-
             }
 
         }.flowOn(Dispatchers.IO)
