@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.anifox.R
 import com.example.anifox.databinding.HorizontalItemBinding
 import com.example.anifox.domain.model.manga.Manga
+import com.example.anifox.presentation.home.listeners.ItemClickListenerGoToDetail
 import com.example.anifox.util.Constants
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
@@ -12,7 +13,8 @@ import com.xwray.groupie.viewbinding.BindableItem
 
 class HorizontalItem(
     private val listData: List<Manga>,
-    private val type: String
+    private val type: String,
+    private val onClick: ItemClickListenerGoToDetail
 ) : BindableItem<HorizontalItemBinding>() {
     private val horizontalAdapter by lazy { GroupAdapter <GroupieViewHolder>() }
 
@@ -25,15 +27,12 @@ class HorizontalItem(
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             adapter = horizontalAdapter
         }
-        if(listData.isNotEmpty()) {
-            println(listData.last())
-        }
 
         if (type == Constants.STYLE_BIGGER_RECYCLER) {
-            horizontalAdapter.replaceAll(listData.map { DiscoverItem(it) })
+            horizontalAdapter.replaceAll(listData.map { DiscoverItem(it, onClick) })
         }
         else {
-            horizontalAdapter.replaceAll(listData.map { MangaItem(it) })
+            horizontalAdapter.replaceAll(listData.map { MangaItem(it, onClick) })
         }
     }
 

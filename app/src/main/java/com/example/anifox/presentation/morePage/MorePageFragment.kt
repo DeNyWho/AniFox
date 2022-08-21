@@ -43,12 +43,9 @@ class MorePageFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        println("order = ${args.order}")
-        println("status = ${args.status}")
-        println("genre = ${args.genre}")
-        viewModel.setQueriesOnCompleted(genre = args.genre, order = args.order)
-        viewModel.setQueriesOnGoing(genre = args.genre, order = args.order)
-        viewModel.setQueriesOnPopular(genre = args.genre)
+        viewModel.setQueriesOnCompleted(genre = if(args.genre != getString(R.string.Genre_All_Genres)) args.genre else null)
+        viewModel.setQueriesOnGoing(genre = if(args.genre != getString(R.string.Genre_All_Genres)) args.genre else null)
+        viewModel.setQueriesOnPopular(genre = if(args.genre != getString(R.string.Genre_All_Genres)) args.genre else null)
 
         initListeners()
         initPager()
@@ -90,8 +87,8 @@ class MorePageFragment : Fragment() {
     }
 
     private fun setUpTitle(){
-        binding.tvTitle.text = if(args.title != binding.root.context.getString(R.string.Genre_All_Genres)) args.title else "Жанры"
-        if(args.title != getString(R.string.Genre_All_Genres)){
+        binding.tvTitle.text = if(args.genre != getString(R.string.Genre_All_Genres)) args.genre else "Жанры"
+        if(args.genre != getString(R.string.Genre_All_Genres)){
             binding.recyclerGenres.visibility = View.GONE
         }
     }

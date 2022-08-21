@@ -27,9 +27,9 @@ class MorePageViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val _queries = MutableStateFlow(PagerQuery(
-            OnGoingQuery = OnGoingQuery(null, STATUS_BY_ONGOING, null),
+            OnGoingQuery = OnGoingQuery(ORDER_BY_POPULAR, STATUS_BY_ONGOING, null),
             OnPopularQuery = OnPopularQuery(ORDER_BY_POPULAR, null, null),
-            OnCompletedQuery = OnCompletedQuery(null, STATUS_BY_FINAL, null,)
+            OnCompletedQuery = OnCompletedQuery(ORDER_BY_POPULAR, STATUS_BY_FINAL, null,)
         )
     )
     val queries = _queries.asStateFlow()
@@ -37,12 +37,11 @@ class MorePageViewModel @Inject constructor(
     private var newPagingSource: PagingSource<*, *>? = null
 
 
-    fun setQueriesOnGoing(order: String?,  genre: String?) {
+    fun setQueriesOnGoing(genre: String?) {
         _queries.tryEmit(
             _queries.value.copy(
                 OnGoingQuery = _queries.value.OnGoingQuery.copy(
-                    genre = genre,
-                    order = order
+                    genre = genre
                 )
             )
         )
@@ -58,12 +57,11 @@ class MorePageViewModel @Inject constructor(
         )
     }
 
-    fun setQueriesOnCompleted(order: String?, genre: String?) {
+    fun setQueriesOnCompleted( genre: String?) {
         _queries.tryEmit(
             _queries.value.copy(
                 OnCompletedQuery = _queries.value.OnCompletedQuery.copy(
-                    genre = genre,
-                    order = order
+                    genre = genre
                 )
             )
         )

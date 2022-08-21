@@ -1,19 +1,16 @@
 package com.example.anifox.adapters
 
-import android.os.Bundle
 import android.view.View
 import androidx.annotation.DrawableRes
-import androidx.navigation.findNavController
 import com.example.anifox.R
 import com.example.anifox.databinding.HeaderMoreItemBinding
+import com.example.anifox.presentation.home.listeners.ItemClickListenerMorePage
 import com.xwray.groupie.viewbinding.BindableItem
 
 open class HeaderMoreItem(
     private val title: String,
-    private val order: String?,
-    private val status: String?,
-    private val genre: String?,
-    @DrawableRes private val image: Int
+    @DrawableRes private val image: Int,
+    private val onClick: ItemClickListenerMorePage
 ): BindableItem<HeaderMoreItemBinding>() {
 
     override fun getLayout(): Int {
@@ -27,18 +24,13 @@ open class HeaderMoreItem(
     override fun bind(viewBinding: HeaderMoreItemBinding, position: Int) {
         viewBinding.tvTitle.text = title
         viewBinding.ivImageSmile.setImageResource(image)
-        val bundle = Bundle()
-        bundle.putString("order", order ?: "")
-        bundle.putString("status", status ?: "")
-        bundle.putString("title", title)
-        bundle.putString("genre", genre)
 
         viewBinding.tvSeeMore.setOnClickListener {
-            viewBinding.root.findNavController().navigate(R.id.action_homeFragment_to_morePageFragment, bundle)
+            onClick.navigationToMorePages(genre = title)
         }
 
         viewBinding.ivImageGoIn.setOnClickListener {
-            viewBinding.root.findNavController().navigate(R.id.action_homeFragment_to_morePageFragment, bundle)
+            onClick.navigationToMorePages(genre = title)
         }
     }
 }

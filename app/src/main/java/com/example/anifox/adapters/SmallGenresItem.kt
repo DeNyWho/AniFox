@@ -1,16 +1,15 @@
 package com.example.anifox.adapters
 
-import android.os.Bundle
 import android.util.TypedValue
 import android.view.View
 import androidx.core.content.ContextCompat
-import androidx.navigation.findNavController
 import com.example.anifox.R
 import com.example.anifox.databinding.CardItemGenresBinding
 import com.example.anifox.domain.model.common.GenresCard
+import com.example.anifox.presentation.home.listeners.ItemClickListenerMorePageGenres
 import com.xwray.groupie.viewbinding.BindableItem
 
-class SmallGenresItem(var genre: GenresCard): BindableItem<CardItemGenresBinding>() {
+class SmallGenresItem(var genre: GenresCard, private val onClick: ItemClickListenerMorePageGenres): BindableItem<CardItemGenresBinding>() {
     override fun bind(binding: CardItemGenresBinding, position: Int) {
 
         binding.tvTitle.text = genre.title
@@ -20,12 +19,9 @@ class SmallGenresItem(var genre: GenresCard): BindableItem<CardItemGenresBinding
         binding.ivImage.setBackgroundResource(genre.image)
         binding.ivImage.layoutParams.height = genre.imageHeight
         binding.ivImage.layoutParams.width = genre.imageWidth
-        val bundle = Bundle()
-        if(genre.title != binding.root.context.getString(R.string.Genre_All_Genres)) bundle.putString("genre", genre.title)
-        bundle.putString("title", genre.title)
 
         binding.root.setOnClickListener {
-            binding.root.findNavController().navigate(R.id.action_homeFragment_to_morePageFragment, bundle)
+            onClick.navigationToMorePagesGenres(genre = genre.title)
         }
     }
 

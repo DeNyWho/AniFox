@@ -52,7 +52,8 @@ android {
 dependencies {
     implementation(Libraries.UI.advancedCardView)
     implementation(Libraries.UI.tabSync)
-
+    implementation(Libraries.UI.recyclerViewAnimation)
+    implementation("androidx.recyclerview:recyclerview:1.1.0")
     implementation(Libraries.SwipeRefresh.swipeRefresh)
 
     implementation(Libraries.Groupie.groupie)

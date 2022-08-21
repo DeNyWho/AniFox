@@ -18,6 +18,7 @@ object Versions {
     const val glide = "4.13.2"
     const val glideOkHttp = "4.7.1"
     const val okHttp = "4.10.0"
+    const val recyclerViewAnimation = "3.0.0"
     const val groupie = "2.10.1"
     const val paging = "3.1.1"
     const val timber = "5.0.1"

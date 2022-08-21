@@ -13,6 +13,9 @@ import com.example.anifox.R
 import com.example.anifox.adapters.*
 import com.example.anifox.databinding.FragmentHomeFragmentBinding
 import com.example.anifox.domain.model.common.GenresCard
+import com.example.anifox.presentation.home.listeners.ItemClickListenerGoToDetail
+import com.example.anifox.presentation.home.listeners.ItemClickListenerMorePage
+import com.example.anifox.presentation.home.listeners.ItemClickListenerMorePageGenres
 import com.example.anifox.util.Constants
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
@@ -57,6 +60,29 @@ open class HomeFragment : Fragment() {
         initListeners()
     }
 
+    private fun navigationToMorePagesInAdapter(genre: String){
+        val bundle = Bundle()
+        bundle.putString("genre", genre)
+
+        findNavController().navigate(R.id.action_homeFragment_to_morePageFragment, bundle)
+    }
+
+    private fun navigationToDetailInAdapter(id: Int){
+        val bundle = Bundle()
+        bundle.putInt("animeId", id)
+
+        findNavController().navigate(R.id.action_homeFragment_to_detailFragment, bundle)
+    }
+
+    private fun navigationToMorePagesGenresInAdapter(genre: String){
+        val bundle = Bundle()
+        bundle.putString("genre", genre)
+
+        findNavController().navigate(R.id.action_homeFragment_to_morePageFragment, bundle)
+
+    }
+
+
     private fun initListeners(){
 
         binding.ivGenres.setOnClickListener {
@@ -82,7 +108,12 @@ open class HomeFragment : Fragment() {
             if(state.airingPopularState.data?.isNotEmpty() == true) {
                 this += HorizontalItem(
                     listData = state.airingPopularState.data,
-                    type = Constants.STYLE_BIGGER_RECYCLER
+                    type = Constants.STYLE_BIGGER_RECYCLER,
+                    onClick = object : ItemClickListenerGoToDetail {
+                        override fun navigationToDetail(id: Int) {
+                            navigationToDetailInAdapter(id)
+                        }
+                    }
                 )
                 this += GenresItem(
                     listData = listOf(
@@ -115,49 +146,82 @@ open class HomeFragment : Fragment() {
                             title = getString(R.string.Genre_All_Genres),
                             image = R.drawable.elements,
                             color = R.color.grey_light,
-                            imageHeight = 70,
-                            imageWidth = 70,
+                            imageHeight = 60,
+                            imageWidth = 60,
                         )
-                    )
+                    ),
+                    onClick = object : ItemClickListenerMorePageGenres {
+                        override fun navigationToMorePagesGenres(genre: String) {
+                            navigationToMorePagesGenresInAdapter(
+                                genre = genre
+                            )
+                        }
+                    }
                 )
             }
             if(state.magic.data?.isNotEmpty() == true) {
                 this += HeaderMoreItem(
                     image = R.drawable.book,
                     title = requireContext().getString(R.string.title_Magic),
-                    order = Constants.ORDER_BY_POPULAR,
-                    status = null,
-                    genre = requireContext().getString(R.string.Genre_Magic)
+                    onClick = object : ItemClickListenerMorePage {
+                        override fun navigationToMorePages(genre: String) {
+                            navigationToMorePagesInAdapter(genre)
+                        }
+                    }
                 )
                 this += HorizontalItem(
                     listData = state.magic.data,
-                    type = Constants.STYLE_SMALLER_RECYCLER
+                    type = Constants.STYLE_SMALLER_RECYCLER,
+                    onClick = object : ItemClickListenerGoToDetail {
+                        override fun navigationToDetail(id: Int) {
+                            navigationToDetailInAdapter(id)
+                        }
+                    }
                 )
             }
             if(state.monsters.data?.isNotEmpty() == true) {
                 this += HeaderMoreItem(
-                    image = R.drawable.monster,
                     title = requireContext().getString(R.string.Genre_Monsters),
-                    order = Constants.ORDER_BY_POPULAR,
-                    status = null,
-                    genre = requireContext().getString(R.string.Genre_Monsters)
+                    image = R.drawable.monster,
+                    onClick = object : ItemClickListenerMorePage {
+                        override fun navigationToMorePages(genre: String) {
+                            navigationToMorePagesInAdapter(
+                                genre = requireContext().getString(R.string.Genre_Monsters)
+                            )
+                        }
+                    }
                 )
                 this += HorizontalItem(
                     listData = state.monsters.data,
-                    type = Constants.STYLE_SMALLER_RECYCLER
+                    type = Constants.STYLE_SMALLER_RECYCLER,
+                    onClick = object : ItemClickListenerGoToDetail {
+                        override fun navigationToDetail(id: Int) {
+                            navigationToDetailInAdapter(id)
+                        }
+                    }
                 )
             }
             if(state.middleAgesState.data?.isNotEmpty() == true) {
                 this += HeaderMoreItem(
-                    image = R.drawable.knight,
                     title = requireContext().getString(R.string.Genre_MiddleAges),
-                    order = Constants.ORDER_BY_POPULAR,
-                    status = null,
-                    genre = requireContext().getString(R.string.Genre_MiddleAges)
+                    image = R.drawable.knight,
+                    onClick = object : ItemClickListenerMorePage {
+                        override fun navigationToMorePages(genre: String) {
+                            navigationToMorePagesInAdapter(
+                                genre = requireContext().getString(R.string.Genre_MiddleAges)
+                            )
+                        }
+                    }
+
                 )
                 this += HorizontalItem(
                     listData = state.middleAgesState.data,
-                    type = Constants.STYLE_SMALLER_RECYCLER
+                    type = Constants.STYLE_SMALLER_RECYCLER,
+                    onClick = object : ItemClickListenerGoToDetail {
+                        override fun navigationToDetail(id: Int) {
+                            navigationToDetailInAdapter(id)
+                        }
+                    }
                 )
             }
             if(state.airingPopularState.data?.isNotEmpty() == true && state.popularState.data?.isNotEmpty() == true && state.mostRead.data?.isNotEmpty() == true && state.popularCompleted.data?.isNotEmpty() == true){
@@ -174,13 +238,15 @@ open class HomeFragment : Fragment() {
             }
 
             if(state.randomState.data?.isNotEmpty() == true ){
-                this += HeaderLightItem(
-                    title = requireContext().getString(R.string.Randomize),
-                    image = R.drawable.map
-                )
-
                 this += RandomizeItem(
-                    state.randomState.data
+                    title = requireContext().getString(R.string.Randomize),
+                    image = R.drawable.map,
+                    listData = state.randomState.data,
+                    onClick = object : ItemClickListenerGoToDetail {
+                        override fun navigationToDetail(id: Int) {
+                            navigationToDetailInAdapter(id)
+                        }
+                    }
                 )
             }
 
