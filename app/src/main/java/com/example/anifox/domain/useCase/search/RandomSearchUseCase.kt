@@ -1,28 +1,29 @@
-package com.example.anifox.domain.useCase.home
+package com.example.anifox.domain.useCase.search
 
 import com.example.anifox.data.repository.MangaRepository
 import com.example.anifox.domain.model.manga.toData
-import com.example.anifox.presentation.home.state.manga.middleAges.MiddleAgesState
+import com.example.anifox.presentation.search.state.random.RandomSearchState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
-class GetMiddleAgesUseCase @Inject constructor(
+class RandomSearchUseCase @Inject constructor(
     private val repository: MangaRepository
 ) {
-    operator fun invoke(genre: String?, order: String?, status: String?, countCard: Int): Flow<MiddleAgesState> {
+    operator fun invoke(genre: String?, order: String?, status: String?, countCard: Int): Flow<RandomSearchState> {
         return flow {
-            emit(MiddleAgesState(isLoading = true))
+            emit(RandomSearchState(isLoading = true))
             val res = repository.getManga(genre = genre, order = order, status = status, countCard = countCard)
 
             if (res.isSuccessful){
                 val data = res.body()?.data?.map { it.toData() }.orEmpty()
-                val state = MiddleAgesState(data, isLoading = false)
+                println("DATA = $data")
+                val state = RandomSearchState(data, isLoading = false)
                 emit(state)
             } else {
-                val state = MiddleAgesState(isLoading = false, error = res.message())
+                val state = RandomSearchState(isLoading = false, error = res.message())
                 emit(state)
 
             }

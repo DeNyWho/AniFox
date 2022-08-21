@@ -27,6 +27,10 @@ class MangaRepository @Inject constructor(
         return mainApi.getManga(page = REVIEW_PAGE, countCard = countCard, status = status, genre = genre, order = order)
     }
 
+    override suspend fun getSearch(query: String): Response<MangaResponse>{
+        return mainApi.getSearchManga(query)
+    }
+
 
 
 }

@@ -9,4 +9,5 @@ interface RemoteDataSource {
     suspend fun getMangaByIdRu(id: Int): Response<MangaResponse>
     fun getAnimePager(order: String?, status: String?, genre: String?): PagingSource<Int, Manga>
     suspend fun getManga( genre: String?, order: String?, status: String?, countCard: Int): Response<MangaResponse>
+    suspend fun getSearch(query: String): Response<MangaResponse>
 }

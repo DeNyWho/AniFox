@@ -9,9 +9,11 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.anifox.databinding.FragmentDetailFragmentBinding
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
+import com.xwray.groupie.Item
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
@@ -56,14 +58,24 @@ class DetailFragment : Fragment() {
 
     }
 
-    private fun initRecycler() {
-
+    private fun initRecycler(){
+        binding.recycler.adapter = groupAdapter
+        binding.recycler.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
     }
 
 
     private fun observeOnState() {
-        viewModel.animeDetails.onEach { state ->
-            println(state)
+        viewModel.state.onEach { state ->
+            val list = mutableListOf<Item<*>>().apply {
+                if(state.contentDetailsState.data != null){
+
+                }
+            }
+
+
+
+            groupAdapter.update(list)
+
         }.launchWhenStarted()
     }
 

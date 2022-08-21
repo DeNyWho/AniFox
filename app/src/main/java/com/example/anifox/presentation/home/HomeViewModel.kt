@@ -31,7 +31,7 @@ import javax.inject.Inject
 
 
 @HiltViewModel
-class HomeFragmentViewModel @Inject constructor(
+class HomeViewModel @Inject constructor(
     private val stringResourcesProvider: StringResourcesProvider,
     private val getPopularCompleted: GetPopularCompleted,
     private val getTopAiring: GetTopAiringReviewUseCase,
@@ -39,7 +39,7 @@ class HomeFragmentViewModel @Inject constructor(
     private val getMostRead: GetMostViewReviewUseCase,
     private val getMonsters: GetMonstersUseCase,
     private val getPopular: GetPopularUseCase,
-    private val getRandom: GetRandomUseCase,
+    private val getRandom: GetRandomHomeUseCase,
     private val getMagic: GetMagicUseCase,
 ) : ViewModel() {
 

@@ -1,4 +1,4 @@
-package com.example.anifox.adapters
+package com.example.anifox.adapters.common
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -9,7 +9,9 @@ import com.bumptech.glide.Glide
 import com.example.anifox.databinding.CardItemAnimeSmallerBinding
 import com.example.anifox.domain.model.manga.Manga
 
-class SmallerAnimeItem : PagingDataAdapter<Manga, SmallerAnimeItemViewHolder>(ArticleDiffItemCallback) {
+class SmallerAnimeItem : PagingDataAdapter<Manga, SmallerAnimeItemViewHolder>(
+    ArticleDiffItemCallback
+) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SmallerAnimeItemViewHolder {
        return  SmallerAnimeItemViewHolder(CardItemAnimeSmallerBinding.inflate(LayoutInflater.from(parent.context), parent, false))

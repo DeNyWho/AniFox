@@ -1,4 +1,4 @@
-package com.example.anifox.adapters
+package com.example.anifox.adapters.home
 
 import android.view.View
 import com.bumptech.glide.Glide
@@ -32,7 +32,6 @@ class RankingSimpleItem(var list: Manga): BindableItem<RankingItemFinalBinding>(
         }
 
         binding.tvTitle.text = list.title
-        println("DATA = ${list.views} ${list.description}")
         binding.tvDescription.text = list.description
         binding.tvCountViews.text = "\uD83D\uDD25${list.views}"
         Glide

@@ -22,4 +22,10 @@ interface MainApi {
         @Path("id") id: Int,
     ): Response<MangaResponse>
 
+
+    @GET("manga/search")
+    suspend fun getSearchManga(
+        @Query("query") query: String,
+    ): Response<MangaResponse>
+
 }

@@ -10,7 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.anifox.R
-import com.example.anifox.adapters.*
+import com.example.anifox.adapters.home.*
 import com.example.anifox.databinding.FragmentHomeFragmentBinding
 import com.example.anifox.domain.model.common.GenresCard
 import com.example.anifox.presentation.home.listeners.ItemClickListenerGoToDetail
@@ -33,7 +33,7 @@ open class HomeFragment : Fragment() {
 
     private val groupAdapter = GroupAdapter<GroupieViewHolder>()
 
-    private val viewModel: HomeFragmentViewModel by viewModels()
+    private val viewModel: HomeViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

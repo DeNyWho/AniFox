@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.anifox.adapters.SmallerAnimeItem
+import com.example.anifox.adapters.common.SmallerAnimeItem
 import com.example.anifox.databinding.FragmentOnPopularTabBinding
 import com.example.anifox.presentation.morePage.MorePageViewModel
 import dagger.hilt.android.AndroidEntryPoint

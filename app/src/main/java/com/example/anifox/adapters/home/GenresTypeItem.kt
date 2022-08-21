@@ -1,12 +1,8 @@
-package com.example.anifox.adapters
+package com.example.anifox.adapters.home
 
-import android.os.Bundle
 import android.view.View
-import androidx.annotation.StringRes
-import androidx.navigation.findNavController
 import com.example.anifox.R
 import com.example.anifox.databinding.ChipGenresBinding
-import com.example.anifox.databinding.HeaderMoreItemBinding
 import com.xwray.groupie.viewbinding.BindableItem
 
 open class GenresTypeItem(

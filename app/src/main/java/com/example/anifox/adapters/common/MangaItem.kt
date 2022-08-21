@@ -1,30 +1,33 @@
-package com.example.anifox.adapters
+package com.example.anifox.adapters.common
 
 import android.view.View
 import com.bumptech.glide.Glide
 import com.example.anifox.R
-import com.example.anifox.databinding.CardDiscoverBinding
+import com.example.anifox.databinding.CardItemAnimeBinding
 import com.example.anifox.domain.model.manga.Manga
 import com.example.anifox.presentation.home.listeners.ItemClickListenerGoToDetail
 import com.xwray.groupie.viewbinding.BindableItem
 
-class DiscoverItem(var manga: Manga, private val onClick: ItemClickListenerGoToDetail): BindableItem<CardDiscoverBinding>() {
-    override fun bind(binding: CardDiscoverBinding, position: Int) {
-        println(manga.image)
+
+class MangaItem(var manga: Manga, private val onClick: ItemClickListenerGoToDetail): BindableItem<CardItemAnimeBinding>() {
+    override fun bind(binding: CardItemAnimeBinding, position: Int) {
+        binding.tvName.text = manga.title
+
         Glide
             .with(binding.root.context)
             .load(manga.image)
             .into(binding.ivImage)
+
         binding.root.setOnClickListener {
             onClick.navigationToDetail(manga.id)
         }
     }
 
     override fun getLayout(): Int {
-        return R.layout.card_discover
+        return R.layout.card_item_anime
     }
 
-    override fun initializeViewBinding(view: View): CardDiscoverBinding {
-        return CardDiscoverBinding.bind(view)
+    override fun initializeViewBinding(view: View): CardItemAnimeBinding {
+        return CardItemAnimeBinding.bind(view)
     }
 }

@@ -32,7 +32,6 @@ class MorePageViewModel @Inject constructor(
             OnCompletedQuery = OnCompletedQuery(ORDER_BY_POPULAR, STATUS_BY_FINAL, null,)
         )
     )
-    val queries = _queries.asStateFlow()
 
     private var newPagingSource: PagingSource<*, *>? = null
 
@@ -69,7 +68,6 @@ class MorePageViewModel @Inject constructor(
 
     @OptIn(ExperimentalCoroutinesApi::class)
     fun getMangasOnGoingPaging(): StateFlow<PagingData<Manga>> {
-        println(_queries.value)
         return _queries
             .map(::newPagerOnGoing)
             .flatMapLatest { pager -> pager.flow }
@@ -78,7 +76,6 @@ class MorePageViewModel @Inject constructor(
 
     @OptIn(ExperimentalCoroutinesApi::class)
     fun getMangasOnPopularPaging(): StateFlow<PagingData<Manga>> {
-        println(_queries.value)
         return _queries
             .map(::newPagerOnPopular)
             .flatMapLatest { pager -> pager.flow }
@@ -87,7 +84,6 @@ class MorePageViewModel @Inject constructor(
 
     @OptIn(ExperimentalCoroutinesApi::class)
     fun getMangasOnCompletedPaging(): StateFlow<PagingData<Manga>> {
-        println(_queries)
         return  _queries
             .map(::newPagerOnCompleted)
             .flatMapLatest { pager -> pager.flow }
@@ -97,7 +93,6 @@ class MorePageViewModel @Inject constructor(
 
     private fun newPagerOnGoing(queries: PagerQuery): Pager<Int, Manga> {
         return Pager(PagingConfig(Constants.MORE_PAGE_SIZE, enablePlaceholders = false)) {
-            println("OnGoing: ${queries.OnGoingQuery.genre}")
             getMorePage.invoke(
                 order = queries.OnGoingQuery.order,
                 status = queries.OnGoingQuery.status,
@@ -108,7 +103,6 @@ class MorePageViewModel @Inject constructor(
 
     private fun newPagerOnPopular(queries: PagerQuery): Pager<Int, Manga> {
         return Pager(PagingConfig(Constants.MORE_PAGE_SIZE, enablePlaceholders = false)) {
-            println("OnPopular: ${queries.OnPopularQuery.genre}")
             getMorePage.invoke(
                 order = queries.OnPopularQuery.order,
                 status = queries.OnPopularQuery.status,
@@ -119,8 +113,6 @@ class MorePageViewModel @Inject constructor(
 
     private fun newPagerOnCompleted(queries: PagerQuery): Pager<Int, Manga> {
         return Pager(PagingConfig(Constants.MORE_PAGE_SIZE, enablePlaceholders = false)) {
-            println("OnCompleted: ${queries.OnCompletedQuery.genre}")
-
             getMorePage.invoke(
                 order = queries.OnCompletedQuery.order,
                 status = queries.OnCompletedQuery.status,

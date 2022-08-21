@@ -1,8 +1,9 @@
-package com.example.anifox.adapters
+package com.example.anifox.adapters.home
 
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.anifox.R
+import com.example.anifox.adapters.common.MangaItem
 import com.example.anifox.databinding.HorizontalItemBinding
 import com.example.anifox.domain.model.manga.Manga
 import com.example.anifox.presentation.home.listeners.ItemClickListenerGoToDetail

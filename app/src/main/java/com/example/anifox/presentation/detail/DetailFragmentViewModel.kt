@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.anifox.domain.useCase.detail.GetDetailsUseCase
 import com.example.anifox.presentation.detail.state.ContentDetailsState
+import com.example.anifox.presentation.detail.state.DetailState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -15,8 +16,12 @@ import javax.inject.Inject
 class DetailFragmentViewModel @Inject constructor(
     private val getDetails: GetDetailsUseCase
 ) : ViewModel() {
-    private val _animeDetails = MutableStateFlow(ContentDetailsState(isLoading = true, data = null))
-    val animeDetails = _animeDetails.asStateFlow()
+    private val _state = MutableStateFlow(
+        DetailState(
+            contentDetailsState = ContentDetailsState(isLoading = true, data = null)
+        )
+    )
+    val state = _state.asStateFlow()
 
     private val _queries = MutableStateFlow(0)
 
@@ -26,8 +31,13 @@ class DetailFragmentViewModel @Inject constructor(
 
     fun getDetails(){
         getDetails.invoke(_queries.value).onEach { value ->
-            _animeDetails.tryEmit(
-                value
+            _state.tryEmit(
+                _state.value.copy(
+                    contentDetailsState = _state.value.contentDetailsState.copy(
+                        isLoading = false,
+                        data = value.data
+                    )
+                )
             )
         } .launchIn(viewModelScope)
     }

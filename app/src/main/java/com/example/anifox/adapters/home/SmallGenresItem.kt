@@ -1,4 +1,4 @@
-package com.example.anifox.adapters
+package com.example.anifox.adapters.home
 
 import android.util.TypedValue
 import android.view.View
