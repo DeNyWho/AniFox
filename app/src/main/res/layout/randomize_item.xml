@@ -14,20 +14,24 @@
         <ImageView
             android:layout_height="20dp"
             android:layout_width="20dp"
+            android:layout_gravity="center"
             android:layout_marginEnd="4dp"
             android:id="@+id/ivImageSmile"/>
 
         <com.google.android.material.textview.MaterialTextView
             style="@style/TextView.Secondary"
             android:layout_weight="1"
+            android:layout_gravity="center"
+
             android:id="@+id/tvTitle"
             android:text="@string/announces" />
 
 
         <ImageView
-            android:layout_height="20dp"
-            android:layout_width="20dp"
+            android:layout_height="40dp"
+            android:layout_width="40dp"
             android:layout_marginEnd="4dp"
+            android:src="@drawable/dices"
             android:id="@+id/ivClick"/>
 
     </LinearLayout>

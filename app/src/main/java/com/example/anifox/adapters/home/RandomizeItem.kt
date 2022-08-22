@@ -11,7 +11,6 @@ import com.example.anifox.presentation.home.listeners.ItemClickListenerRandom
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
 import com.xwray.groupie.viewbinding.BindableItem
-import jp.wasabeef.recyclerview.animators.SlideInUpAnimator
 
 class RandomizeItem(
     private var listData: List<Manga>,
@@ -35,12 +34,9 @@ class RandomizeItem(
         binding.recycler.apply {
             layoutManager = GridLayoutManager(context, 3)
             adapter = randomizeAdapter
-            itemAnimator = SlideInUpAnimator().apply {
-                addDuration = 300
-            }
         }
 
-        randomizeAdapter.replaceAll(listData.map { MangaItem(it, onClick) })
+        randomizeAdapter.update(listData.map { MangaItem(it, onClick) })
     }
 
     override fun initializeViewBinding(view: View): RandomizeItemBinding {

@@ -119,7 +119,7 @@ open class HomeFragment : Fragment() {
                         }
                     }
                 ))
-                this += Section( GenresItem(
+                this += GenresItem(
                     listData = listOf(
                         GenresCard(
                             title = getString(R.string.Genre_Comedy),
@@ -161,10 +161,10 @@ open class HomeFragment : Fragment() {
                             )
                         }
                     }
-                ))
+                )
             }
             if(state.magic.data?.isNotEmpty() == true) {
-                this += Section( HeaderMoreItem(
+                this += HeaderMoreItem(
                     image = R.drawable.book,
                     title = requireContext().getString(R.string.title_Magic),
                     onClick = object : ItemClickListenerMorePage {
@@ -172,8 +172,8 @@ open class HomeFragment : Fragment() {
                             navigationToMorePagesInAdapter(genre)
                         }
                     }
-                ))
-                this += Section( HorizontalItem(
+                )
+                this += HorizontalItem(
                     listData = state.magic.data,
                     type = Constants.STYLE_SMALLER_RECYCLER,
                     onClick = object : ItemClickListenerGoToDetail {
@@ -181,10 +181,10 @@ open class HomeFragment : Fragment() {
                             navigationToDetailInAdapter(id)
                         }
                     }
-                ))
+                )
             }
             if(state.monsters.data?.isNotEmpty() == true) {
-                this += Section( HeaderMoreItem(
+                this += HeaderMoreItem(
                     title = requireContext().getString(R.string.Genre_Monsters),
                     image = R.drawable.monster,
                     onClick = object : ItemClickListenerMorePage {
@@ -194,8 +194,8 @@ open class HomeFragment : Fragment() {
                             )
                         }
                     }
-                ))
-                this += Section( HorizontalItem(
+                )
+                this += HorizontalItem(
                     listData = state.monsters.data,
                     type = Constants.STYLE_SMALLER_RECYCLER,
                     onClick = object : ItemClickListenerGoToDetail {
@@ -203,10 +203,10 @@ open class HomeFragment : Fragment() {
                             navigationToDetailInAdapter(id)
                         }
                     }
-                ))
+                )
             }
             if(state.middleAgesState.data?.isNotEmpty() == true) {
-                this += Section( HeaderMoreItem(
+                this += HeaderMoreItem(
                     title = requireContext().getString(R.string.Genre_MiddleAges),
                     image = R.drawable.knight,
                     onClick = object : ItemClickListenerMorePage {
@@ -217,8 +217,8 @@ open class HomeFragment : Fragment() {
                         }
                     }
 
-                ))
-                this += Section( HorizontalItem(
+                )
+                this += HorizontalItem(
                     listData = state.middleAgesState.data,
                     type = Constants.STYLE_SMALLER_RECYCLER,
                     onClick = object : ItemClickListenerGoToDetail {
@@ -226,24 +226,12 @@ open class HomeFragment : Fragment() {
                             navigationToDetailInAdapter(id)
                         }
                     }
-                ))
-            }
-            if(state.airingPopularState.data?.isNotEmpty() == true && state.popularState.data?.isNotEmpty() == true && state.mostRead.data?.isNotEmpty() == true && state.popularCompleted.data?.isNotEmpty() == true){
-                this += Section(HeaderLightItem(
-                    title = requireContext().getString(R.string.Ranking),
-                    image = R.drawable.ranking,
-                ))
-                this += Section( RankingItems(
-                    state.mostRead.data.take(5),
-                    state.popularState.data.take(5),
-                    state.airingPopularState.data.take(5),
-                    state.popularCompleted.data.take(5),
-                ))
+                )
             }
 
             if(state.randomState.data != null) {
                 println(state.randomState.data)
-                this += Section(RandomizeItem(
+                this += RandomizeItem(
                     title = requireContext().getString(R.string.Randomize),
                     image = R.drawable.map,
                     listData = state.randomState.data,
@@ -254,15 +242,26 @@ open class HomeFragment : Fragment() {
                     },
                     headerClick = object : ItemClickListenerRandom {
                         override fun randomize() {
-                            randomizing()
+                            viewModel.getRandom()
                         }
                     }
-                ))
+                )
             }
-
+            if(state.airingPopularState.data?.isNotEmpty() == true && state.popularState.data?.isNotEmpty() == true && state.mostRead.data?.isNotEmpty() == true && state.popularCompleted.data?.isNotEmpty() == true){
+                this += HeaderLightItem(
+                    title = requireContext().getString(R.string.Ranking),
+                    image = R.drawable.ranking,
+                )
+                this += RankingItems(
+                    state.mostRead.data.take(5),
+                    state.popularState.data.take(5),
+                    state.airingPopularState.data.take(5),
+                    state.popularCompleted.data.take(5),
+                )
+            }
         }
 
-        groupAdapter.update(list)
+        groupAdapter.replaceAll (list)
 
     }.launchWhenStarted()
 

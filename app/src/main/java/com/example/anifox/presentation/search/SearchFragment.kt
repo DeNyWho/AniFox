@@ -12,9 +12,12 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.anifox.R
+import com.example.anifox.adapters.home.HeaderLightItem
+import com.example.anifox.adapters.home.HorizontalItem
 import com.example.anifox.adapters.search.SearchResultItem
 import com.example.anifox.databinding.FragmentSearchBinding
 import com.example.anifox.presentation.home.listeners.ItemClickListenerGoToDetail
+import com.example.anifox.util.Constants
 import com.xwray.groupie.Group
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
@@ -47,6 +50,10 @@ class SearchFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.getRandom()
+        viewModel.getPopularOnGoing()
+        viewModel.getPopularOnFinal()
+
+
         observeOnState()
         initRecycler()
         initListeners()
@@ -59,6 +66,7 @@ class SearchFragment : Fragment() {
 
         findNavController().navigate(R.id.action_searchFragment_to_detailFragment, bundle)
     }
+
 
     private fun initListeners(){
 
@@ -74,9 +82,7 @@ class SearchFragment : Fragment() {
                                        before: Int, count: Int) {
                 if(count > 2){
                     viewModel.setQueries(query = s.toString())
-                    println(s.toString())
                     viewModel.getSearch()
-                    observeOnState()
                 }
             }
         })
@@ -97,21 +103,54 @@ class SearchFragment : Fragment() {
         viewModel.state.onEach { state ->
             val list: List<Group> = mutableListOf<Group>().apply {
                 if(state.search.data != null) {
-                    println(state.search.data)
-                    this += Section(SearchResultItem(
-                            listData = state.search.data,
-                            onClick = object : ItemClickListenerGoToDetail {
-                                override fun navigationToDetail(id: Int) {
-                                    navigationToDetailInAdapter(id)
-                                }
+                    this += Section(
+                        SearchResultItem(
+                        listData = state.search.data,
+                        onClick = object : ItemClickListenerGoToDetail {
+                            override fun navigationToDetail(id: Int) {
+                                navigationToDetailInAdapter(id)
                             }
-                        ))
+                        }
+                    )
+                    )
                 }
+                if(state.onGoing.data?.isNotEmpty() == true) {
+                    this += HeaderLightItem(
+                        image = R.drawable.book,
+                        title = requireContext().getString(R.string.ongoing)
+                    )
+                    this += HorizontalItem(
+                        listData = state.onGoing.data,
+                        type = Constants.STYLE_SMALLER_RECYCLER,
+                        onClick = object : ItemClickListenerGoToDetail {
+                            override fun navigationToDetail(id: Int) {
+                                navigationToDetailInAdapter(id)
+                            }
+                        }
+                    )
+                }
+
+                if(state.onFinal.data?.isNotEmpty() == true) {
+                    this += HeaderLightItem(
+                        image = R.drawable.book,
+                        title = requireContext().getString(R.string.completed)
+                    )
+                    this += HorizontalItem(
+                        listData = state.onFinal.data,
+                        type = Constants.STYLE_SMALLER_RECYCLER,
+                        onClick = object : ItemClickListenerGoToDetail {
+                            override fun navigationToDetail(id: Int) {
+                                navigationToDetailInAdapter(id)
+                            }
+                        }
+                    )
+                }
+
+
 
             }
 
-            println(list)
-            groupAdapter.update(list)
+            groupAdapter.replaceAll(list)
 
         }.launchWhenStarted()
     }

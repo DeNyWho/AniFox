@@ -23,7 +23,6 @@ class SearchResultItem(
     }
 
     override fun bind(binding: SearchResultItemBinding, position: Int) {
-
         binding.recycler.apply {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             adapter = randomizeAdapter
