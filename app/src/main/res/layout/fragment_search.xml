@@ -51,7 +51,7 @@
         app:startIconDrawable="@drawable/icon_input_search">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/ti_et_text"
+            android:id="@+id/etSearch"
             android:textAppearance="@style/Text.SearchBox"
             android:hint="Anime, Manga, and more"
             android:layout_width="match_parent"

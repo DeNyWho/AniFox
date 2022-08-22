@@ -39,6 +39,7 @@ class SearchViewModel @Inject constructor(
 
     fun getSearch(){
         getSearch.invoke(_queries.value).onEach { value ->
+            println("VALUE = ${value.data}")
             _state.tryEmit(
                 _state.value.copy(
                     search = _state.value.search.copy(

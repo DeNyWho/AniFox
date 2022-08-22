@@ -12,7 +12,6 @@ import com.xwray.groupie.viewbinding.BindableItem
 class MangaItem(var manga: Manga, private val onClick: ItemClickListenerGoToDetail): BindableItem<CardItemAnimeBinding>() {
     override fun bind(binding: CardItemAnimeBinding, position: Int) {
         binding.tvName.text = manga.title
-
         Glide
             .with(binding.root.context)
             .load(manga.image)

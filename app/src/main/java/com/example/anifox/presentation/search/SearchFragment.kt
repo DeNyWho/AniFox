@@ -1,6 +1,8 @@
 package com.example.anifox.presentation.search
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,10 +11,14 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.anifox.R
+import com.example.anifox.adapters.search.SearchResultItem
 import com.example.anifox.databinding.FragmentSearchBinding
+import com.example.anifox.presentation.home.listeners.ItemClickListenerGoToDetail
+import com.xwray.groupie.Group
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
-import com.xwray.groupie.Item
+import com.xwray.groupie.Section
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
@@ -28,6 +34,7 @@ class SearchFragment : Fragment() {
 
     private val groupAdapter = GroupAdapter<GroupieViewHolder>()
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -39,14 +46,40 @@ class SearchFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        viewModel.getRandom()
         observeOnState()
         initRecycler()
         initListeners()
 
     }
 
+    private fun navigationToDetailInAdapter(id: Int){
+        val bundle = Bundle()
+        bundle.putInt("animeId", id)
+
+        findNavController().navigate(R.id.action_searchFragment_to_detailFragment, bundle)
+    }
+
     private fun initListeners(){
+
+        binding.etSearch.addTextChangedListener(object : TextWatcher {
+
+            override fun afterTextChanged(s: Editable) {}
+
+            override fun beforeTextChanged(s: CharSequence, start: Int,
+                                           count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence, start: Int,
+                                       before: Int, count: Int) {
+                if(count > 2){
+                    viewModel.setQueries(query = s.toString())
+                    println(s.toString())
+                    viewModel.getSearch()
+                    observeOnState()
+                }
+            }
+        })
 
         binding.ivBack.setOnClickListener {
             findNavController().popBackStack()
@@ -62,14 +95,22 @@ class SearchFragment : Fragment() {
 
     private fun observeOnState() {
         viewModel.state.onEach { state ->
-            val list = mutableListOf<Item<*>>().apply {
-                if(state.search.data != null){
-
+            val list: List<Group> = mutableListOf<Group>().apply {
+                if(state.search.data != null) {
+                    println(state.search.data)
+                    this += Section(SearchResultItem(
+                            listData = state.search.data,
+                            onClick = object : ItemClickListenerGoToDetail {
+                                override fun navigationToDetail(id: Int) {
+                                    navigationToDetailInAdapter(id)
+                                }
+                            }
+                        ))
                 }
+
             }
 
-
-
+            println(list)
             groupAdapter.update(list)
 
         }.launchWhenStarted()

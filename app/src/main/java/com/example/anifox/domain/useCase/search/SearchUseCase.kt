@@ -16,7 +16,8 @@ class SearchUseCase @Inject constructor(
         return flow {
             emit(SearcherState(isLoading = true))
             val res = repository.getSearch(query)
-
+            println("RES = $res")
+            println("DATA = ${res.body()?.data}")
             if (res.isSuccessful){
                 val data = res.body()?.data?.map { it.toData() }.orEmpty()
                 val state = SearcherState(data, isLoading = false)

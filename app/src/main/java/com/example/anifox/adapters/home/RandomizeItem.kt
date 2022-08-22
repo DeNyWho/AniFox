@@ -7,6 +7,7 @@ import com.example.anifox.adapters.common.MangaItem
 import com.example.anifox.databinding.RandomizeItemBinding
 import com.example.anifox.domain.model.manga.Manga
 import com.example.anifox.presentation.home.listeners.ItemClickListenerGoToDetail
+import com.example.anifox.presentation.home.listeners.ItemClickListenerRandom
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
 import com.xwray.groupie.viewbinding.BindableItem
@@ -16,7 +17,8 @@ class RandomizeItem(
     private var listData: List<Manga>,
     private var title: String,
     private var image: Int,
-    private val onClick: ItemClickListenerGoToDetail
+    private val onClick: ItemClickListenerGoToDetail,
+    private val headerClick: ItemClickListenerRandom
 ) : BindableItem<RandomizeItemBinding>() {
     private val randomizeAdapter by lazy { GroupAdapter <GroupieViewHolder>() }
 
@@ -25,6 +27,9 @@ class RandomizeItem(
     }
 
     override fun bind(binding: RandomizeItemBinding, position: Int) {
+        binding.ivClick.setOnClickListener {
+            headerClick.randomize()
+        }
         binding.tvTitle.text = title
         binding.ivImageSmile.setImageResource(image)
         binding.recycler.apply {

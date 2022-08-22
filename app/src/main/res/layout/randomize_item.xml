@@ -23,6 +23,13 @@
             android:id="@+id/tvTitle"
             android:text="@string/announces" />
 
+
+        <ImageView
+            android:layout_height="20dp"
+            android:layout_width="20dp"
+            android:layout_marginEnd="4dp"
+            android:id="@+id/ivClick"/>
+
     </LinearLayout>
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
