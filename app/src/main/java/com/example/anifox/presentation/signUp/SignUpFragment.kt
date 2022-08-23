@@ -1,4 +1,4 @@
-package com.example.anifox.presentation.login
+package com.example.anifox.presentation.signUp
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,13 +8,14 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.anifox.R
-import com.example.anifox.databinding.FragmentLoginFragmentBinding
+import com.example.anifox.databinding.FragmentSignUpBinding
+import com.example.anifox.presentation.login.LoginFragmentViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class LoginFragment : Fragment() {
+class SignUpFragment : Fragment() {
 
-    private var _binding: FragmentLoginFragmentBinding? = null
+    private var _binding: FragmentSignUpBinding? = null
     private val binding get() = _binding!!
 
     private val viewModel: LoginFragmentViewModel by viewModels()
@@ -23,7 +24,7 @@ class LoginFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentLoginFragmentBinding.inflate(inflater, container, false)
+        _binding = FragmentSignUpBinding.inflate(inflater, container, false)
 
         return binding.root
     }
@@ -35,11 +36,11 @@ class LoginFragment : Fragment() {
 
     private fun initListeners(){
         binding.llSkip.setOnClickListener {
-            findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
+            findNavController().navigate(R.id.action_signUpFragment_to_homeFragment)
         }
 
-        binding.tvRegistration.setOnClickListener {
-            findNavController().navigate(R.id.action_loginFragment_to_signUpFragment)
+        binding.tvLogin.setOnClickListener {
+            findNavController().popBackStack()
         }
     }
 

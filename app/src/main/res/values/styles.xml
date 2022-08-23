@@ -26,6 +26,30 @@
         <item name="android:fontFamily">@font/poppins_medium</item>
     </style>
 
+    <style name="Text.HeaderLogin">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/blueLoginVariant</item>
+        <item name="android:fontFamily">@font/poppins_medium</item>
+    </style>
+
+    <style name="Text.SmallerLogin">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/blueLoginVariant</item>
+        <item name="android:fontFamily">@font/poppins_medium</item>
+    </style>
+
+    <style name="Text.CasualLogin">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/textColor</item>
+        <item name="android:fontFamily">@font/poppins_medium</item>
+    </style>
+
+    <style name="LoginButton">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/poppins_medium</item>
+    </style>
+
     <style name="Text.Secondary">
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/descriptionTextColor</item>

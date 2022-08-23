@@ -58,6 +58,34 @@
             app:boxStrokeWidthFocused="0dp"
             app:counterEnabled="true"
             app:counterMaxLength="100"
+            app:endIconMode="clear_text"
+            app:helperTextTextColor="#FF0008"
+            app:startIconDrawable="@drawable/icon_input_name"
+            app:startIconTint="@null"
+            app:startIconTintMode="multiply">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etNickName"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/search_edit"
+                android:hint="username"
+                android:maxLength="100"
+                android:textAppearance="@style/Text.SearchBox" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/TextView.Ranking"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="20dp"
+            android:hint=""
+            android:textColorHint="@color/grey_lighter"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp"
+            app:counterEnabled="true"
+            app:counterMaxLength="100"
             app:endIconMode="password_toggle"
             app:helperTextTextColor="#FF0008"
             app:startIconDrawable="@drawable/icon_input_password"
@@ -75,12 +103,33 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textview.MaterialTextView
-            android:id="@+id/tvForgot"
-            style="@style/TextView.SmallerLogin"
-            android:layout_gravity="end"
-            android:layout_marginTop="4dp"
-            android:text="@string/forgot_password" />
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/TextView.Ranking"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="20dp"
+            android:hint=""
+            android:textColorHint="@color/grey_lighter"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp"
+            app:counterEnabled="true"
+            app:counterMaxLength="100"
+            app:endIconMode="password_toggle"
+            app:helperTextTextColor="#FF0008"
+            app:startIconDrawable="@drawable/icon_input_password"
+            app:startIconTint="@null"
+            app:startIconTintMode="multiply">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etPasswordConfirm"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/search_edit"
+                android:hint="password"
+                android:maxLength="100"
+                android:textAppearance="@style/Text.SearchBox" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
         <androidx.appcompat.widget.AppCompatButton
             style="@style/LoginButton"
@@ -90,7 +139,7 @@
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="60dp"
             android:background="@drawable/button_login"
-            android:text="@string/SignInButton"
+            android:text="@string/SignUpButton"
             android:textAllCaps="false"
             android:textColor="@color/white" />
 
@@ -125,13 +174,13 @@
             style="@style/TextView.SmallerLogin"
             android:textColor="@color/grey_lighter"
             android:layout_gravity="center"
-            android:text="@string/don_t_have_an_account"/>
+            android:text="@string/have_an_account"/>
         <com.google.android.material.textview.MaterialTextView
             style="@style/TextView.CasualLogin"
-            android:id="@+id/tvRegistration"
+            android:id="@+id/tvLogin"
             android:layout_gravity="center"
             android:layout_marginStart="10dp"
-            android:text="@string/registration"/>
+            android:text="@string/login"/>
     </LinearLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
