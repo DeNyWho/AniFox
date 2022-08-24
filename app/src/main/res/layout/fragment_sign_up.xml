@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="@color/backgroundColor"
-    tools:context=".presentation.login.LoginFragment">
+    tools:context=".presentation.login.SignInFragment">
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -26,6 +26,9 @@
             android:layout_height="60dp"
             android:layout_marginTop="60dp"
             android:hint=""
+            app:helperTextEnabled="true"
+            app:helperText="Введите авыаывф"
+            app:helperTextTextColor="@color/grey_lighter"
             android:textColorHint="@color/grey_lighter"
             app:boxStrokeWidth="0dp"
             app:boxStrokeWidthFocused="0dp"
@@ -37,7 +40,7 @@
             app:startIconTintMode="multiply">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etSearch"
+                android:id="@+id/etEmail"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/search_edit"
@@ -133,6 +136,7 @@
 
         <androidx.appcompat.widget.AppCompatButton
             style="@style/LoginButton"
+            android:id="@+id/btnRegister"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -153,7 +157,7 @@
 
         <com.google.android.material.textview.MaterialTextView
             style="@style/TextView.CasualLogin"
-            android:text="Skip"
+            android:text="@string/skip"
             android:textSize="24sp" />
 
         <androidx.constraintlayout.utils.widget.ImageFilterView

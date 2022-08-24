@@ -98,9 +98,6 @@ open class HomeFragment : Fragment() {
         }
 
     }
-    private fun randomizing(){
-        viewModel.getRandom()
-    }
     private fun initRecycler(){
         binding.HomeRecycler.adapter = groupAdapter
         binding.HomeRecycler.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)

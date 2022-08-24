@@ -2,26 +2,25 @@ package com.example.anifox.domain.useCase.login
 
 import com.example.anifox.data.repository.DataStoreRepository
 import com.example.anifox.data.repository.UserRepository
-import com.example.anifox.domain.model.user.UserSignUp
+import com.example.anifox.domain.model.user.UserSignIn
 import com.example.anifox.domain.model.user.toData
-import com.example.anifox.presentation.signUp.state.UserSignUpState
+import com.example.anifox.presentation.login.state.UserSignInState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
-class SignUpUseCase @Inject constructor(
+class SignInUseCase @Inject constructor(
     private val repository: UserRepository,
     private val dataStoreOperations: DataStoreRepository
 ) {
-    operator fun invoke(username: String, password: String, email: String): Flow<UserSignUpState> {
+    operator fun invoke(username: String, password: String): Flow<UserSignInState> {
         return flow {
-            emit(UserSignUpState(isLoading = true))
-            val res = repository.signUp(
-                UserSignUp(
+            emit(UserSignInState(isLoading = true))
+            val res = repository.signIn(
+                UserSignIn(
                     username,
-                    email,
                     password
                 )
             )
@@ -29,12 +28,13 @@ class SignUpUseCase @Inject constructor(
 
             if (res.isSuccessful){
                 val data = res.body()?.data?.map { it.toData() }.orEmpty()
+                println(data)
                 dataStoreOperations.updateSession(token = data[0].token, data[0].username, data[0].email)
 
-                val state = UserSignUpState(data, isLoading = false)
+                val state = UserSignInState(data, isLoading = false)
                 emit(state)
             } else {
-                val state = UserSignUpState(isLoading = false, error = res.message())
+                val state = UserSignInState(isLoading = false, error = res.message())
                 emit(state)
 
             }
@@ -42,4 +42,3 @@ class SignUpUseCase @Inject constructor(
         }.flowOn(Dispatchers.IO)
     }
 }
-

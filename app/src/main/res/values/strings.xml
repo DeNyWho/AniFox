@@ -68,6 +68,7 @@
     <string name="login">Войти</string>
     <string name="SignInButton">Войти</string>
     <string name="SignUpButton">Зарегистрироваться</string>
+    <string name="skip">Пропустить</string>
 
 
 </resources>

@@ -60,6 +60,7 @@
         <entry key="..\:/Users/denis/AndroidStudioProjects/AniFox/app/src/main/res/layout/fragment_registration_screen.xml" value="0.2115036231884058" />
         <entry key="..\:/Users/denis/AndroidStudioProjects/AniFox/app/src/main/res/layout/fragment_search.xml" value="0.33" />
         <entry key="..\:/Users/denis/AndroidStudioProjects/AniFox/app/src/main/res/layout/fragment_settings_fragment.xml" value="0.18819655521783182" />
+        <entry key="..\:/Users/denis/AndroidStudioProjects/AniFox/app/src/main/res/layout/fragment_sign_in.xml" value="0.24048913043478262" />
         <entry key="..\:/Users/denis/AndroidStudioProjects/AniFox/app/src/main/res/layout/fragment_sign_up.xml" value="0.25" />
         <entry key="..\:/Users/denis/AndroidStudioProjects/AniFox/app/src/main/res/layout/fragment_splash_screen.xml" value="0.22" />
         <entry key="..\:/Users/denis/AndroidStudioProjects/AniFox/app/src/main/res/layout/fragment_welcome_fragment.xml" value="0.18819655521783182" />
@@ -81,6 +82,7 @@
         <entry key="..\:/Users/denis/AndroidStudioProjects/AniFox/app/src/main/res/layout/ranking_items.xml" value="0.18819655521783182" />
         <entry key="..\:/Users/denis/AndroidStudioProjects/AniFox/app/src/main/res/layout/search_result_item.xml" value="0.18819655521783182" />
         <entry key="..\:/Users/denis/AndroidStudioProjects/AniFox/app/src/main/res/layout/searcher_item.xml" value="0.18819655521783182" />
+        <entry key="..\:/Users/denis/AndroidStudioProjects/AniFox/app/src/main/res/layout/splash_fragment.xml" value="0.24048913043478262" />
         <entry key="..\:/Users/denis/AndroidStudioProjects/AniFox/app/src/main/res/menu/bottom_menu.xml" value="0.24166666666666667" />
       </map>
     </option>

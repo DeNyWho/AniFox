@@ -1,6 +1,9 @@
 package com.example.anifox.util
 
 object Constants {
+    const val JWT_TOKEN_KEY = "JWT_TOKEN_KEY"
+    const val NAME_KEY = "NAME_KEY"
+    const val EMAIL_KEY = "EMAIL_KEY"
     const val ILLEGAL_ARGUMENT_FRAGMENT_TYPE = "Invalid Fragment type"
     const val KEY_STATE = "state"
     const val KEY_TOKEN = "token"

@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
-                R.id.loginFragment, R.id.morePageFragment, R.id.searchFragment, R.id.signUpFragment -> {
+                R.id.loginFragment, R.id.morePageFragment, R.id.searchFragment, R.id.signUpFragment, R.id.splashFragment -> {
                     bottomNavigationView.visibility = View.GONE
                     fragment.updateLayoutParams<ViewGroup.MarginLayoutParams> {
                         setMargins(0, 0, 0, 0)
@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
                     println("HOmeFragment")
                     bottomNavigationView.visibility = View.VISIBLE
                     fragment.updateLayoutParams<ViewGroup.MarginLayoutParams> {
-                        setMargins(0, 0, 0, 50)
+                        setMargins(0, 0, 0, 140)
                     }
                 }
 
@@ -52,11 +52,12 @@ class MainActivity : AppCompatActivity() {
 
             bottomNavigationView.setupWithNavController(navController)
         }
+
+
     }
-
-
 
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp() || super.onSupportNavigateUp()
     }
+
 }
