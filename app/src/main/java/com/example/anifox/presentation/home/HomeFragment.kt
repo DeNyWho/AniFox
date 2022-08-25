@@ -227,7 +227,6 @@ open class HomeFragment : Fragment() {
             }
 
             if(state.randomState.data != null) {
-                println(state.randomState.data)
                 this += RandomizeItem(
                     title = requireContext().getString(R.string.Randomize),
                     image = R.drawable.map,

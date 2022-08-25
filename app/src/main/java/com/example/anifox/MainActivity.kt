@@ -34,8 +34,7 @@ class MainActivity : AppCompatActivity() {
                         setMargins(0, 0, 0, 0)
                     }
                 }
-                R.id.homeFragment -> {
-                    println("HOmeFragment")
+                R.id.homeFragment, R.id.myListFragment2 -> {
                     bottomNavigationView.visibility = View.VISIBLE
                     fragment.updateLayoutParams<ViewGroup.MarginLayoutParams> {
                         setMargins(0, 0, 0, 140)

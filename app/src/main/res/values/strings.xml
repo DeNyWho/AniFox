@@ -51,6 +51,7 @@
 
     <string name="views">Просмотры</string>
     <string name="comic">comic</string>
+    <string name="list">MyList</string>
     <string name="search">SEARCH</string>
 
     <string name="tab_status_airing">Новинки</string>
@@ -69,6 +70,8 @@
     <string name="SignInButton">Войти</string>
     <string name="SignUpButton">Зарегистрироваться</string>
     <string name="skip">Пропустить</string>
+    <string name="warning_needRegistration">Лисёнок плачет, потому-что вы не можете увидеть то, что находится здесь.\nвам требуется зарегистрироваться по кнопке снизу</string>
+    <string name="manga">Manga</string>
 
 
 </resources>

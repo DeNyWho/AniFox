@@ -9,6 +9,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
+import timber.log.Timber
 import javax.inject.Inject
 
 class SignInUseCase @Inject constructor(
@@ -24,11 +25,10 @@ class SignInUseCase @Inject constructor(
                     password
                 )
             )
-            println(res)
 
             if (res.isSuccessful){
                 val data = res.body()?.data?.map { it.toData() }.orEmpty()
-                println(data)
+                Timber.d("DATA = $data")
                 dataStoreOperations.updateSession(token = data[0].token, data[0].username, data[0].email)
 
                 val state = UserSignInState(data, isLoading = false)

@@ -7,6 +7,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
+import timber.log.Timber
 import javax.inject.Inject
 
 class GetRandomHomeUseCase @Inject constructor(
@@ -19,7 +20,7 @@ class GetRandomHomeUseCase @Inject constructor(
 
             if (res.isSuccessful){
                 val data = res.body()?.data?.map { it.toData() }.orEmpty()
-                println("DATA = $data")
+                Timber.d("DATA = $data")
                 val state = RandomState(data, isLoading = false)
                 emit(state)
             } else {

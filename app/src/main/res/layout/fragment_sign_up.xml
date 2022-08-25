@@ -18,7 +18,7 @@
 
         <com.google.android.material.textview.MaterialTextView
             style="@style/TextView.HeaderLogin"
-            android:text="@string/welcome_back" />
+            android:text="@string/welcome_signUp" />
 
         <com.google.android.material.textfield.TextInputLayout
             style="@style/TextView.Ranking"

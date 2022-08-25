@@ -7,6 +7,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
+import timber.log.Timber
 import javax.inject.Inject
 
 class SearchUseCase @Inject constructor(
@@ -16,8 +17,7 @@ class SearchUseCase @Inject constructor(
         return flow {
             emit(SearcherState(isLoading = true))
             val res = repository.getSearch(query)
-            println("RES = $res")
-            println("DATA = ${res.body()?.data}")
+            Timber.d("DATA = ${res.body()?.data}")
             if (res.isSuccessful){
                 val data = res.body()?.data?.map { it.toData() }.orEmpty()
                 val state = SearcherState(data, isLoading = false)

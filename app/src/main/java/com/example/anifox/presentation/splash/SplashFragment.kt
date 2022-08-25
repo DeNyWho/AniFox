@@ -1,8 +1,6 @@
 package com.example.anifox.presentation.splash
 
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +13,7 @@ import com.example.anifox.databinding.SplashFragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.onEach
 
 @AndroidEntryPoint
 class SplashFragment : Fragment() {
@@ -36,17 +35,20 @@ class SplashFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.getTokenFromPreferences()
-        Handler(Looper.getMainLooper()).postDelayed({
-            viewModel.token.observe(viewLifecycleOwner){
-                println("TOKENTS = $it")
-                if(it == null){
+
+        observeOnState()
+    }
+
+    private fun observeOnState() {
+        viewModel.state.onEach { state ->
+            if (!state.tokenState.isLoading) {
+                if(state.tokenState.token == null) {
                     findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
                 } else {
                     findNavController().navigate(R.id.action_splashFragment_to_homeFragment)
                 }
             }
-
-        }, 1500)
+        }.launchWhenStarted()
     }
 
     private fun <T> Flow<T>.launchWhenStarted() {

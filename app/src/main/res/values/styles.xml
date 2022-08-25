@@ -26,6 +26,12 @@
         <item name="android:fontFamily">@font/poppins_medium</item>
     </style>
 
+    <style name="Text.Warning">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/textColor</item>
+        <item name="android:fontFamily">@font/poppins_medium</item>
+    </style>
+
     <style name="Text.HeaderLogin">
         <item name="android:textSize">24sp</item>
         <item name="android:textColor">@color/blueLoginVariant</item>

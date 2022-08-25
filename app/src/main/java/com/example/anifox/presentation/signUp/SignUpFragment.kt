@@ -63,7 +63,7 @@ class SignUpFragment : Fragment() {
         }
 
         binding.tvLogin.setOnClickListener {
-            findNavController().popBackStack()
+            findNavController().navigate(R.id.action_signUpFragment_to_loginFragment)
         }
     }
 

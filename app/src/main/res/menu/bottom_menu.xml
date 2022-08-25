@@ -3,9 +3,14 @@
 
     <item
         android:id="@+id/homeFragment"
-        android:title="@string/comic"
+        android:title="@string/manga"
         android:enabled="true"
         android:icon="@drawable/comic_book" />
+    <item
+        android:id="@+id/myListFragment2"
+        android:title="@string/list"
+        android:enabled="true"
+        android:icon="@drawable/grid" />
 
 
 </menu>

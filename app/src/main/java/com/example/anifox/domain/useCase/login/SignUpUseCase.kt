@@ -25,7 +25,6 @@ class SignUpUseCase @Inject constructor(
                     password
                 )
             )
-            println(res)
 
             if (res.isSuccessful){
                 val data = res.body()?.data?.map { it.toData() }.orEmpty()

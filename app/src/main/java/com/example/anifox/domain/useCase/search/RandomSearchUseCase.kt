@@ -7,6 +7,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
+import timber.log.Timber
 import javax.inject.Inject
 
 class RandomSearchUseCase @Inject constructor(
@@ -19,7 +20,7 @@ class RandomSearchUseCase @Inject constructor(
 
             if (res.isSuccessful){
                 val data = res.body()?.data?.map { it.toData() }.orEmpty()
-                println("DATA = $data")
+                Timber.d("DATA = $data")
                 val state = RandomSearchState(data, isLoading = false)
                 emit(state)
             } else {
