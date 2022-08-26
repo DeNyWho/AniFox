@@ -5,7 +5,10 @@ import com.example.anifox.data.dataSource.AnimeDataSource
 import com.example.anifox.data.remote.api.MainApi
 import com.example.anifox.domain.model.manga.Manga
 import com.example.anifox.domain.model.responses.MangaResponse
+import com.example.anifox.domain.model.responses.PagingFavouriteResponse
 import com.example.anifox.domain.repository.RemoteDataSource
+import com.example.anifox.util.Constants.FAVOURITE_CARDS
+import com.example.anifox.util.Constants.FAVOURITE_PAGE
 import com.example.anifox.util.Constants.REVIEW_PAGE
 import retrofit2.Response
 import javax.inject.Inject
@@ -15,8 +18,8 @@ class MangaRepository @Inject constructor(
     private val animeDataSourceFactory: AnimeDataSource.Factory
 ): RemoteDataSource {
 
-    override fun getAnimePager(order: String?, status: String?, genre: String?): PagingSource<Int, Manga> {
-        return animeDataSourceFactory.create(order, status, genre)
+    override fun getAnimePager(order: String?, status: String?, genre: String?, token: String?): PagingSource<Int, Manga> {
+        return animeDataSourceFactory.create(order, status, genre, token)
     }
 
     override suspend fun getMangaByIdRu(id: Int): Response<MangaResponse> {
@@ -29,6 +32,10 @@ class MangaRepository @Inject constructor(
 
     override suspend fun getSearch(query: String): Response<MangaResponse>{
         return mainApi.getSearchManga(query)
+    }
+
+    override suspend fun getMangaByUser(token: String, status: String): Response<PagingFavouriteResponse>{
+        return mainApi.getMangaByUser(token = token, status = status, pageNum = FAVOURITE_PAGE, pageSize = FAVOURITE_CARDS)
     }
 
 

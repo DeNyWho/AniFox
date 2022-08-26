@@ -59,6 +59,11 @@
     <string name="tab_status_completed">Завершенны</string>
     <string name="Genre_Random">random</string>
 
+    <string name="tab_list_favourite">Избранное</string>
+    <string name="tab_list_watching">Смотрю</string>
+    <string name="tab_list_onHold">В планах</string>
+    <string name="tab_list_completed">Посмотрено</string>
+
 
     <string name="welcome_back">С возвращением!</string>
     <string name="welcome_signUp">Добро пожаловать!</string>

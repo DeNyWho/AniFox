@@ -1,6 +1,7 @@
 package com.example.anifox.data.remote.api
 
 import com.example.anifox.domain.model.responses.MangaResponse
+import com.example.anifox.domain.model.responses.PagingFavouriteResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -21,6 +22,14 @@ interface MainApi {
     suspend fun getDetailManga(
         @Path("id") id: Int,
     ): Response<MangaResponse>
+
+    @GET("user/favourite/")
+    suspend fun getMangaByUser(
+        @Query("token") token: String,
+        @Query("pageNum") pageNum: Int,
+        @Query("pageSize") pageSize: Int,
+        @Query("status") status: String?,
+    ): Response<PagingFavouriteResponse>
 
     @GET("manga/search")
     suspend fun getSearchManga(

@@ -20,7 +20,7 @@ class SignInViewModel @Inject constructor(
     val state = _state.asStateFlow()
 
     fun signIn(username: String, password: String) {
-        signIn.invoke(username = username, password = password).onEach { value ->
+        signIn.invoke(email = username, password = password).onEach { value ->
             _state.tryEmit(
                 _state.value.copy(
                     isLoading = false,

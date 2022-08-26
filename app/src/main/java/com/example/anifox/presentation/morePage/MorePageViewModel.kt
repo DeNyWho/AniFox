@@ -96,7 +96,8 @@ class MorePageViewModel @Inject constructor(
             getMorePage.invoke(
                 order = queries.OnGoingQuery.order,
                 status = queries.OnGoingQuery.status,
-                genre =  queries.OnGoingQuery.genre
+                genre =  queries.OnGoingQuery.genre,
+                token = null
             ).also { newPagingSource = it }
         }
     }
@@ -106,7 +107,8 @@ class MorePageViewModel @Inject constructor(
             getMorePage.invoke(
                 order = queries.OnPopularQuery.order,
                 status = queries.OnPopularQuery.status,
-                genre =  queries.OnPopularQuery.genre
+                genre =  queries.OnPopularQuery.genre,
+                token = null
             ).also { newPagingSource = it }
         }
     }
@@ -116,7 +118,8 @@ class MorePageViewModel @Inject constructor(
             getMorePage.invoke(
                 order = queries.OnCompletedQuery.order,
                 status = queries.OnCompletedQuery.status,
-                genre =  queries.OnCompletedQuery.genre
+                genre =  queries.OnCompletedQuery.genre,
+                token = null
             ).also { newPagingSource = it }
         }
     }

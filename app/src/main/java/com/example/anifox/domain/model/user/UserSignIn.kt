@@ -5,8 +5,8 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class UserSignIn (
-    @SerializedName("username")
-    val username: String,
+    @SerializedName("email")
+    val email: String,
     @SerializedName("password")
     val password: String
 )

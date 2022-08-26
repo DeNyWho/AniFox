@@ -12,7 +12,6 @@ import com.example.anifox.domain.model.manga.Manga
 class SmallerAnimeItem : PagingDataAdapter<Manga, SmallerAnimeItemViewHolder>(
     ArticleDiffItemCallback
 ) {
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SmallerAnimeItemViewHolder {
        return  SmallerAnimeItemViewHolder(CardItemAnimeSmallerBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }

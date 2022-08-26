@@ -16,12 +16,12 @@ class SignInUseCase @Inject constructor(
     private val repository: UserRepository,
     private val dataStoreOperations: DataStoreRepository
 ) {
-    operator fun invoke(username: String, password: String): Flow<UserSignInState> {
+    operator fun invoke(email: String, password: String): Flow<UserSignInState> {
         return flow {
             emit(UserSignInState(isLoading = true))
             val res = repository.signIn(
                 UserSignIn(
-                    username,
+                    email,
                     password
                 )
             )

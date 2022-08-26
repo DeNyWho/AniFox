@@ -21,7 +21,10 @@ class AnimeDataSource @AssistedInject constructor(
     @Assisted("status")
     private val status: String?,
     @Assisted("genre")
-    private val genre: String?
+    private val genre: String?,
+    @Assisted("token")
+    private val token: String?,
+
 ) : PagingSource<Int, Manga>() {
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Manga> {
@@ -29,15 +32,23 @@ class AnimeDataSource @AssistedInject constructor(
         val pageSize = params.loadSize.coerceAtMost(MORE_PAGE_SIZE)
         return try {
 
-            Timber.d("page = $page, loadSize = ${pageSize}, order = $order, status = $status, genre = $genre")
+            println("page = $page, loadSize = ${pageSize}, order = $order, status = $status, genre = $genre, token = $token")
 
-            val response: List<Manga> = mainApi.getManga(
+            val response = if(token == null){ mainApi.getManga(
                 page = page,
                 countCard = pageSize,
                 order = order,
                 status = status,
                 genre = genre
-            ).body()?.data?.map { it.toData() }.orEmpty()
+            ).body()?.data?.map { it.toData() }.orEmpty()} else {
+                mainApi.getMangaByUser(
+                    pageNum = page + 1,
+                    pageSize = pageSize,
+                    status = status,
+                    token = token
+                ).body()?.data?.data?.map { it.toData() }.orEmpty()
+            }
+
             Timber.d("$response")
             LoadResult.Page(
                 data = response,
@@ -66,6 +77,7 @@ class AnimeDataSource @AssistedInject constructor(
             @Assisted("order") order: String?,
             @Assisted("status") status: String?,
             @Assisted("genre") genre: String?,
+            @Assisted("token") token: String?,
         ): AnimeDataSource
     }
 }
