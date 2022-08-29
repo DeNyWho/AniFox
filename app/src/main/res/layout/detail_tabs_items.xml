@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
+
+    <com.google.android.material.tabs.TabLayout
+        android:layout_width="match_parent"
+        android:clickable="false"
+        android:layout_marginHorizontal="20sp"
+        app:tabRippleColor="@color/transparent"
+        android:focusable="false"
+        android:id="@+id/tabLayout"
+        app:tabMaxWidth="0dp"
+        app:tabIndicatorAnimationDuration="@integer/material_motion_duration_long_2"
+        app:tabIndicatorFullWidth="false"
+        app:tabGravity="fill"
+        android:layout_gravity="center"
+        app:tabMode="fixed"
+        app:tabPaddingStart="8dp"
+        app:tabPaddingEnd="8dp"
+        app:tabIndicatorAnimationMode="linear"
+        app:tabTextAppearance="@style/CustomTextAppearanceTab"
+        app:tabTextColor="@drawable/selector_tablayout"
+        app:tabIndicatorColor="@drawable/selector_tablayout"
+        android:layout_height="wrap_content"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginTop="16dp"
+        android:layout_width="match_parent"
+        android:overScrollMode="always"
+        android:id="@+id/recycler"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+
+    </androidx.recyclerview.widget.RecyclerView>
+</LinearLayout>

@@ -10,6 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.anifox.adapters.details.DetailTabsItems
 import com.example.anifox.adapters.details.GenresDetailItem
 import com.example.anifox.adapters.details.HeaderDetailsItem
 import com.example.anifox.databinding.FragmentDetailFragmentBinding
@@ -72,6 +73,7 @@ class DetailFragment : Fragment() {
                 if(state.contentDetailsState.data != null){
                     this += HeaderDetailsItem(state.contentDetailsState.data)
                     this += GenresDetailItem(state.contentDetailsState.data)
+                    this += DetailTabsItems(state.contentDetailsState.data)
                 }
             }
 

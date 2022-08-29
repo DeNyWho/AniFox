@@ -39,7 +39,8 @@
                 style="@style/TextView.DetailsHeader"
                 android:id="@+id/tvName"
                 android:layout_width="match_parent"
-                android:layout_gravity="start"
+                android:layout_gravity="end"
+                android:gravity="end"
                 android:text="NAME NAME NAME NAME NAME NAME NAME NAME NAME NAME" />
 
             <com.google.android.material.textview.MaterialTextView
@@ -52,16 +53,19 @@
                 style="@style/TextView.DetailsTypes"
                 android:layout_marginTop="16sp"
                 android:layout_gravity="end"
-                android:text="2022"
+                android:drawableEnd="@drawable/icon_year"
+                android:text="2022 "
                 android:id="@+id/tvYear"/>
             <com.google.android.material.textview.MaterialTextView
                 style="@style/TextView.DetailsTypes"
-                android:text="OVA"
+                android:text="OVA "
+                android:drawableEnd="@drawable/icon_type_book"
                 android:layout_gravity="end"
                 android:id="@+id/tvType"/>
             <com.google.android.material.textview.MaterialTextView
                 style="@style/TextView.DetailsTypes"
-                android:text="онгоинг"
+                android:text="онгоинг "
+                android:drawableEnd="@drawable/icon_tv"
                 android:layout_gravity="end"
                 android:id="@+id/tvStatus"/>
 

@@ -48,7 +48,12 @@
     <string name="completed">Завершено</string>
     <string name="ongoing">Онгоинг</string>
     <string name="popular">Популярно</string>
-
+    
+    <string name="description">Описание</string>
+    <string name="overview">Обзор</string>
+    <string name="chapters">Главы</string>
+    
+    
     <string name="views">Просмотры</string>
     <string name="comic">comic</string>
     <string name="list">MyList</string>

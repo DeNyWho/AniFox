@@ -9,16 +9,16 @@ import com.xwray.groupie.viewbinding.BindableItem
 
 class HeaderDetailsItem(var manga: Manga): BindableItem<HeaderDetailsItemBinding>() {
     override fun bind(binding: HeaderDetailsItemBinding, position: Int) {
-        binding.tvName.text = manga.title
+        binding.tvName.text = "${manga.title} "
         binding.tvRating.text = "${manga.rate}⭐"
         Glide
             .with(binding.root.context)
             .load(manga.image)
             .into(binding.ivAnime)
 
-        binding.tvType.text = manga.types.type
-        binding.tvYear.text = manga.types.year
-        binding.tvStatus.text = manga.types.status
+        binding.tvType.text = "${manga.types.type} "
+        binding.tvYear.text = "${manga.types.year} "
+        binding.tvStatus.text = "${manga.types.status} "
 
     }
 

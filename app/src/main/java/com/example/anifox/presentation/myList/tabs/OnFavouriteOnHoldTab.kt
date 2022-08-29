@@ -7,9 +7,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.anifox.R
 import com.example.anifox.adapters.common.SmallerAnimeItem
 import com.example.anifox.databinding.FragmentOnCompletedTabBinding
+import com.example.anifox.presentation.home.listeners.ItemClickListenerGoToDetail
 import com.example.anifox.presentation.myList.MyListViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.Flow
@@ -22,8 +25,20 @@ class OnFavouriteOnHoldTab : Fragment() {
     private val binding get() = _binding!!
 
     private val adapter by lazy(LazyThreadSafetyMode.NONE) {
-        SmallerAnimeItem()
+        SmallerAnimeItem(onClicked = object : ItemClickListenerGoToDetail {
+            override fun navigationToDetail(id: Int) {
+                navigationToDetailInAdapter(id)
+            }
+        })
     }
+
+    private fun navigationToDetailInAdapter(id: Int){
+        val bundle = Bundle()
+        bundle.putInt("animeId", id)
+
+        findNavController().navigate(R.id.action_morePageFragment_to_detailFragment, bundle)
+    }
+
     private val viewModel: MyListViewModel by activityViewModels()
 
     override fun onCreateView(

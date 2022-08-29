@@ -4,6 +4,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class Chapters(
-    val title: List<String>,
-    val url: List<String>,
+    val title: List<String> = emptyList(),
+    val date: List<String> = emptyList(),
+    val url: List<String> = emptyList(),
 )

@@ -58,6 +58,7 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/HomeRecycler"
+            android:overScrollMode="never"
             android:descendantFocusability="blocksDescendants"
             android:layout_marginStart="12dp"
             android:layout_width="match_parent"

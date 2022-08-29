@@ -11,6 +11,7 @@ object Versions {
     const val serialization = kotlin
 
     const val tabSync = "1.0.1"
+    const val showMoreTextview = "1.0.3"
     const val advancedCardView = "1.0.1"
     const val swipeRefresh = "1.1.0"
     const val serializationJson = "1.3.3"
@@ -31,7 +32,6 @@ object Versions {
     const val viewpager = "1.0.0"
     const val daggerAndroid = "2.35.1"
     const val daggerAndroidSup = "2.24"
-    const val roundedImageView = "2.3.0"
 
     const val coreKtx = "1.3.1"
     const val appcompat = "1.1.0"

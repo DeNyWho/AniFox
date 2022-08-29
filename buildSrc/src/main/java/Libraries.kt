@@ -12,6 +12,7 @@ object Libraries {
         const val advancedCardView = "com.github.sina-seyfi:AdvancedCardView:${Versions.advancedCardView}"
         const val tabSync = "io.github.ahmad-hamwi:tabsync:${Versions.tabSync}"
         const val recyclerViewAnimation = "jp.wasabeef:recyclerview-animators:${Versions.recyclerViewAnimation}"
+        const val showMoreTextview = "com.github.sanjaydraws:ShowMoreTextView:${Versions.showMoreTextview}"
     }
 
     object Room {

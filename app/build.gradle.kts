@@ -52,6 +52,8 @@ dependencies {
     implementation(Libraries.UI.advancedCardView)
     implementation(Libraries.UI.tabSync)
     implementation(Libraries.UI.recyclerViewAnimation)
+    implementation(Libraries.UI.showMoreTextview)
+
     implementation(Libraries.SwipeRefresh.swipeRefresh)
 
     implementation(Libraries.Groupie.groupie)
