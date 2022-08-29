@@ -10,6 +10,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.anifox.adapters.details.GenresDetailItem
+import com.example.anifox.adapters.details.HeaderDetailsItem
 import com.example.anifox.databinding.FragmentDetailFragmentBinding
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
@@ -68,7 +70,8 @@ class DetailFragment : Fragment() {
         viewModel.state.onEach { state ->
             val list = mutableListOf<Item<*>>().apply {
                 if(state.contentDetailsState.data != null){
-
+                    this += HeaderDetailsItem(state.contentDetailsState.data)
+                    this += GenresDetailItem(state.contentDetailsState.data)
                 }
             }
 

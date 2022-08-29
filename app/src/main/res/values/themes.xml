@@ -43,6 +43,19 @@
         <item name="android:textAppearance">@style/Text.Warning</item>
     </style>
 
+    <style name="TextView.DetailsHeader">
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAppearance">@style/Text.DetailsHeader</item>
+    </style>
+
+    <style name="TextView.DetailsTypes">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAppearance">@style/Text.DetailsTypes</item>
+    </style>
+
     <style name="TextView.HeaderLogin">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>

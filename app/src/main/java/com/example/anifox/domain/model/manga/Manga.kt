@@ -1,5 +1,7 @@
 package com.example.anifox.domain.model.manga
 
+import com.example.anifox.domain.model.common.Genres
+import com.example.anifox.domain.model.common.Types
 import com.google.gson.annotations.SerializedName
 import kotlinx.serialization.Serializable
 
@@ -15,6 +17,10 @@ data class Manga(
     val url: String = "",
     @SerializedName("description")
     val description: String = "",
+    @SerializedName("genres")
+    val genres: Genres = Genres(),
+    @SerializedName("types")
+    val types: Types = Types(),
     @SerializedName("chaptersCount")
     val chaptersCount: String = "",
     @SerializedName("countViews")
@@ -30,6 +36,21 @@ fun Manga.toData(): Manga {
         id = id,
         title = title,
         image = image,
+        url = url,
+        rate = rate,
+        countRate = countRate,
+        description = description,
+        views = views
+    )
+}
+
+fun Manga.toDataFull(): Manga {
+    return Manga(
+        id = id,
+        title = title,
+        image = image,
+        types = types,
+        genres = genres,
         url = url,
         rate = rate,
         countRate = countRate,

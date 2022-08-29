@@ -1,7 +1,7 @@
 package com.example.anifox.domain.useCase.detail
 
 import com.example.anifox.data.repository.MangaRepository
-import com.example.anifox.domain.model.manga.toData
+import com.example.anifox.domain.model.manga.toDataFull
 import com.example.anifox.presentation.detail.state.ContentDetailsState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -18,7 +18,7 @@ class GetDetailsUseCase @Inject constructor(
             val res = repository.getMangaByIdRu(id)
 
             if (res.isSuccessful){
-                val data = res.body()?.data?.map { it.toData() }.orEmpty()
+                val data = res.body()?.data?.map { it.toDataFull() }.orEmpty()
                 val state = ContentDetailsState(data = data[0], isLoading = false)
                 emit(state)
             } else {

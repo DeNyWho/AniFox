@@ -19,7 +19,7 @@
             android:id="@+id/tabLayout"
             app:tabMaxWidth="0dp"
             app:tabGravity="fill"
-            app:tabMode="scrollable"
+            app:tabMode="fixed"
             app:tabPaddingStart="8dp"
             app:tabPaddingEnd="8dp"
             app:tabIndicatorAnimationMode="linear"
