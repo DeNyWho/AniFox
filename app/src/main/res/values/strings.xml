@@ -48,12 +48,12 @@
     <string name="completed">Завершено</string>
     <string name="ongoing">Онгоинг</string>
     <string name="popular">Популярно</string>
-    
+
     <string name="description">Описание</string>
     <string name="overview">Обзор</string>
     <string name="chapters">Главы</string>
-    
-    
+
+
     <string name="views">Просмотры</string>
     <string name="comic">comic</string>
     <string name="list">MyList</string>
@@ -78,10 +78,27 @@
     <string name="registration">Зарегистрироваться</string>
     <string name="login">Войти</string>
     <string name="SignInButton">Войти</string>
+    <string name="send">Отправить</string>
     <string name="SignUpButton">Зарегистрироваться</string>
     <string name="skip">Пропустить</string>
     <string name="warning_needRegistration">Лисёнок плачет, потому-что вы не можете увидеть то, что находится здесь.\nвам требуется зарегистрироваться по кнопке снизу</string>
     <string name="manga">Manga</string>
+    <string name="go_back">Назад</string>
+    <string name="reset_email_description">Введите адрес электронной почты, связанный с вашей учетной записью, и мы отправим электронное письмо с инструкциями о том, как сбросить ваш пароль.</string>
+    <string name="checkEmail">Проверьте вашу почту</string>
+    <string name="emailSuccessMessage">Мы отправили инструкции по восстановлению пароля\nна вашу электронную почту.</string>
+    <string name="zeroMess">Не получили письмо? Проверьте папку спам</string>
+    <string name="or">или</string>
+    <string name="tryAnotherMail">попробуйте другой адресс электронной почты</string>
+    <string name="error_mail_not_found">Нет установленного приложения почты</string>
+    <string name="choose_email">Выберите приложение почты</string>
+    <string name="new_password">Создайте новый пароль</string>
+    <string name="new_password_info">Ваш новый пароль должен отличаться от ранее использовавшихся паролей</string>
+    <string name="password_confirm_helper">* Оба пароля должны быть одинаковыми</string>
+    <string name="password_def_helper">* Должно быть не менее 8 символов</string>
+    <string name="require_field">* Обязательное поле</string>
+    <string name="password_dont_match">Пароли не совпадают</string>
+    <string name="email_wrong">Неправильная почта!</string>
 
 
 </resources>

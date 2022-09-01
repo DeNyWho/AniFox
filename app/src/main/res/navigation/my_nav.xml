@@ -70,7 +70,7 @@
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.anifox.presentation.login.SignInFragment"
+        android:name="com.example.anifox.presentation.signIn.SignInFragment"
         android:label="fragment_login_fragment"
         tools:layout="@layout/fragment_sign_in" >
         <action
@@ -82,6 +82,9 @@
         <action
             android:id="@+id/action_loginFragment_to_signUpFragment"
             app:destination="@id/signUpFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_resetPassword"
+            app:destination="@id/resetPassword" />
     </fragment>
     <fragment
         android:id="@+id/signUpFragment"
@@ -120,4 +123,30 @@
             android:id="@+id/action_myListFragment2_to_detailFragment"
             app:destination="@id/detailFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/resetPassword"
+        android:name="com.example.anifox.presentation.recoveryPassword.ResetPassword"
+        android:label="fragment_reset_password"
+        tools:layout="@layout/fragment_reset_password" >
+        <action
+            android:id="@+id/action_resetPassword_to_signUpFragment"
+            app:destination="@id/signUpFragment" />
+        <action
+            android:id="@+id/action_resetPassword_to_checkMail"
+            app:destination="@id/checkMail" />
+    </fragment>
+    <fragment
+        android:id="@+id/checkMail"
+        android:name="com.example.anifox.presentation.recoveryPassword.CheckMail"
+        android:label="fragment_check_mail"
+        tools:layout="@layout/fragment_check_mail" >
+        <action
+            android:id="@+id/action_checkMail_to_changePassword"
+            app:destination="@id/changePassword" />
+    </fragment>
+    <fragment
+        android:id="@+id/changePassword"
+        android:name="com.example.anifox.presentation.recoveryPassword.ChangePassword"
+        android:label="fragment_change_password"
+        tools:layout="@layout/fragment_change_password" />
 </navigation>

@@ -32,12 +32,6 @@ class MainActivity : AppCompatActivity() {
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
-                R.id.loginFragment, R.id.morePageFragment, R.id.searchFragment, R.id.signUpFragment, R.id.splashFragment, R.id.detailFragment -> {
-                    bottomNavigationView.visibility = View.GONE
-                    fragment.updateLayoutParams<ViewGroup.MarginLayoutParams> {
-                        setMargins(0, 0, 0, 0)
-                    }
-                }
                 R.id.homeFragment, R.id.myListFragment2 -> {
                     bottomNavigationView.visibility = View.VISIBLE
 
@@ -47,9 +41,9 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 else -> {
-                    bottomNavigationView.visibility = View.VISIBLE
+                    bottomNavigationView.visibility = View.GONE
                     fragment.updateLayoutParams<ViewGroup.MarginLayoutParams> {
-                        setMargins(0, 0, 0, valueInPixels)
+                        setMargins(0, 0, 0, 0)
                     }
                 }
             }

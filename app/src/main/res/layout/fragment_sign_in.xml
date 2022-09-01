@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="@color/backgroundColor"
-    tools:context=".presentation.login.SignInFragment">
+    tools:context=".presentation.signIn.SignInFragment">
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -21,6 +21,7 @@
             android:text="@string/welcome_back" />
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/etEmailTIL"
             style="@style/TextView.Ranking"
             android:layout_width="match_parent"
             android:layout_height="60dp"
@@ -29,15 +30,13 @@
             android:textColorHint="@color/grey_lighter"
             app:boxStrokeWidth="0dp"
             app:boxStrokeWidthFocused="0dp"
-            app:counterEnabled="true"
-            app:counterMaxLength="100"
             app:endIconMode="clear_text"
             app:startIconDrawable="@drawable/icon_input_email"
             app:startIconTint="@null"
             app:startIconTintMode="multiply">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/etNickName"
+                android:id="@+id/etEmail"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/search_edit"
@@ -48,29 +47,27 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/etPasswordTIL"
             style="@style/TextView.Ranking"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:hint=""
             android:textColorHint="@color/grey_lighter"
             app:boxStrokeWidth="0dp"
             app:boxStrokeWidthFocused="0dp"
-            app:counterEnabled="true"
-            app:counterMaxLength="100"
-            app:endIconMode="password_toggle"
-            app:helperTextTextColor="#FF0008"
             app:startIconDrawable="@drawable/icon_input_password"
             app:startIconTint="@null"
+            app:passwordToggleEnabled="true"
             app:startIconTintMode="multiply">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etPassword"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:inputType="textPassword"
                 android:background="@drawable/search_edit"
                 android:hint="password"
-                android:maxLength="100"
                 android:textAppearance="@style/Text.SearchBox" />
 
         </com.google.android.material.textfield.TextInputLayout>

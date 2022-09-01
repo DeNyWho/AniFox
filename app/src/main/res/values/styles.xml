@@ -26,6 +26,18 @@
         <item name="android:fontFamily">@font/poppins_medium</item>
     </style>
 
+    <style name="Text.HeaderRecover">
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">@color/textColor</item>
+        <item name="android:fontFamily">@font/poppins_medium</item>
+    </style>
+
+    <style name="Text.HeaderBack">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/textColor</item>
+        <item name="android:fontFamily">@font/poppins_medium</item>
+    </style>
+
     <style name="Text.Warning">
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/textColor</item>

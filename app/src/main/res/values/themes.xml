@@ -37,6 +37,18 @@
         <item name="android:textAppearance">@style/Text.Header</item>
     </style>
 
+    <style name="TextView.HeaderRecovery">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAppearance">@style/Text.HeaderRecover</item>
+    </style>
+
+    <style name="TextView.HeaderBack">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAppearance">@style/Text.HeaderBack</item>
+    </style>
+
     <style name="TextView.Warning">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>

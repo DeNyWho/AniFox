@@ -1,4 +1,4 @@
-package com.example.anifox.presentation.login.state
+package com.example.anifox.presentation.signIn.state
 
 import com.example.anifox.domain.model.user.User
 

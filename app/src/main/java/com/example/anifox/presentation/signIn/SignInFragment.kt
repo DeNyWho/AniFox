@@ -1,6 +1,7 @@
-package com.example.anifox.presentation.login
+package com.example.anifox.presentation.signIn
 
 import android.os.Bundle
+import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -40,19 +41,22 @@ class SignInFragment : Fragment() {
     private fun initListeners(){
 
         binding.signIn.setOnClickListener {
-            val username = binding.etNickName.text.toString()
+            val mail = binding.etEmail.text.toString()
             val password = binding.etPassword.text.toString()
 
-            if(username.isNotEmpty() && password.isNotEmpty() && username.isNotEmpty() ){
-                viewModel.signIn(username = username, password = password)
+            if (isValidate()) {
+                viewModel.signIn(email = mail, password = password)
                 viewModel.state.onEach { state ->
-                    if(state.data?.isNotEmpty() == true){
+                    if (state.data?.isNotEmpty() == true) {
                         findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
                     }
                 }.launchWhenStarted()
-
             }
 
+        }
+
+        binding.tvForgot.setOnClickListener {
+            findNavController().navigate(R.id.action_loginFragment_to_resetPassword)
         }
 
         binding.llSkip.setOnClickListener {
@@ -63,6 +67,44 @@ class SignInFragment : Fragment() {
             findNavController().navigate(R.id.action_loginFragment_to_signUpFragment)
         }
     }
+
+    private fun isValidate(): Boolean =
+        validatePassword() && validateEmail()
+
+    private fun validateEmail(): Boolean {
+        if (binding.etEmail.text.toString().trim().isEmpty()) {
+            binding.etEmailTIL.error = getString(R.string.require_field)
+            binding.etEmail.requestFocus()
+            return false
+        } else if (!isValidEmail(binding.etEmail.text.toString())) {
+            binding.etEmailTIL.error = getString(R.string.email_wrong)
+            binding.etEmail.requestFocus()
+            return false
+        } else {
+            binding.etEmailTIL.isErrorEnabled = false
+        }
+        return true
+    }
+
+    private fun isValidEmail(email: String): Boolean {
+        return Patterns.EMAIL_ADDRESS.matcher(email).matches()
+    }
+
+    private fun validatePassword(): Boolean {
+        if (binding.etPassword.text.toString().trim().isEmpty()) {
+            binding.etPasswordTIL.error = getString(R.string.require_field)
+            binding.etPassword.requestFocus()
+            return false
+        } else if (binding.etPassword.text.toString().length < 8) {
+            binding.etPasswordTIL.error = getString(R.string.password_def_helper)
+            binding.etPassword.requestFocus()
+            return false
+        } else {
+            binding.etPasswordTIL.isErrorEnabled = false
+        }
+        return true
+    }
+
 
     private fun <T> Flow<T>.launchWhenStarted() {
         viewLifecycleOwner.lifecycleScope.launchWhenStarted { collect () }

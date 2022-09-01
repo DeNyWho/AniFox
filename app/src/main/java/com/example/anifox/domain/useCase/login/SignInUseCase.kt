@@ -4,7 +4,7 @@ import com.example.anifox.data.repository.DataStoreRepository
 import com.example.anifox.data.repository.UserRepository
 import com.example.anifox.domain.model.user.UserSignIn
 import com.example.anifox.domain.model.user.toData
-import com.example.anifox.presentation.login.state.UserSignInState
+import com.example.anifox.presentation.signIn.state.UserSignInState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

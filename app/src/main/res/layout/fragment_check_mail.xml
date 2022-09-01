@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/backgroundColor"
+    tools:context=".presentation.recoveryPassword.CheckMail">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:gravity="center">
+        <ImageView
+            android:layout_width="120sp"
+            android:layout_height="120sp"
+            android:src="@drawable/message"/>
+        
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/TextView.HeaderRecovery"
+            android:textStyle="bold"
+            android:text="@string/checkEmail"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/TextView.Description"
+            android:text="@string/emailSuccessMessage"
+            android:gravity="center"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            style="@style/LoginButton"
+            android:id="@+id/abOpenMail"
+            android:layout_marginTop="30sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="90dp"
+            android:background="@drawable/button_login"
+            android:text="Открыть приложение почты"
+            android:textSize="14sp"
+            android:textAllCaps="false"
+            android:textColor="@color/white" />
+
+    </LinearLayout>
+
+    <com.google.android.material.textview.MaterialTextView
+        style="@style/TextView.Description"
+        android:text="@string/zeroMess"
+        android:gravity="center"/>
+
+    <LinearLayout
+        android:layout_marginBottom="20sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            style="@style/TextView.Description"
+            android:text="@string/or"
+            android:gravity="center"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tvBack"
+            style="@style/TextView.Description"
+            android:layout_marginStart="4sp"
+            android:textColor="@color/purple"
+            android:layout_width="wrap_content"
+            android:text="@string/tryAnotherMail"
+            android:gravity="center"/>
+    </LinearLayout>
+
+</LinearLayout>
