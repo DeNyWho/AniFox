@@ -12,6 +12,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlin.math.roundToInt
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -26,9 +27,12 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager.findFragmentById(R.id.fragment) as NavHostFragment
         navController = navHostFragment.findNavController()
 
+        val valueInPixels =
+            resources.getDimension(R.dimen.marginFragment).roundToInt()
+
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
-                R.id.loginFragment, R.id.morePageFragment, R.id.searchFragment, R.id.signUpFragment, R.id.splashFragment -> {
+                R.id.loginFragment, R.id.morePageFragment, R.id.searchFragment, R.id.signUpFragment, R.id.splashFragment, R.id.detailFragment -> {
                     bottomNavigationView.visibility = View.GONE
                     fragment.updateLayoutParams<ViewGroup.MarginLayoutParams> {
                         setMargins(0, 0, 0, 0)
@@ -36,19 +40,19 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.homeFragment, R.id.myListFragment2 -> {
                     bottomNavigationView.visibility = View.VISIBLE
+
                     fragment.updateLayoutParams<ViewGroup.MarginLayoutParams> {
-                        setMargins(0, 0, 0, 140)
+                        setMargins(0, 0, 0, valueInPixels)
                     }
                 }
 
                 else -> {
                     bottomNavigationView.visibility = View.VISIBLE
                     fragment.updateLayoutParams<ViewGroup.MarginLayoutParams> {
-                        setMargins(0, 0, 0, 50)
+                        setMargins(0, 0, 0, valueInPixels)
                     }
                 }
             }
-
             bottomNavigationView.setupWithNavController(navController)
         }
 

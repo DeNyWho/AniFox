@@ -16,16 +16,20 @@
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tvDate"
             android:text="28.06.2022"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
             android:gravity="start"
-            style="@style/TextView.Description"
-            android:layout_weight="1"/>
+            android:textAppearance="@style/Text.Description"/>
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/tvTitle"
             android:gravity="end"
             android:text="Глава 5"
-            style="@style/TextView.Description"
-            android:layout_weight="1"/>
+            android:maxLines="1"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:textAppearance="@style/Text.Description"/>
 
     </LinearLayout>
 

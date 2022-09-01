@@ -14,7 +14,8 @@
         <com.google.android.material.textview.MaterialTextView
             style="@style/TextView.DetailsHeader"
             android:id="@+id/tvGenre"
-            android:layout_marginTop="4dp"
+            android:text="fdasfas"
+            android:layout_marginTop="8dp"
             android:textColor="@color/blueLoginVariant"
             android:layout_marginHorizontal="8dp"/>
     </androidx.cardview.widget.CardView>

@@ -34,7 +34,7 @@ object Versions {
     const val daggerAndroidSup = "2.24"
 
     const val coreKtx = "1.3.1"
-    const val appcompat = "1.1.0"
+    const val appcompat = "1.2.0"
     const val material = "1.1.0"
     const val constraintlayout = "1.1.3"
     const val androidxJunit = "1.1.1"

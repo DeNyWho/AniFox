@@ -22,4 +22,7 @@
     <dimen name="card_item_genres_height_small">50dp</dimen>
     <dimen name="card_item_genres_width">140dp</dimen>
     <dimen name="chip_genres_height">40dp</dimen>
+    <dimen name="marginDescription">20sp</dimen>
+    <dimen name="marginDescriptionBottom">24sp</dimen>
+    <dimen name="marginFragment">50sp</dimen>
 </resources>

@@ -7,7 +7,6 @@ import com.xwray.groupie.viewbinding.BindableItem
 
 class ChaptersItem(private var date: String, private var title: String, private var url: String): BindableItem<ChaptersItemBinding>() {
     override fun bind(binding: ChaptersItemBinding, position: Int) {
-        println("TITlE = $title, DATE = $date")
         binding.tvTitle.text = title
         binding.tvDate.text = date
     }

@@ -1,6 +1,8 @@
 package com.example.anifox.adapters.details
 
 import android.view.View
+import android.view.ViewGroup
+import androidx.core.view.updateLayoutParams
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.anifox.R
 import com.example.anifox.databinding.DetailsTabItemBinding
@@ -9,18 +11,34 @@ import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
 import com.xwray.groupie.Item
 import com.xwray.groupie.viewbinding.BindableItem
+import kotlin.math.roundToInt
+
 
 class DetailsTabsItem(private var manga: Manga, private var type: Int): BindableItem<DetailsTabItemBinding>() {
     private val verticalAdapter by lazy { GroupAdapter <GroupieViewHolder>() }
 
     override fun bind(binding: DetailsTabItemBinding, position: Int) {
-        println("MANGA ID = ${manga.id}")
 
         if(type == 1) {
             binding.ccOptionFirst.visibility = View.VISIBLE
             binding.llOptionSecond.visibility = View.GONE
-
             binding.tvDescription.text = manga.description
+
+            binding.tvDescription.post {
+                val lineCount: Int = binding.tvDescription.lineCount
+                if (lineCount < 5) {
+                    val valueInPixels =
+                        binding.root.context.resources.getDimension(R.dimen.marginDescription).roundToInt()
+                    val valueInPixelsBottom =
+                        binding.root.context.resources.getDimension(R.dimen.marginDescriptionBottom).roundToInt()
+                    binding.llOptionFirst.updateLayoutParams<ViewGroup.MarginLayoutParams> {
+                        setMargins(valueInPixels, 0, valueInPixels, valueInPixelsBottom)
+                    }
+                    binding.ivMore.visibility = View.GONE
+                }
+            }
+
+
             binding.ivMore.setOnClickListener {
                 if (binding.tvDescription.maxLines == 5) {
                     binding.tvDescription.maxLines = Int.MAX_VALUE
@@ -39,7 +57,6 @@ class DetailsTabsItem(private var manga: Manga, private var type: Int): Bindable
                 adapter = verticalAdapter
             }
 
-            println("MANGA CHAPTERS = ${manga.chaptersCount}")
             val list = mutableListOf<Item<*>>().apply {
                 for( i in 0 until manga.chaptersCount){
                     this += ChaptersItem(title = manga.chapters.title[i], date = manga.chapters.date[i], url = manga.chapters.url[i] )
