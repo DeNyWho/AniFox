@@ -80,6 +80,7 @@ object Libraries {
         const val okhttp = "com.squareup.okhttp3:okhttp:${Versions.okHttp}"
     }
 
+
     object Lifecycle {
         const val ViewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
         const val LiveData = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.lifecycle}"

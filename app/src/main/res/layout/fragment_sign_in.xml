@@ -20,6 +20,11 @@
             style="@style/TextView.HeaderLogin"
             android:text="@string/welcome_back" />
 
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/TextView.Description"
+            android:layout_marginTop="8sp"
+            android:text="Мы рады снова видеть вас. Вы можете войти и продолжить пользоваться всеми преимуществами приложения!"/>
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/etEmailTIL"
             style="@style/TextView.Ranking"

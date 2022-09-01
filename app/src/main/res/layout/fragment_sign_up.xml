@@ -12,7 +12,7 @@
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="10dp"
         android:layout_marginHorizontal="20dp"
         android:orientation="vertical">
 
@@ -20,21 +20,23 @@
             style="@style/TextView.HeaderLogin"
             android:text="@string/welcome_signUp" />
 
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/TextView.Description"
+            android:layout_marginTop="8sp"
+            android:text="@string/little_presentation"/>
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/etEmailTIL"
             style="@style/TextView.Ranking"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginTop="60dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:hint=""
             app:helperTextEnabled="true"
-            app:helperText="Введите авыаывф"
             app:helperTextTextColor="@color/grey_lighter"
             android:textColorHint="@color/grey_lighter"
             app:boxStrokeWidth="0dp"
             app:boxStrokeWidthFocused="0dp"
-            app:counterEnabled="true"
-            app:counterMaxLength="100"
             app:endIconMode="clear_text"
             app:startIconDrawable="@drawable/icon_input_email"
             app:startIconTint="@null"
@@ -55,14 +57,12 @@
             android:id="@+id/etNickNameTIL"
             style="@style/TextView.Ranking"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:layout_marginTop="20dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:hint=""
             android:textColorHint="@color/grey_lighter"
             app:boxStrokeWidth="0dp"
             app:boxStrokeWidthFocused="0dp"
-            app:counterEnabled="true"
-            app:counterMaxLength="100"
             app:endIconMode="clear_text"
             app:helperTextTextColor="#FF0008"
             app:startIconDrawable="@drawable/icon_input_name"
@@ -85,7 +85,7 @@
             style="@style/TextView.Ranking"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="16dp"
             android:hint=""
             android:textColorHint="@color/grey_lighter"
             app:boxStrokeWidth="0dp"
@@ -113,7 +113,7 @@
             style="@style/TextView.Ranking"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="16dp"
             android:hint=""
             android:textColorHint="@color/grey_lighter"
             app:boxStrokeWidth="0dp"
@@ -136,20 +136,20 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <androidx.appcompat.widget.AppCompatButton
-            style="@style/LoginButton"
-            android:id="@+id/btnRegister"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="60dp"
-            android:background="@drawable/button_login"
-            android:text="@string/SignUpButton"
-            android:textAllCaps="false"
-            android:textColor="@color/white" />
-
     </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        style="@style/LoginButton"
+        android:id="@+id/btnRegister"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="140dp"
+        android:background="@drawable/button_login"
+        android:text="@string/SignUpButton"
+        android:textAllCaps="false"
+        android:textColor="@color/white" />
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_gravity="bottom|center"

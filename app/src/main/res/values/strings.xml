@@ -99,6 +99,7 @@
     <string name="require_field">* Обязательное поле</string>
     <string name="password_dont_match">Пароли не совпадают</string>
     <string name="email_wrong">Неправильная почта!</string>
+    <string name="little_presentation">Создайте аккаунт, чтобы иметь возможность сохранять историю просмотров, добавлять мангу в избранное и многое другое!</string>
 
 
 </resources>
