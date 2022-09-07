@@ -99,7 +99,7 @@ class HomeViewModel @Inject constructor(
     }
 
     fun getMagic(){
-        getMagic.invoke(genre = stringResourcesProvider.getString(R.string.Genre_Magic), order = null, status = null, countCard = REVIEW_LIMIT).onEach { value ->
+        getMagic.invoke(genre = stringResourcesProvider.getString(R.string.Genre_Magic), order = ORDER_BY_POPULAR, status = null, countCard = REVIEW_LIMIT).onEach { value ->
             _state.tryEmit(
                 _state.value.copy(
                     magic = _state.value.magic.copy(
@@ -112,7 +112,7 @@ class HomeViewModel @Inject constructor(
     }
 
     fun getMonsters(){
-        getMonsters.invoke(genre = stringResourcesProvider.getString(R.string.Genre_Monsters), order = null, status = null, countCard = REVIEW_LIMIT).onEach { value ->
+        getMonsters.invoke(genre = stringResourcesProvider.getString(R.string.Genre_Monsters), order = ORDER_BY_POPULAR, status = null, countCard = REVIEW_LIMIT).onEach { value ->
             _state.tryEmit(
                 _state.value.copy(
                     monsters = _state.value.monsters.copy(
@@ -125,7 +125,7 @@ class HomeViewModel @Inject constructor(
     }
 
     fun getMiddleAges(){
-        getMiddleAges.invoke(genre = stringResourcesProvider.getString(R.string.Genre_MiddleAges), order = null, status = null, countCard = REVIEW_LIMIT).onEach { value ->
+        getMiddleAges.invoke(genre = stringResourcesProvider.getString(R.string.Genre_MiddleAges), order = ORDER_BY_POPULAR, status = null, countCard = REVIEW_LIMIT).onEach { value ->
             _state.tryEmit(
                 _state.value.copy(
                     middleAgesState = _state.value.middleAgesState.copy(

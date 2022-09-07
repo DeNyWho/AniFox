@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,15 +14,19 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.example.anifox.R
 import com.example.anifox.databinding.FragmentCheckMailBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.onEach
+import java.util.*
 
 
 @AndroidEntryPoint
 class CheckMail : Fragment() {
+    private val args: CheckMailArgs by navArgs()
 
     private var _binding: FragmentCheckMailBinding? = null
     private val binding get() = _binding!!
@@ -43,7 +48,32 @@ class CheckMail : Fragment() {
         initListeners()
     }
 
+    private fun observeOnState(){
+        viewModel.state.onEach { state ->
+
+            if(state.passwordConfirmationState.data?.isNotEmpty() == true) {
+                findNavController().navigate(R.id.action_checkMail_to_changePassword)
+            }
+
+        }.launchWhenStarted()
+    }
+
     private fun initListeners(){
+        val handler = Handler()
+        val timer = Timer()
+
+        val task: TimerTask = object : TimerTask() {
+            override fun run() {
+                handler.post {
+                    viewModel.confirmationPassword(args.email)
+                    observeOnState()
+                    println("WTF?")
+                }
+            }
+        }
+
+        timer.scheduleAtFixedRate(task, 0, "10000".toLong()) // Executes the task every 50 seconds.
+
 
         binding.abOpenMail.setOnClickListener {
             try {

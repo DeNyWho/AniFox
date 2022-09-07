@@ -10,10 +10,12 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.anifox.R
 import com.example.anifox.adapters.details.DetailTabsItems
 import com.example.anifox.adapters.details.GenresDetailItem
 import com.example.anifox.adapters.details.HeaderDetailsItem
 import com.example.anifox.databinding.FragmentDetailFragmentBinding
+import com.example.anifox.presentation.home.listeners.ItemClickListenerMorePage
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
 import com.xwray.groupie.Item
@@ -66,13 +68,26 @@ class DetailFragment : Fragment() {
         binding.recycler.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
     }
 
+    private fun navigationToMorePagesInAdapter(genre: String){
+        val bundle = Bundle()
+        bundle.putString("genre", genre)
+
+        findNavController().navigate(R.id.action_detailFragment_to_morePageFragment, bundle)
+    }
 
     private fun observeOnState() {
         viewModel.state.onEach { state ->
             val list = mutableListOf<Item<*>>().apply {
                 if(state.contentDetailsState.data != null){
                     this += HeaderDetailsItem(state.contentDetailsState.data)
-                    this += GenresDetailItem(state.contentDetailsState.data)
+                    this += GenresDetailItem(
+                        manga = state.contentDetailsState.data,
+                        onClick = object :
+                        ItemClickListenerMorePage {
+                        override fun navigationToMorePages(genre: String) {
+                            navigationToMorePagesInAdapter(genre)
+                        }
+                    })
                     this += DetailTabsItems(state.contentDetailsState.data)
                 }
             }

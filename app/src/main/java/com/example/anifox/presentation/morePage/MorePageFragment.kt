@@ -77,7 +77,7 @@ class MorePageFragment : Fragment() {
 
     private fun initListeners(){
         binding.ivBack.setOnClickListener {
-            findNavController().navigate(R.id.action_morePageFragment_to_homeFragment)
+            findNavController().popBackStack()
         }
 
         binding.ivSearch.setOnClickListener {

@@ -1,11 +1,13 @@
 package com.example.anifox.data.remote.api
 
+import com.example.anifox.domain.model.responses.BasicResponse
 import com.example.anifox.domain.model.responses.UserResponse
 import com.example.anifox.domain.model.user.UserSignIn
 import com.example.anifox.domain.model.user.UserSignUp
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.POST
+import retrofit2.http.Query
 
 interface UserApi {
     @POST("auth/signup")
@@ -17,4 +19,15 @@ interface UserApi {
     suspend fun signIn(
         @Body user: UserSignIn
     ): Response<UserResponse>
+
+    @POST("auth/confirmationPassword")
+    suspend fun confirmationPassword(
+        @Query("email") email: String
+    ): Response<UserResponse>
+
+    @POST("auth/sendRecoverInstructions")
+    suspend fun sendRecoverInstructions(
+        @Query("email") email: String
+    ): Response<BasicResponse>
+
 }

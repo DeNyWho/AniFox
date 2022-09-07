@@ -55,6 +55,9 @@
         <argument
             android:name="animeId"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_detailFragment_to_morePageFragment"
+            app:destination="@id/morePageFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
@@ -143,6 +146,9 @@
         <action
             android:id="@+id/action_checkMail_to_changePassword"
             app:destination="@id/changePassword" />
+        <argument
+            android:name="email"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/changePassword"

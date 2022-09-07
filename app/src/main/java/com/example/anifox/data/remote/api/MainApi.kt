@@ -11,8 +11,8 @@ interface MainApi {
 
     @GET("manga/")
     suspend fun getManga(
-        @Query("page") page: Int,
-        @Query("countCard") countCard: Int,
+        @Query("pageNum") page: Int,
+        @Query("pageSize") countCard: Int,
         @Query("status") status: String?,
         @Query("order") order: String?,
         @Query("genre") genre: String?
