@@ -33,11 +33,11 @@
             android:layout_marginTop="20dp"
             android:hint=""
             app:helperTextEnabled="true"
-            app:helperTextTextColor="@color/grey_lighter"
             android:textColorHint="@color/grey_lighter"
             app:boxStrokeWidth="0dp"
             app:boxStrokeWidthFocused="0dp"
             app:endIconMode="clear_text"
+            app:helperText="@string/require_field"
             app:startIconDrawable="@drawable/icon_input_email"
             app:startIconTint="@null"
             app:startIconTintMode="multiply">
@@ -64,9 +64,9 @@
             app:boxStrokeWidth="0dp"
             app:boxStrokeWidthFocused="0dp"
             app:endIconMode="clear_text"
-            app:helperTextTextColor="#FF0008"
             app:startIconDrawable="@drawable/icon_input_name"
             app:startIconTint="@null"
+            app:helperText="@string/require_field"
             app:startIconTintMode="multiply">
 
             <com.google.android.material.textfield.TextInputEditText

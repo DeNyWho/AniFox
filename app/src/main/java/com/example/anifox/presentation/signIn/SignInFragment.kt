@@ -1,7 +1,6 @@
 package com.example.anifox.presentation.signIn
 
 import android.os.Bundle
-import android.util.Patterns
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.anifox.R
 import com.example.anifox.databinding.FragmentSignInBinding
+import com.example.anifox.util.validation.AuthValidate
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
@@ -40,6 +40,9 @@ class SignInFragment : Fragment() {
 
     private fun initListeners(){
 
+        binding.etEmail.addTextChangedListener(AuthValidate(requireContext()).TextFieldValidation(tie = binding.etEmail, til = binding.etEmailTIL, type = 1, pass = null))
+        binding.etPassword.addTextChangedListener(AuthValidate(requireContext()).TextFieldValidation(tie = binding.etPassword, til = binding.etPasswordTIL, type = 1, pass = null))
+
         binding.signIn.setOnClickListener {
             val mail = binding.etEmail.text.toString()
             val password = binding.etPassword.text.toString()
@@ -68,41 +71,11 @@ class SignInFragment : Fragment() {
         }
     }
 
-    private fun isValidate(): Boolean =
-        validatePassword() && validateEmail()
+    private fun isValidate(): Boolean {
+        val password = AuthValidate(requireContext()).ValidateSignIn().password(tie = binding.etPassword, til = binding.etPasswordTIL, type = 2)
+        val email = AuthValidate(requireContext()).ValidateSignIn().email(tie = binding.etEmail, til = binding.etEmailTIL, type = 2)
 
-    private fun validateEmail(): Boolean {
-        if (binding.etEmail.text.toString().trim().isEmpty()) {
-            binding.etEmailTIL.error = getString(R.string.require_field)
-            binding.etEmail.requestFocus()
-            return false
-        } else if (!isValidEmail(binding.etEmail.text.toString())) {
-            binding.etEmailTIL.error = getString(R.string.email_wrong)
-            binding.etEmail.requestFocus()
-            return false
-        } else {
-            binding.etEmailTIL.isErrorEnabled = false
-        }
-        return true
-    }
-
-    private fun isValidEmail(email: String): Boolean {
-        return Patterns.EMAIL_ADDRESS.matcher(email).matches()
-    }
-
-    private fun validatePassword(): Boolean {
-        if (binding.etPassword.text.toString().trim().isEmpty()) {
-            binding.etPasswordTIL.error = getString(R.string.require_field)
-            binding.etPassword.requestFocus()
-            return false
-        } else if (binding.etPassword.text.toString().length < 8) {
-            binding.etPasswordTIL.error = getString(R.string.password_def_helper)
-            binding.etPassword.requestFocus()
-            return false
-        } else {
-            binding.etPasswordTIL.isErrorEnabled = false
-        }
-        return true
+        return password && email
     }
 
 

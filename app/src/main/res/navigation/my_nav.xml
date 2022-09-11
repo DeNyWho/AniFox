@@ -11,9 +11,7 @@
         tools:layout="@layout/fragment_home_fragment" >
         <action
             android:id="@+id/action_homeFragment_to_morePageFragment"
-            app:destination="@id/morePageFragment"
-            app:popUpTo="@id/homeFragment"
-            app:popUpToInclusive="true" />
+            app:destination="@id/morePageFragment"/>
         <argument android:name="order" app:argType="string"
             android:defaultValue="@null"
             app:nullable="true" />

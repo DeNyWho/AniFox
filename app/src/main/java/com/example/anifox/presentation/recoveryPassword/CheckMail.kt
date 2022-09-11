@@ -66,8 +66,6 @@ class CheckMail : Fragment() {
             override fun run() {
                 handler.post {
                     viewModel.confirmationPassword(args.email)
-                    observeOnState()
-                    println("WTF?")
                 }
             }
         }

@@ -97,8 +97,10 @@
     <string name="password_confirm_helper">* Оба пароля должны быть одинаковыми</string>
     <string name="password_def_helper">* Должно быть не менее 8 символов</string>
     <string name="require_field">* Обязательное поле</string>
-    <string name="password_dont_match">Пароли не совпадают</string>
-    <string name="email_wrong">Неправильный формат почты!</string>
+    <string name="require_password">* вам нужно ввести ещё</string>
+    <string name="require_symbols">символов</string>
+    <string name="password_dont_match">* Пароли не совпадают</string>
+    <string name="email_wrong">* Неправильный формат почты!</string>
     <string name="little_presentation">Создайте аккаунт, чтобы иметь возможность сохранять историю просмотров, добавлять мангу в избранное и многое другое!</string>
     <string name="save_button_dialog">Сохранить</string>
     <string name="status_dialog_button">Статус</string>
