@@ -10,8 +10,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.anifox.R
-import com.example.anifox.adapters.home.GenresTypeItem
-import com.example.anifox.adapters.morePages.MorePageAdapter
+import com.example.anifox.common.adapters.home.GenresTypeItem
+import com.example.anifox.common.adapters.morePages.MorePageAdapter
 import com.example.anifox.databinding.FragmentMorePageBinding
 import com.example.anifox.util.LifecycleViewPager
 import com.google.android.material.tabs.TabLayoutMediator

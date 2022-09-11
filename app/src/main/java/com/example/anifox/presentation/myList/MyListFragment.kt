@@ -9,7 +9,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.anifox.R
-import com.example.anifox.adapters.myList.MyListAdapter
+import com.example.anifox.common.adapters.myList.MyListAdapter
 import com.example.anifox.databinding.MyListFragmentBinding
 import com.example.anifox.util.LifecycleViewPager
 import com.google.android.material.tabs.TabLayoutMediator

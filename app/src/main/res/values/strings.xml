@@ -67,7 +67,7 @@
     <string name="tab_list_favourite">Избранное</string>
     <string name="tab_list_watching">Смотрю</string>
     <string name="tab_list_onHold">В планах</string>
-    <string name="tab_list_completed">Посмотрено</string>
+    <string name="tab_list_completed">Просмотрено</string>
 
 
     <string name="welcome_back">С возвращением!</string>
@@ -98,8 +98,11 @@
     <string name="password_def_helper">* Должно быть не менее 8 символов</string>
     <string name="require_field">* Обязательное поле</string>
     <string name="password_dont_match">Пароли не совпадают</string>
-    <string name="email_wrong">Неправильная почта!</string>
+    <string name="email_wrong">Неправильный формат почты!</string>
     <string name="little_presentation">Создайте аккаунт, чтобы иметь возможность сохранять историю просмотров, добавлять мангу в избранное и многое другое!</string>
+    <string name="save_button_dialog">Сохранить</string>
+    <string name="status_dialog_button">Статус</string>
+    <string name="progress_dialog_button">Прогресс</string>
 
 
 </resources>

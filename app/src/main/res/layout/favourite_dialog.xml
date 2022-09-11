@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/backgroundColor"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_marginHorizontal="15sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_marginTop="15sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="40sp"
+                android:id="@+id/cvExit"
+                app:cardCornerRadius="16sp"
+                android:layout_gravity="start|center"
+                app:cardElevation="2sp"
+                app:cardBackgroundColor="@color/cyan_light"
+                android:layout_height="40sp">
+
+                <ImageView
+                    android:layout_width="30sp"
+                    android:layout_height="30sp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/cross"/>
+
+            </androidx.cardview.widget.CardView>
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="wrap_content"
+                android:layout_height="40sp"
+                android:id="@+id/cvSave"
+                android:text="@string/save_button_dialog"
+                android:textAllCaps="false"
+                android:textAppearance="@style/Text.DialogButton"
+                android:textColor="@color/black"
+                android:background="@drawable/save_button"/>
+        </LinearLayout>
+
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/TextView.Header"
+            android:textSize="20sp"
+            android:layout_marginTop="20sp"
+            android:text="@string/status_dialog_button"/>
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    style="@style/CheckedRadioButtonRight"
+                    android:height="40sp"
+                    android:id="@+id/tvWatching"
+                    android:layout_width="wrap_content"
+                    android:elevation="3sp"
+                    android:textAppearance="@style/Text.DialogStatus"
+                    android:text="@string/tab_list_watching"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_columnWeight="1"
+                    android:layout_height="wrap_content" />
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    style="@style/CheckedRadioButtonRight"
+                    android:height="40sp"
+                    android:id="@+id/tvInPlan"
+                    android:layout_width="wrap_content"
+                    android:textAppearance="@style/Text.DialogStatus"
+                    android:elevation="3sp"
+                    android:text="@string/tab_list_onHold"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_columnWeight="1"
+                    android:layout_height="wrap_content" />
+
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    style="@style/CheckedRadioButtonRight"
+                    android:height="40sp"
+                    android:id="@+id/tvInComplete"
+                    android:elevation="3sp"
+                    android:layout_weight="1"
+                    android:text="@string/tab_list_completed"
+                    android:layout_width="wrap_content"
+                    android:textAppearance="@style/Text.DialogStatus"
+                    android:gravity="center"
+                    android:layout_marginBottom="10dp"
+                    android:layout_columnWeight="1"
+                    android:layout_height="wrap_content" />
+
+        </RadioGroup>
+
+        <com.google.android.material.textview.MaterialTextView
+            style="@style/TextView.Header"
+            android:textSize="20sp"
+            android:layout_marginTop="20sp"
+            android:text="@string/progress_dialog_button"/>
+
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

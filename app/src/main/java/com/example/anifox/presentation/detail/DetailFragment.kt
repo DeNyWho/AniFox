@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -11,9 +12,10 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.anifox.R
-import com.example.anifox.adapters.details.DetailTabsItems
-import com.example.anifox.adapters.details.GenresDetailItem
-import com.example.anifox.adapters.details.HeaderDetailsItem
+import com.example.anifox.common.adapters.details.DetailTabsItems
+import com.example.anifox.common.adapters.details.GenresDetailItem
+import com.example.anifox.common.adapters.details.HeaderDetailsItem
+import com.example.anifox.common.dialogs.detail.FavouriteDialogFragment
 import com.example.anifox.databinding.FragmentDetailFragmentBinding
 import com.example.anifox.presentation.home.listeners.ItemClickListenerMorePage
 import com.xwray.groupie.GroupAdapter
@@ -58,6 +60,10 @@ class DetailFragment : Fragment() {
 
         binding.ivBack.setOnClickListener {
             findNavController().popBackStack()
+        }
+        binding.fabButton.setOnClickListener {
+            binding.fabButton.background = AppCompatResources.getDrawable(requireContext(), R.drawable.status_dialog_selected)
+            FavouriteDialogFragment().show(parentFragmentManager, "exampleDialog")
         }
 
 

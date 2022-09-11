@@ -10,7 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.anifox.R
-import com.example.anifox.adapters.home.*
+import com.example.anifox.common.adapters.home.*
 import com.example.anifox.databinding.FragmentHomeFragmentBinding
 import com.example.anifox.domain.model.common.GenresCard
 import com.example.anifox.presentation.home.listeners.ItemClickListenerGoToDetail
@@ -253,6 +253,11 @@ open class HomeFragment : Fragment() {
                     state.popularState.data.take(5),
                     state.airingPopularState.data.take(5),
                     state.popularCompleted.data.take(5),
+                    onClick = object : ItemClickListenerGoToDetail {
+                        override fun navigationToDetail(id: Int) {
+                            navigationToDetailInAdapter(id)
+                        }
+                    }
                 )
             }
         }

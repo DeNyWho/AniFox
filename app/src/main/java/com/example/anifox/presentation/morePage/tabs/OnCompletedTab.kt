@@ -10,7 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.anifox.R
-import com.example.anifox.adapters.common.SmallerAnimeItem
+import com.example.anifox.common.adapters.common.SmallerAnimeItem
 import com.example.anifox.databinding.FragmentOnCompletedTabBinding
 import com.example.anifox.presentation.home.listeners.ItemClickListenerGoToDetail
 import com.example.anifox.presentation.morePage.MorePageViewModel

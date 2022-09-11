@@ -8,6 +8,7 @@
     android:layout_height="match_parent"
     tools:context=".presentation.detail.DetailFragment">
 
+
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar_layout"
         android:layout_width="match_parent"
@@ -42,8 +43,6 @@
     </com.google.android.material.appbar.AppBarLayout>
 
 
-
-
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -51,6 +50,16 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:id="@+id/recycler"
         android:layout_marginHorizontal="12dp"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="60sp"
+        android:layout_height="60sp"
+        android:foreground="@drawable/heart_v2"
+        android:backgroundTint="@color/blueLikeSkyDarker"
+        android:layout_gravity="end|bottom"
+        android:layout_marginBottom="60sp"
+        android:id="@+id/fabButton"
+        android:layout_marginEnd="40sp"/>
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

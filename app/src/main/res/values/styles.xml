@@ -11,6 +11,18 @@
         <item name="android:textAllCaps">false</item>
     </style>
 
+    <style name="Dialog.MaterialDialog" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <item name="shapeAppearanceOverlay">@style/ShapeDialog</item>
+    </style>
+
+    <style name="ShapeDialog">
+        <item name="cornerFamily">cut</item>
+        <item name="cornerFamilyTopLeft">rounded</item>
+        <item name="cornerFamilyTopRight">rounded</item>
+        <item name="cornerFamilyBottomLeft">rounded</item>
+        <item name="cornerFamilyBottomRight">rounded</item>
+    </style>
+
 
     <style name="RatingTextAppearanceTab" parent="TextAppearance.Design.Tab">
         <item name="textAllCaps">false</item>
@@ -28,6 +40,12 @@
 
     <style name="Text.HeaderRecover">
         <item name="android:textSize">22sp</item>
+        <item name="android:textColor">@color/textColor</item>
+        <item name="android:fontFamily">@font/poppins_medium</item>
+    </style>
+
+    <style name="Text.DialogButton">
+        <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/textColor</item>
         <item name="android:fontFamily">@font/poppins_medium</item>
     </style>
@@ -61,6 +79,12 @@
         <item name="android:textSize">16sp</item>
         <item name="android:textColor">@color/textColor</item>
         <item name="android:fontFamily">@font/poppins_semi_bold</item>
+    </style>
+
+    <style name="Text.DialogStatus">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/textColor</item>
+        <item name="android:fontFamily">@font/poppins_medium</item>
     </style>
 
     <style name="Text.DetailsTypes">
@@ -127,6 +151,13 @@
         <item name="android:textSize">16sp</item>
         <item name="android:textColor">@color/descriptionTextColor</item>
         <item name="android:fontFamily">@font/poppins_medium</item>
+    </style>
+
+    <style name="CheckedRadioButtonRight" parent="Widget.AppCompat.CompoundButton.RadioButton">
+        <item name="android:textColor">@drawable/text_dialog_selector_status</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:button">@null</item>
+        <item name="android:background">@drawable/favourite_dialog_selector_status</item>
     </style>
 
 
