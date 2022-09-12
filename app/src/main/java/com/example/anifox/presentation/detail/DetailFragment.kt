@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -17,7 +17,7 @@ import com.example.anifox.common.adapters.details.GenresDetailItem
 import com.example.anifox.common.adapters.details.HeaderDetailsItem
 import com.example.anifox.common.dialogs.detail.FavouriteDialogFragment
 import com.example.anifox.databinding.FragmentDetailFragmentBinding
-import com.example.anifox.presentation.home.listeners.ItemClickListenerMorePage
+import com.example.anifox.common.listeners.ItemClickListenerMorePage
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
 import com.xwray.groupie.Item
@@ -33,9 +33,11 @@ class DetailFragment : Fragment() {
     private var _binding: FragmentDetailFragmentBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: DetailFragmentViewModel by viewModels()
+    private val viewModel: DetailFragmentViewModel by activityViewModels()
 
     private val groupAdapter = GroupAdapter<GroupieViewHolder>()
+
+    private var token: String = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,6 +49,7 @@ class DetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.getTokenFromPreferences()
         viewModel.setQueries(args.animeId)
         viewModel.getDetails()
 
@@ -61,9 +64,14 @@ class DetailFragment : Fragment() {
         binding.ivBack.setOnClickListener {
             findNavController().popBackStack()
         }
-        binding.fabButton.setOnClickListener {
-            binding.fabButton.background = AppCompatResources.getDrawable(requireContext(), R.drawable.status_dialog_selected)
-            FavouriteDialogFragment().show(parentFragmentManager, "exampleDialog")
+        if(binding.fabButton.visibility == View.VISIBLE) {
+            binding.fabButton.setOnClickListener {
+                binding.fabButton.background = AppCompatResources.getDrawable(
+                    requireContext(),
+                    R.drawable.status_dialog_selected
+                )
+                FavouriteDialogFragment(mangaID = args.animeId, token = token).show(parentFragmentManager, "favouriteDialog")
+            }
         }
 
 
@@ -96,6 +104,10 @@ class DetailFragment : Fragment() {
                     })
                     this += DetailTabsItems(state.contentDetailsState.data)
                 }
+                if(state.detailTokenState.token != null){
+                    token = state.detailTokenState.token
+                    binding.fabButton.visibility = View.VISIBLE
+                } else binding.fabButton.visibility = View.GONE
             }
 
 

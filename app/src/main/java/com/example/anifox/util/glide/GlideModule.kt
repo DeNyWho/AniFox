@@ -1,4 +1,4 @@
-package com.example.anifox.util
+package com.example.anifox.util.glide
 
 import android.content.Context
 import com.bumptech.glide.Glide

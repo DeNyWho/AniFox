@@ -5,7 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.anifox.R
 import com.example.anifox.databinding.GenresDetailsItemBinding
 import com.example.anifox.domain.model.manga.Manga
-import com.example.anifox.presentation.home.listeners.ItemClickListenerMorePage
+import com.example.anifox.common.listeners.ItemClickListenerMorePage
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
 import com.xwray.groupie.viewbinding.BindableItem

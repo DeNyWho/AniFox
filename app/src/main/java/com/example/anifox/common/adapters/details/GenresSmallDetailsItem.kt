@@ -3,7 +3,7 @@ package com.example.anifox.common.adapters.details
 import android.view.View
 import com.example.anifox.R
 import com.example.anifox.databinding.GenresDetailsSmallItemBinding
-import com.example.anifox.presentation.home.listeners.ItemClickListenerMorePage
+import com.example.anifox.common.listeners.ItemClickListenerMorePage
 import com.xwray.groupie.viewbinding.BindableItem
 
 class GenresSmallDetailsItem(var genre: String, private val onClick: ItemClickListenerMorePage): BindableItem<GenresDetailsSmallItemBinding>() {

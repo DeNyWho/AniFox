@@ -2,11 +2,11 @@ package com.example.anifox.di
 
 import android.content.Context
 import com.example.anifox.data.dataSource.AnimeDataSource
-import com.example.anifox.data.remote.api.MainApi
-import com.example.anifox.data.remote.api.UserApi
+import com.example.anifox.data.remote.api.AuthApi
+import com.example.anifox.data.remote.api.MangaApi
+import com.example.anifox.data.repository.AuthRepository
 import com.example.anifox.data.repository.DataStoreRepository
 import com.example.anifox.data.repository.MangaRepository
-import com.example.anifox.data.repository.UserRepository
 import com.example.anifox.domain.repository.DataStoreRep
 import dagger.Module
 import dagger.Provides
@@ -24,24 +24,24 @@ object RepositoryModule {
     @Provides
     @Singleton
     fun provideMangaRepository(
-        mainApi: MainApi,
+        mangaApi: MangaApi,
         animeDataSource: AnimeDataSource.Factory,
-    ) = MangaRepository(mainApi, animeDataSource)
+    ) = MangaRepository(mangaApi, animeDataSource)
 
     @Provides
     @Singleton
-    fun provideUserRepository(
-        userApi: UserApi
-    ) = UserRepository(userApi)
+    fun provideAuthRepository(
+        authApi: AuthApi
+    ) = AuthRepository(authApi)
 
     @Provides
-    fun provideMainApi(@Named("RetrofitMainApi") retrofit: Retrofit) : MainApi {
-        return retrofit.create(MainApi::class.java)
+    fun provideMangaApi(@Named("RetrofitMainApi") retrofit: Retrofit) : MangaApi {
+        return retrofit.create(MangaApi::class.java)
     }
 
     @Provides
-    fun provideUserApi(@Named("RetrofitMainApi") retrofit: Retrofit) : UserApi {
-        return retrofit.create(UserApi::class.java)
+    fun provideAuthApi(@Named("RetrofitMainApi") retrofit: Retrofit) : AuthApi {
+        return retrofit.create(AuthApi::class.java)
     }
 
     @Provides

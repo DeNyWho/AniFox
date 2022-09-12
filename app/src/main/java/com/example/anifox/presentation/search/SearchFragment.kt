@@ -15,8 +15,8 @@ import com.example.anifox.R
 import com.example.anifox.common.adapters.home.HeaderLightItem
 import com.example.anifox.common.adapters.home.HorizontalItem
 import com.example.anifox.common.adapters.search.SearchResultItem
+import com.example.anifox.common.listeners.ItemClickListenerGoToDetail
 import com.example.anifox.databinding.FragmentSearchBinding
-import com.example.anifox.presentation.home.listeners.ItemClickListenerGoToDetail
 import com.example.anifox.util.Constants
 import com.xwray.groupie.Group
 import com.xwray.groupie.GroupAdapter

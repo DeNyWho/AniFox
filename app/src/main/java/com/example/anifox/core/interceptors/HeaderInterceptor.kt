@@ -1,8 +1,10 @@
 package com.example.anifox.core.interceptors
 
+import com.example.anifox.BuildConfig
 import com.example.anifox.util.Constants
 import okhttp3.Interceptor
 import okhttp3.Response
+import okhttp3.logging.HttpLoggingInterceptor
 
 
 class UserAgentInterceptor : Interceptor {
@@ -11,5 +13,18 @@ class UserAgentInterceptor : Interceptor {
             .addHeader("User-Agent", Constants.APP_NAME )
             .build()
         return chain.proceed(newRequest)
+    }
+}
+
+class LoggingInterceptor {
+    fun log(): HttpLoggingInterceptor {
+        val loggingInterceptor = HttpLoggingInterceptor().apply {
+            level = if (BuildConfig.DEBUG) {
+                HttpLoggingInterceptor.Level.BODY
+            } else {
+                HttpLoggingInterceptor.Level.NONE
+            }
+        }
+        return loggingInterceptor
     }
 }

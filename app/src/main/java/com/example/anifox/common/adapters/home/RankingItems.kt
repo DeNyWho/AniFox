@@ -9,7 +9,7 @@ import com.ahmadhamwi.tabsync.TabbedListMediator
 import com.example.anifox.R
 import com.example.anifox.databinding.RankingItemsBinding
 import com.example.anifox.domain.model.manga.Manga
-import com.example.anifox.presentation.home.listeners.ItemClickListenerGoToDetail
+import com.example.anifox.common.listeners.ItemClickListenerGoToDetail
 import com.google.android.material.internal.ViewUtils.dpToPx
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder

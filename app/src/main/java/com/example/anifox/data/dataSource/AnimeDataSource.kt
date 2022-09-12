@@ -2,7 +2,7 @@ package com.example.anifox.data.dataSource
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.example.anifox.data.remote.api.MainApi
+import com.example.anifox.data.remote.api.MangaApi
 import com.example.anifox.domain.model.manga.Manga
 import com.example.anifox.domain.model.manga.toData
 import com.example.anifox.util.Constants.MORE_PAGE_SIZE
@@ -15,7 +15,7 @@ import timber.log.Timber
 import java.io.IOException
 
 class AnimeDataSource @AssistedInject constructor(
-    private val mainApi: MainApi,
+    private val mangaApi: MangaApi,
     @Assisted("order")
     private val order: String?,
     @Assisted("status")
@@ -25,7 +25,7 @@ class AnimeDataSource @AssistedInject constructor(
     @Assisted("token")
     private val token: String?,
 
-) : PagingSource<Int, Manga>() {
+    ) : PagingSource<Int, Manga>() {
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Manga> {
         val page = params.key ?: STARTING_PAGE_INDEX
@@ -34,14 +34,14 @@ class AnimeDataSource @AssistedInject constructor(
 
             println("page = $page, loadSize = ${pageSize}, order = $order, status = $status, genre = $genre, token = $token")
 
-            val response = if(token == null){ mainApi.getManga(
+            val response = if(token == null){ mangaApi.getManga(
                 page = page,
                 countCard = pageSize,
                 order = order,
                 status = status,
                 genre = genre
             ).body()?.data?.map { it.toData() }.orEmpty()} else {
-                mainApi.getMangaByUser(
+                mangaApi.getMangaByUser(
                     pageNum = page + 1,
                     pageSize = pageSize,
                     status = status,

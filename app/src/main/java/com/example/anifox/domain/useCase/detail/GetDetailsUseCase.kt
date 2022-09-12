@@ -2,7 +2,7 @@ package com.example.anifox.domain.useCase.detail
 
 import com.example.anifox.data.repository.MangaRepository
 import com.example.anifox.domain.model.manga.toDataFull
-import com.example.anifox.presentation.detail.state.ContentDetailsState
+import com.example.anifox.presentation.detail.state.detail.ContentDetailsState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

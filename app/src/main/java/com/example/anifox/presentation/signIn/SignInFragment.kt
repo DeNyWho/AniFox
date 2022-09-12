@@ -35,13 +35,24 @@ class SignInFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        observeOnState()
         initListeners()
     }
 
     private fun initListeners(){
 
-        binding.etEmail.addTextChangedListener(AuthValidate(requireContext()).TextFieldValidation(tie = binding.etEmail, til = binding.etEmailTIL, type = 1, pass = null))
-        binding.etPassword.addTextChangedListener(AuthValidate(requireContext()).TextFieldValidation(tie = binding.etPassword, til = binding.etPasswordTIL, type = 1, pass = null))
+        binding.etEmail.addTextChangedListener(AuthValidate(requireContext()).TextFieldValidation(
+            type = 1,
+            tie = binding.etEmail,
+            til = binding.etEmailTIL,
+            pass = null,
+            onListen = null))
+        binding.etPassword.addTextChangedListener(AuthValidate(requireContext()).TextFieldValidation(
+            type = 1,
+            tie = binding.etPassword,
+            til = binding.etPasswordTIL,
+            pass = null,
+            onListen = null))
 
         binding.signIn.setOnClickListener {
             val mail = binding.etEmail.text.toString()
@@ -49,11 +60,6 @@ class SignInFragment : Fragment() {
 
             if (isValidate()) {
                 viewModel.signIn(email = mail, password = password)
-                viewModel.state.onEach { state ->
-                    if (state.data?.isNotEmpty() == true) {
-                        findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
-                    }
-                }.launchWhenStarted()
             }
 
         }
@@ -69,6 +75,22 @@ class SignInFragment : Fragment() {
         binding.tvRegistration.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_signUpFragment)
         }
+    }
+
+    fun observeOnState() {
+        viewModel.state.onEach { state ->
+            if (state.data?.isNotEmpty() == true) {
+                findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
+            }
+            if (state.message == "Wrong login or password") {
+                AuthValidate(requireContext()).ValidateSignIn().passwordWrong(
+                    passwordTie = binding.etPassword,
+                    emailTie = binding.etEmail,
+                    passwordTil = binding.etPasswordTIL,
+                    emailTil = binding.etEmailTIL
+                )
+            }
+        }.launchWhenStarted()
     }
 
     private fun isValidate(): Boolean {

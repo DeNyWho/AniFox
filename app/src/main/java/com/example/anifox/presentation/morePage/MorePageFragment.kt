@@ -13,7 +13,7 @@ import com.example.anifox.R
 import com.example.anifox.common.adapters.home.GenresTypeItem
 import com.example.anifox.common.adapters.morePages.MorePageAdapter
 import com.example.anifox.databinding.FragmentMorePageBinding
-import com.example.anifox.util.LifecycleViewPager
+import com.example.anifox.util.viewpager.LifecycleViewPager
 import com.google.android.material.tabs.TabLayoutMediator
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder

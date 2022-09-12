@@ -13,10 +13,10 @@ import com.example.anifox.R
 import com.example.anifox.common.adapters.home.*
 import com.example.anifox.databinding.FragmentHomeFragmentBinding
 import com.example.anifox.domain.model.common.GenresCard
-import com.example.anifox.presentation.home.listeners.ItemClickListenerGoToDetail
-import com.example.anifox.presentation.home.listeners.ItemClickListenerMorePage
-import com.example.anifox.presentation.home.listeners.ItemClickListenerMorePageGenres
-import com.example.anifox.presentation.home.listeners.ItemClickListenerRandom
+import com.example.anifox.common.listeners.ItemClickListenerGoToDetail
+import com.example.anifox.common.listeners.ItemClickListenerMorePage
+import com.example.anifox.common.listeners.ItemClickListenerMorePageGenres
+import com.example.anifox.common.listeners.ItemClickListenerRandom
 import com.example.anifox.util.Constants
 import com.xwray.groupie.Group
 import com.xwray.groupie.GroupAdapter

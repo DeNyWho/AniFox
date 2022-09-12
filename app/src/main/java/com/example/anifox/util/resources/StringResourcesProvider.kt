@@ -1,4 +1,4 @@
-package com.example.anifox.util
+package com.example.anifox.util.resources
 
 import android.content.Context
 import androidx.annotation.StringRes

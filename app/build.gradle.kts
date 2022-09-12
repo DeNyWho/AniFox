@@ -93,7 +93,8 @@ dependencies {
     implementation(Libraries.Retrofit.RetrofitConverter)
     implementation(Libraries.Retrofit.Gson)
     implementation(Libraries.Retrofit.okhttp)
-
+    implementation(Libraries.Retrofit.okHttpLogging)
+    implementation("com.squareup.okhttp3:logging-interceptor:4.10.0")
 
     implementation(Libraries.Serialization.serialization)
 

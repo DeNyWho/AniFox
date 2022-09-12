@@ -16,7 +16,7 @@ class SignInViewModel @Inject constructor(
     private val signIn: SignInUseCase
 ) : ViewModel() {
 
-    private val _state = MutableStateFlow(UserSignInState(isLoading = true, data = null))
+    private val _state = MutableStateFlow(UserSignInState(isLoading = true, data = null, message = null))
     val state = _state.asStateFlow()
 
     fun signIn(email: String, password: String) {
@@ -24,7 +24,8 @@ class SignInViewModel @Inject constructor(
             _state.tryEmit(
                 _state.value.copy(
                     isLoading = false,
-                    data = value.data
+                    data = value.data,
+                    message = value.message
                 )
             )
         }.launchIn(viewModelScope)

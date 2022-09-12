@@ -4,7 +4,7 @@ import android.view.View
 import androidx.annotation.DrawableRes
 import com.example.anifox.R
 import com.example.anifox.databinding.HeaderMoreItemBinding
-import com.example.anifox.presentation.home.listeners.ItemClickListenerMorePage
+import com.example.anifox.common.listeners.ItemClickListenerMorePage
 import com.xwray.groupie.viewbinding.BindableItem
 
 open class HeaderMoreItem(

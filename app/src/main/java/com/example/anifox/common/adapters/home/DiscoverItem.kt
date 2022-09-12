@@ -5,7 +5,7 @@ import com.bumptech.glide.Glide
 import com.example.anifox.R
 import com.example.anifox.databinding.CardDiscoverBinding
 import com.example.anifox.domain.model.manga.Manga
-import com.example.anifox.presentation.home.listeners.ItemClickListenerGoToDetail
+import com.example.anifox.common.listeners.ItemClickListenerGoToDetail
 import com.xwray.groupie.viewbinding.BindableItem
 
 class DiscoverItem(var manga: Manga, private val onClick: ItemClickListenerGoToDetail): BindableItem<CardDiscoverBinding>() {

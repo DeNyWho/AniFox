@@ -6,25 +6,43 @@ import android.text.TextWatcher
 import android.util.Patterns
 import android.view.View
 import com.example.anifox.R
+import com.example.anifox.common.listeners.ItemListenerUserName
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 
 class AuthValidate(private val context: Context){
 
-    private fun validateNickName(type: Int, tie: View, til: View): Boolean {
+    private fun validateNickName(type: Int, tie: View, til: View, onListen: ItemListenerUserName?): Boolean {
         val nickName = tie.findViewById<TextInputEditText>(R.id.etNickName)
         val nickNameTil = til.findViewById<TextInputLayout>(R.id.etNickNameTIL)
         if(type == 1){
+            var result = false
+            if (nickName.text.toString().length in 4..20) {
+                onListen!!.postUserName(nickName.text.toString())
+                result = onListen.getUserName()
+            }
             if (nickName.text.toString().trim().isEmpty()) {
                 nickNameTil.helperText = context.getString(R.string.require_field)
                 return false
+            } else if(nickName.text.toString().length < 3 || nickName.text.toString().length > 20){
+                nickNameTil.helperText = context.getString(R.string.require_nicknameSize)
+                return false
+            } else if (nickName.text.toString().length in 4..20) {
+                onListen!!.postUserName(nickName.text.toString())
+            } else if (result) {
+                nickNameTil.error = context.getString(R.string.username_already_registered)
             } else {
                 nickNameTil.isHelperTextEnabled = false
+                nickNameTil.isErrorEnabled = false
             }
             return true
         } else {
             if (nickName.text.toString().trim().isEmpty()) {
                 nickNameTil.error = context.getString(R.string.require_field)
+                nickName.requestFocus()
+                return false
+            } else if(nickName.text.toString().length < 3 || nickName.text.toString().length > 20){
+                nickNameTil.error = context.getString(R.string.require_nicknameSize)
                 nickName.requestFocus()
                 return false
             } else {
@@ -37,28 +55,31 @@ class AuthValidate(private val context: Context){
     private fun validatePassword(type: Int, tie: View, til: View): Boolean {
         val password = tie.findViewById<TextInputEditText>(R.id.etPassword)
         val passwordTil = til.findViewById<TextInputLayout>(R.id.etPasswordTIL)
-        if(type == 1){
-            if (password.text.toString().trim().isEmpty()) {
-                passwordTil.helperText = context.getString(R.string.require_field)
-                return false
-            } else if (password.text.toString().length < 8) {
-                passwordTil.helperText = "${context.getString(R.string.require_password)} ${ 8 - password.text.toString().length} ${context.getString(R.string.require_symbols)}"
-            } else {
-                passwordTil.isHelperTextEnabled = false
+        when (type) {
+            1 -> {
+                if (password.text.toString().trim().isEmpty()) {
+                    passwordTil.helperText = context.getString(R.string.require_field)
+                    return false
+                } else if (password.text.toString().length < 8) {
+                    passwordTil.helperText = "${context.getString(R.string.require_password)} ${ 8 - password.text.toString().length} ${context.getString(R.string.require_symbols)}"
+                } else {
+                    passwordTil.isHelperTextEnabled = false
+                }
+                return true
             }
-            return true
-        } else {
-            if (password.text.toString().trim().isEmpty()) {
-                passwordTil.error = context.getString(R.string.require_field)
-                password.requestFocus()
-                return false
-            } else if (password.text.toString().length < 8) {
-                passwordTil.error = "${context.getString(R.string.require_password)} ${ 8 - password.text.toString().length} ${context.getString(R.string.require_symbols)}"
-                password.requestFocus()
-            } else {
-                passwordTil.isErrorEnabled = false
+            else -> {
+                if (password.text.toString().trim().isEmpty()) {
+                    passwordTil.error = context.getString(R.string.require_field)
+                    password.requestFocus()
+                    return false
+                } else if (password.text.toString().length < 8) {
+                    passwordTil.error = "${context.getString(R.string.require_password)} ${ 8 - password.text.toString().length} ${context.getString(R.string.require_symbols)}"
+                    password.requestFocus()
+                } else {
+                    passwordTil.isErrorEnabled = false
+                }
+                return true
             }
-            return true
         }
     }
 
@@ -93,6 +114,22 @@ class AuthValidate(private val context: Context){
     }
     private fun isValidEmail(email: String): Boolean {
         return Patterns.EMAIL_ADDRESS.matcher(email).matches()
+    }
+
+    private fun existEmailError(tie: View,til: View): Boolean {
+        val emailTil = til.findViewById<TextInputLayout>(R.id.etEmailTIL)
+        val emailTie = tie.findViewById<TextInputEditText>(R.id.etEmail)
+        emailTil.error = context.getString(R.string.email_already_registered)
+        emailTie.requestFocus()
+        return true
+    }
+
+    private fun existNameError(tie: View, til: View, result: Boolean): Boolean {
+        val nameTil = til.findViewById<TextInputLayout>(R.id.etNickNameTIL)
+        val nameTie = tie.findViewById<TextInputEditText>(R.id.etNickName)
+        nameTil.error = context.getString(R.string.username_already_registered)
+        nameTie.requestFocus()
+        return true
     }
 
     private fun validateEmail(type: Int, tie: View, til: View): Boolean {
@@ -149,10 +186,11 @@ class AuthValidate(private val context: Context){
         fun nickName(type: Int, tie: View, til: View): Boolean {
             return if(tie.id == R.id.etNickName && til.id == R.id.etNickNameTIL){
                  validateNickName(
-                    type = type,
-                    tie = tie,
-                    til = til
-                )
+                     type = type,
+                     tie = tie,
+                     til = til,
+                     onListen = null
+                 )
             } else false
         }
         fun passwordConfirm(type: Int, tie: View, til: View, pass: View?): Boolean {
@@ -165,6 +203,25 @@ class AuthValidate(private val context: Context){
                 )
             } else false
         }
+        fun existEmail(tie: View, til: View): Boolean {
+            return if(til.id == R.id.etEmailTIL){
+                existEmailError(
+                    tie = tie,
+                    til = til
+                )
+            } else false
+        }
+        fun existName(tie: View, til: View, result: Boolean): Boolean {
+            return if(til.id == R.id.etNickNameTIL){
+                existNameError(
+                    tie = tie,
+                    til = til,
+                    result = result
+                )
+            } else false
+        }
+
+
     }
 
     inner class ValidateSignIn {
@@ -175,6 +232,19 @@ class AuthValidate(private val context: Context){
                     tie = tie,
                     til = til
                 )
+            } else false
+        }
+
+        fun passwordWrong(passwordTie: View, emailTie: View, passwordTil: View, emailTil: View): Boolean {
+            return if(passwordTie.id == R.id.etPassword && emailTie.id == R.id.etEmail){
+                val password = passwordTie.findViewById<TextInputEditText>(R.id.etPassword)
+                val passwordTilling = passwordTil.findViewById<TextInputLayout>(R.id.etPasswordTIL)
+                val email = emailTie.findViewById<TextInputEditText>(R.id.etEmail)
+                val emailTilling = emailTil.findViewById<TextInputLayout>(R.id.etEmailTIL)
+                passwordTilling.error = context.getString(R.string.wrong_password)
+                password.requestFocus()
+                emailTilling.error = context.getString(R.string.wrong_password)
+                email.requestFocus()
             } else false
         }
         fun email(type: Int, tie: View, til: View): Boolean {
@@ -188,7 +258,13 @@ class AuthValidate(private val context: Context){
         }
     }
 
-    inner class TextFieldValidation(private val type: Int,private val tie: View, private val til: View, private val pass: View?) : TextWatcher {
+    inner class TextFieldValidation(
+        private val type: Int,
+        private val tie: View,
+        private val til: View,
+        private val pass: View?,
+        private val onListen: ItemListenerUserName?
+    ) : TextWatcher {
         override fun afterTextChanged(s: Editable?) {}
         override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
         override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
@@ -205,7 +281,8 @@ class AuthValidate(private val context: Context){
             if (tie.id == R.id.etNickName && til.id == R.id.etNickNameTIL) validateNickName(
                 type = type,
                 tie = tie,
-                til = til
+                til = til,
+                onListen = onListen
             )
             if (tie.id == R.id.etPasswordConfirm && til.id == R.id.etPasswordConfirmTIL && pass!!.id == R.id.etPassword) validateConfirmPassword(
                 type = type,

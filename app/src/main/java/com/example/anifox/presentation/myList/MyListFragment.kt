@@ -11,7 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.anifox.R
 import com.example.anifox.common.adapters.myList.MyListAdapter
 import com.example.anifox.databinding.MyListFragmentBinding
-import com.example.anifox.util.LifecycleViewPager
+import com.example.anifox.util.viewpager.LifecycleViewPager
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.Flow

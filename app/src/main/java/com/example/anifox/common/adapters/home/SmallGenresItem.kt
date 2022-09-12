@@ -6,7 +6,7 @@ import androidx.core.content.ContextCompat
 import com.example.anifox.R
 import com.example.anifox.databinding.CardItemGenresBinding
 import com.example.anifox.domain.model.common.GenresCard
-import com.example.anifox.presentation.home.listeners.ItemClickListenerMorePageGenres
+import com.example.anifox.common.listeners.ItemClickListenerMorePageGenres
 import com.xwray.groupie.viewbinding.BindableItem
 
 class SmallGenresItem(var genre: GenresCard, private val onClick: ItemClickListenerMorePageGenres): BindableItem<CardItemGenresBinding>() {

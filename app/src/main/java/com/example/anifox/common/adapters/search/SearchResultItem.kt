@@ -6,7 +6,7 @@ import com.example.anifox.R
 import com.example.anifox.common.adapters.common.MangaItem
 import com.example.anifox.databinding.SearchResultItemBinding
 import com.example.anifox.domain.model.manga.Manga
-import com.example.anifox.presentation.home.listeners.ItemClickListenerGoToDetail
+import com.example.anifox.common.listeners.ItemClickListenerGoToDetail
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
 import com.xwray.groupie.viewbinding.BindableItem

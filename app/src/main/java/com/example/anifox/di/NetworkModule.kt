@@ -1,6 +1,7 @@
 package com.example.anifox.di
 
 import com.example.anifox.BuildConfig.BASE_URL_Main_API
+import com.example.anifox.core.interceptors.LoggingInterceptor
 import com.example.anifox.core.interceptors.UserAgentInterceptor
 import dagger.Module
 import dagger.Provides
@@ -20,8 +21,9 @@ object NetworkModule {
     @Singleton
     @Provides
     @Named("RetrofitMainApi")
-    fun provideMainRetrofit(): Retrofit {
+    fun provideMainRetrofit(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
+            .client(okHttpClient)
             .baseUrl(BASE_URL_Main_API)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
@@ -32,14 +34,27 @@ object NetworkModule {
     @Provides
     fun providesUserAgentInterceptor(): Interceptor = UserAgentInterceptor()
 
+    @LoggingInterceptorOkHttpClient
+    @Singleton
+    @Provides
+    fun providesLoggInterceptor(): Interceptor = LoggingInterceptor().log()
+
     @Provides
     @Singleton
-    fun provideHttpClient(@UserAgentInterceptorOkHttpClient headerAgent: Interceptor): OkHttpClient {
+    fun provideHttpClient(
+        @UserAgentInterceptorOkHttpClient headerAgent: Interceptor,
+        @LoggingInterceptorOkHttpClient logging: Interceptor
+    ): OkHttpClient {
         return OkHttpClient().newBuilder()
+            .addInterceptor(logging)
             .addInterceptor(headerAgent)
             .followRedirects(true)
             .followSslRedirects(false)
             .build()
     }
+
+
+
+
 
 }

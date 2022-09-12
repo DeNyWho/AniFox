@@ -7,5 +7,9 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class UserResponse(
     @SerialName("data")
-    val `data`: List<User> = listOf()
+    val `data`: List<User> = listOf(),
+    @SerialName("error")
+    val error: String? = null,
+    @SerialName("message")
+    val message: String? = null,
 )

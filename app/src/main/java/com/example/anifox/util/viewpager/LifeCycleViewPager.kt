@@ -1,4 +1,4 @@
-package com.example.anifox.util
+package com.example.anifox.util.viewpager
 
 import android.os.Handler
 import android.os.Looper

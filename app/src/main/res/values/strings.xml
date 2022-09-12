@@ -97,7 +97,9 @@
     <string name="password_confirm_helper">* Оба пароля должны быть одинаковыми</string>
     <string name="password_def_helper">* Должно быть не менее 8 символов</string>
     <string name="require_field">* Обязательное поле</string>
+    <string name="require_nicknameSize">* Имя пользователя должно содержать от 4 до 20 символов.</string>
     <string name="require_password">* вам нужно ввести ещё</string>
+    <string name="wrong_password">* Неверный логин или пароль</string>
     <string name="require_symbols">символов</string>
     <string name="password_dont_match">* Пароли не совпадают</string>
     <string name="email_wrong">* Неправильный формат почты!</string>
@@ -105,6 +107,9 @@
     <string name="save_button_dialog">Сохранить</string>
     <string name="status_dialog_button">Статус</string>
     <string name="progress_dialog_button">Прогресс</string>
+    <string name="username_already_registered">* Это имя пользователя недоступно</string>
+    <string name="email_already_registered">* Эта почта уже зарегистрирована, если она принадлежит вам, то попробуйте восстановить пароль</string>
+
 
 
 </resources>

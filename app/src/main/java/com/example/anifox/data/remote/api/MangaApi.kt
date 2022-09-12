@@ -1,13 +1,13 @@
 package com.example.anifox.data.remote.api
 
+import com.example.anifox.domain.model.manga.NewFavouriteManga
+import com.example.anifox.domain.model.responses.BasicBooleanResponse
 import com.example.anifox.domain.model.responses.MangaResponse
 import com.example.anifox.domain.model.responses.PagingFavouriteResponse
 import retrofit2.Response
-import retrofit2.http.GET
-import retrofit2.http.Path
-import retrofit2.http.Query
+import retrofit2.http.*
 
-interface MainApi {
+interface MangaApi {
 
     @GET("manga/")
     suspend fun getManga(
@@ -35,5 +35,11 @@ interface MainApi {
     suspend fun getSearchManga(
         @Query("query") query: String,
     ): Response<MangaResponse>
+
+    @POST("user/favourite/add")
+    suspend fun newFavourite(
+        @Query("status") status: String,
+        @Body newFavourite: NewFavouriteManga
+    ): Response<BasicBooleanResponse>
 
 }

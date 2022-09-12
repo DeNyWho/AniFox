@@ -21,7 +21,7 @@ import com.example.anifox.util.Constants.REVIEW_LIMIT_RANDOMIZE
 import com.example.anifox.util.Constants.SORT_BY_RATE
 import com.example.anifox.util.Constants.STATUS_BY_FINAL
 import com.example.anifox.util.Constants.STATUS_BY_ONGOING
-import com.example.anifox.util.StringResourcesProvider
+import com.example.anifox.util.resources.StringResourcesProvider
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow

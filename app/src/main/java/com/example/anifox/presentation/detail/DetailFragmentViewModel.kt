@@ -2,9 +2,13 @@ package com.example.anifox.presentation.detail
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.anifox.domain.useCase.dataStore.GetTokenUseCase
+import com.example.anifox.domain.useCase.detail.AddFavouriteUseCase
 import com.example.anifox.domain.useCase.detail.GetDetailsUseCase
-import com.example.anifox.presentation.detail.state.ContentDetailsState
 import com.example.anifox.presentation.detail.state.DetailState
+import com.example.anifox.presentation.detail.state.detail.ContentDetailsState
+import com.example.anifox.presentation.detail.state.favourite.DetailFavouriteState
+import com.example.anifox.presentation.detail.state.token.DetailTokenState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -14,11 +18,15 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DetailFragmentViewModel @Inject constructor(
-    private val getDetails: GetDetailsUseCase
+    private val getDetails: GetDetailsUseCase,
+    private val addFavourite: AddFavouriteUseCase,
+    private val getTokenUseCase: GetTokenUseCase
 ) : ViewModel() {
     private val _state = MutableStateFlow(
         DetailState(
-            contentDetailsState = ContentDetailsState(isLoading = true, data = null)
+            contentDetailsState = ContentDetailsState(isLoading = true, data = null),
+            detailFavouriteState = DetailFavouriteState(isLoading = true, data = null),
+            detailTokenState = DetailTokenState(token = null, isLoading = false)
         )
     )
     val state = _state.asStateFlow()
@@ -27,6 +35,19 @@ class DetailFragmentViewModel @Inject constructor(
 
     fun setQueries(malId: Int) {
         _queries.tryEmit(malId)
+    }
+
+    fun addFavourite(id: Int, status: String, token: String){
+        addFavourite.invoke(id = id, status = status, token = token).onEach { value ->
+            _state.tryEmit(
+                _state.value.copy(
+                    detailFavouriteState = _state.value.detailFavouriteState.copy(
+                        isLoading = false,
+                        data = value.data
+                    )
+                )
+            )
+        } .launchIn(viewModelScope)
     }
 
     fun getDetails(){
@@ -40,6 +61,19 @@ class DetailFragmentViewModel @Inject constructor(
                 )
             )
         } .launchIn(viewModelScope)
+    }
+
+    fun getTokenFromPreferences(){
+        getTokenUseCase.invoke().onEach { value ->
+            _state.tryEmit(
+                _state.value.copy(
+                    detailTokenState = _state.value.detailTokenState.copy(
+                        token = value?.token,
+                        isLoading = value?.isLoading == true
+                    )
+                )
+            )
+        }.launchIn(viewModelScope)
     }
 
 }
