@@ -1,4 +1,4 @@
-package com.example.anifox.common.adapters.home
+package com.example.anifox.common.adapters.common
 
 import android.view.View
 import androidx.annotation.DrawableRes

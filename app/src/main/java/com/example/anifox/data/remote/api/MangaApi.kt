@@ -42,4 +42,16 @@ interface MangaApi {
         @Body newFavourite: NewFavouriteManga
     ): Response<BasicBooleanResponse>
 
+    @GET("manga/similar/{id}")
+    suspend fun getSimilarManga(
+        @Path("id") id: Int
+    ): Response<MangaResponse>
+
+    @GET("manga/linked/{id}")
+    suspend fun getLinkedManga(
+        @Path("id") id: Int
+    ): Response<MangaResponse>
+
+
+
 }

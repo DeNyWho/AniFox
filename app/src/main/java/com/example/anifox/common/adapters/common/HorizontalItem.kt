@@ -1,12 +1,12 @@
-package com.example.anifox.common.adapters.home
+package com.example.anifox.common.adapters.common
 
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.anifox.R
-import com.example.anifox.common.adapters.common.MangaItem
+import com.example.anifox.common.adapters.home.DiscoverItem
+import com.example.anifox.common.listeners.ItemClickListenerGoToDetail
 import com.example.anifox.databinding.HorizontalItemBinding
 import com.example.anifox.domain.model.manga.Manga
-import com.example.anifox.common.listeners.ItemClickListenerGoToDetail
 import com.example.anifox.util.Constants
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder

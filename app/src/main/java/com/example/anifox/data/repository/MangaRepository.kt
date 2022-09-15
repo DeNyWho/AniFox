@@ -28,6 +28,14 @@ class MangaRepository @Inject constructor(
         return mangaApi.getDetailManga(id)
     }
 
+    override suspend fun getSimilarManga(id: Int): Response<MangaResponse> {
+        return mangaApi.getSimilarManga(id)
+    }
+
+    override suspend fun getLinkedManga(id: Int): Response<MangaResponse> {
+        return mangaApi.getLinkedManga(id)
+    }
+
     override suspend fun getManga(genre: String?, order: String?, status: String?, countCard: Int): Response<MangaResponse>{
         return mangaApi.getManga(page = REVIEW_PAGE, countCard = countCard, status = status, genre = genre, order = order)
     }

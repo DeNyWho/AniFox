@@ -1,4 +1,4 @@
-package com.example.anifox.common.adapters.home
+package com.example.anifox.common.adapters.common
 
 import android.view.View
 import androidx.annotation.StringRes
@@ -19,7 +19,7 @@ open class HeaderItem(
     }
 
     override fun bind(viewBinding: HeaderItemBinding, position: Int) {
-        viewBinding.tvName.setText(titleStringResId)
+        viewBinding.tvTitle.setText(titleStringResId)
     }
 }
 

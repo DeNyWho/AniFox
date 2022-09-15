@@ -10,13 +10,18 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.anifox.R
-import com.example.anifox.common.adapters.home.*
-import com.example.anifox.databinding.FragmentHomeFragmentBinding
-import com.example.anifox.domain.model.common.GenresCard
+import com.example.anifox.common.adapters.common.HeaderLightItem
+import com.example.anifox.common.adapters.common.HorizontalItem
+import com.example.anifox.common.adapters.home.GenresItem
+import com.example.anifox.common.adapters.home.HeaderMoreItem
+import com.example.anifox.common.adapters.home.RandomizeItem
+import com.example.anifox.common.adapters.home.RankingItems
 import com.example.anifox.common.listeners.ItemClickListenerGoToDetail
 import com.example.anifox.common.listeners.ItemClickListenerMorePage
 import com.example.anifox.common.listeners.ItemClickListenerMorePageGenres
 import com.example.anifox.common.listeners.ItemClickListenerRandom
+import com.example.anifox.databinding.FragmentHomeFragmentBinding
+import com.example.anifox.domain.model.common.GenresCard
 import com.example.anifox.util.Constants
 import com.xwray.groupie.Group
 import com.xwray.groupie.GroupAdapter
@@ -162,7 +167,7 @@ open class HomeFragment : Fragment() {
             }
             if(state.magic.data?.isNotEmpty() == true) {
                 this += HeaderMoreItem(
-                    image = R.drawable.book,
+                    image = R.drawable.magician_hat,
                     title = requireContext().getString(R.string.title_Magic),
                     onClick = object : ItemClickListenerMorePage {
                         override fun navigationToMorePages(genre: String) {
@@ -229,7 +234,7 @@ open class HomeFragment : Fragment() {
             if(state.randomState.data != null) {
                 this += RandomizeItem(
                     title = requireContext().getString(R.string.Randomize),
-                    image = R.drawable.map,
+                    image = R.drawable.treasure,
                     listData = state.randomState.data,
                     onClick = object : ItemClickListenerGoToDetail {
                         override fun navigationToDetail(id: Int) {

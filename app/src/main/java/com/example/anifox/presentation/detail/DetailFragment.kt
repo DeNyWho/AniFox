@@ -16,8 +16,9 @@ import com.example.anifox.common.adapters.details.DetailTabsItems
 import com.example.anifox.common.adapters.details.GenresDetailItem
 import com.example.anifox.common.adapters.details.HeaderDetailsItem
 import com.example.anifox.common.dialogs.detail.FavouriteDialogFragment
-import com.example.anifox.databinding.FragmentDetailFragmentBinding
+import com.example.anifox.common.listeners.ItemClickListenerGoToDetail
 import com.example.anifox.common.listeners.ItemClickListenerMorePage
+import com.example.anifox.databinding.FragmentDetailFragmentBinding
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
 import com.xwray.groupie.Item
@@ -52,6 +53,8 @@ class DetailFragment : Fragment() {
         viewModel.getTokenFromPreferences()
         viewModel.setQueries(args.animeId)
         viewModel.getDetails()
+        viewModel.getLinked()
+        viewModel.getSimilar()
 
         observeOnState()
         initRecycler()
@@ -64,6 +67,7 @@ class DetailFragment : Fragment() {
         binding.ivBack.setOnClickListener {
             findNavController().popBackStack()
         }
+
         if(binding.fabButton.visibility == View.VISIBLE) {
             binding.fabButton.setOnClickListener {
                 binding.fabButton.background = AppCompatResources.getDrawable(
@@ -73,9 +77,15 @@ class DetailFragment : Fragment() {
                 FavouriteDialogFragment(mangaID = args.animeId, token = token).show(parentFragmentManager, "favouriteDialog")
             }
         }
-
-
     }
+
+    private fun navigationToDetailInAdapter(id: Int){
+        val bundle = Bundle()
+        bundle.putInt("animeId", id)
+
+        findNavController().navigate(R.id.detailFragment, bundle)
+    }
+
 
     private fun initRecycler(){
         binding.recycler.adapter = groupAdapter
@@ -102,7 +112,16 @@ class DetailFragment : Fragment() {
                             navigationToMorePagesInAdapter(genre)
                         }
                     })
-                    this += DetailTabsItems(state.contentDetailsState.data)
+                    this += DetailTabsItems(
+                        manga = state.contentDetailsState.data,
+                        linkedData = state.detailLinkedState.data,
+                        similarData = state.detailSimilarState.data,
+                        onClick = object : ItemClickListenerGoToDetail {
+                            override fun navigationToDetail(id: Int) {
+                                navigationToDetailInAdapter(id)
+                            }
+                        }
+                    )
                 }
                 if(state.detailTokenState.token != null){
                     token = state.detailTokenState.token

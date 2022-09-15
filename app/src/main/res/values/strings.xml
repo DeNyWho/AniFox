@@ -26,6 +26,8 @@
     <string name="top_airing">Top Airing</string>
     <string name="most_read">Популярные</string>
     <string name="title_Magic">Магия</string>
+    <string name="title_recommendation">Рекомендации</string>
+    <string name="title_linked">Связанные</string>
     <string name="most_rated">Популярно сейчас</string>
     <string name="announces">Popular Announces</string>
     <string name="toolbar_manga">Манга</string>

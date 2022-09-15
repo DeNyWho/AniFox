@@ -15,4 +15,6 @@ interface RemoteDataSource {
     suspend fun getSearch(query: String): Response<MangaResponse>
     suspend fun getMangaByUser(token: String, status: String): Response<PagingFavouriteResponse>
     suspend fun addFavouriteManga(newFavourite: NewFavouriteManga, status: String): Response<BasicBooleanResponse>
+    suspend fun getSimilarManga(id: Int): Response<MangaResponse>
+    suspend fun getLinkedManga(id: Int): Response<MangaResponse>
 }

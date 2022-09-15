@@ -19,13 +19,14 @@
             android:orientation="horizontal">
 
             <androidx.cardview.widget.CardView
-                android:layout_width="40sp"
+                android:layout_marginStart="4sp"
+                android:layout_width="35sp"
                 android:id="@+id/cvExit"
                 app:cardCornerRadius="16sp"
                 android:layout_gravity="start|center"
                 app:cardElevation="2sp"
                 app:cardBackgroundColor="@color/cyan_light"
-                android:layout_height="40sp">
+                android:layout_height="35sp">
 
                 <ImageView
                     android:layout_width="30sp"
@@ -59,7 +60,7 @@
         <RadioGroup
             android:layout_width="match_parent"
             android:layout_height="45dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:orientation="horizontal">
 
                 <com.google.android.material.radiobutton.MaterialRadioButton
@@ -111,7 +112,7 @@
         <com.google.android.material.textview.MaterialTextView
             style="@style/TextView.Header"
             android:textSize="20sp"
-            android:layout_marginTop="20sp"
+            android:layout_marginTop="12sp"
             android:text="@string/progress_dialog_button"/>
 
 

@@ -9,10 +9,12 @@ import androidx.lifecycle.lifecycleScope
 import com.example.anifox.common.dialogs.MaterialDialogFragment
 import com.example.anifox.databinding.FavouriteDialogBinding
 import com.example.anifox.presentation.detail.DetailFragmentViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onEach
 
+@AndroidEntryPoint
 class FavouriteDialogFragment(private val mangaID: Int, private val token: String): MaterialDialogFragment() {
 
     private var _binding: FavouriteDialogBinding? = null
@@ -76,7 +78,7 @@ class FavouriteDialogFragment(private val mangaID: Int, private val token: Strin
     }
 
     private fun <T> Flow<T>.launchWhenStarted() {
-        viewLifecycleOwner.lifecycleScope.launchWhenStarted { collect () }
+        parentFragment?.viewLifecycleOwner?.lifecycleScope?.launchWhenStarted { collect () }
     }
 
     override fun onDestroyView() {
