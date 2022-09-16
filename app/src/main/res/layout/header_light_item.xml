@@ -8,14 +8,14 @@
     android:orientation="horizontal">
 
     <ImageView
-        android:layout_height="20dp"
-        android:layout_width="20dp"
+        android:layout_height="25dp"
+        android:layout_width="25dp"
+        android:layout_gravity="center"
         android:layout_marginEnd="4dp"
         android:id="@+id/ivImageSmile"/>
 
     <com.google.android.material.textview.MaterialTextView
         style="@style/TextView.Secondary"
         android:layout_weight="1"
-        android:id="@+id/tvTitle"
-        android:text="@string/announces" />
+        android:id="@+id/tvTitle" />
 </LinearLayout>

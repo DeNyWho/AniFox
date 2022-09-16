@@ -12,6 +12,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.anifox.R
+import com.example.anifox.common.adapters.common.HeaderItem
+import com.example.anifox.common.adapters.common.HorizontalItem
 import com.example.anifox.common.adapters.details.DetailTabsItems
 import com.example.anifox.common.adapters.details.GenresDetailItem
 import com.example.anifox.common.adapters.details.HeaderDetailsItem
@@ -19,6 +21,7 @@ import com.example.anifox.common.dialogs.detail.FavouriteDialogFragment
 import com.example.anifox.common.listeners.ItemClickListenerGoToDetail
 import com.example.anifox.common.listeners.ItemClickListenerMorePage
 import com.example.anifox.databinding.FragmentDetailFragmentBinding
+import com.example.anifox.util.Constants
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
 import com.xwray.groupie.Item
@@ -103,25 +106,44 @@ class DetailFragment : Fragment() {
         viewModel.state.onEach { state ->
             val list = mutableListOf<Item<*>>().apply {
                 if(state.contentDetailsState.data != null){
+                    binding.tvTitle.text = state.contentDetailsState.data.title
                     this += HeaderDetailsItem(state.contentDetailsState.data)
                     this += GenresDetailItem(
                         manga = state.contentDetailsState.data,
-                        onClick = object :
-                        ItemClickListenerMorePage {
+                        onClick = object : ItemClickListenerMorePage {
                         override fun navigationToMorePages(genre: String) {
                             navigationToMorePagesInAdapter(genre)
                         }
                     })
                     this += DetailTabsItems(
-                        manga = state.contentDetailsState.data,
-                        linkedData = state.detailLinkedState.data,
-                        similarData = state.detailSimilarState.data,
-                        onClick = object : ItemClickListenerGoToDetail {
-                            override fun navigationToDetail(id: Int) {
-                                navigationToDetailInAdapter(id)
-                            }
-                        }
+                        manga = state.contentDetailsState.data
                     )
+                    if(state.detailLinkedState.data?.isNotEmpty() == true){
+                        this += HeaderItem(titleStringResId = R.string.title_linked)
+                        this += HorizontalItem(
+                            listData = state.detailLinkedState.data,
+                            type = Constants.STYLE_SMALLER_RECYCLER,
+                            onClick = object : ItemClickListenerGoToDetail {
+                                override fun navigationToDetail(id: Int) {
+                                    navigationToDetailInAdapter(id)
+                                }
+                            }
+                        )
+                    }
+
+                    if(state.detailSimilarState.data?.isNotEmpty() == true){
+                        this += HeaderItem(titleStringResId = R.string.title_recommendation)
+                        this += HorizontalItem(
+                            listData = state.detailSimilarState.data,
+                            type = Constants.STYLE_SMALLER_RECYCLER,
+                            onClick = object : ItemClickListenerGoToDetail {
+                                override fun navigationToDetail(id: Int) {
+                                    navigationToDetailInAdapter(id)
+                                }
+                            }
+                        )
+                    }
+
                 }
                 if(state.detailTokenState.token != null){
                     token = state.detailTokenState.token

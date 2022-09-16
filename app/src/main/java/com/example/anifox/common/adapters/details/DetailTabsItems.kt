@@ -5,7 +5,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import com.ahmadhamwi.tabsync.TabbedListMediator
 import com.example.anifox.R
-import com.example.anifox.common.listeners.ItemClickListenerGoToDetail
 import com.example.anifox.databinding.DetailTabsItemsBinding
 import com.example.anifox.domain.model.manga.Manga
 import com.xwray.groupie.GroupAdapter
@@ -15,9 +14,6 @@ import com.xwray.groupie.viewbinding.BindableItem
 
 class DetailTabsItems(
     private val manga: Manga,
-    private val linkedData: List<Manga>?,
-    private val similarData: List<Manga>?,
-    private val onClick: ItemClickListenerGoToDetail,
 ) : BindableItem<DetailTabsItemsBinding>() {
     private val horizontalAdapter by lazy { GroupAdapter <GroupieViewHolder>() }
 
@@ -36,16 +32,10 @@ class DetailTabsItems(
             this += DetailTabsItemsVertical(
                 manga = manga,
                 type = 1,
-                linkedData = linkedData,
-                similarData = similarData,
-                onClick = onClick
             )
             this += DetailTabsItemsVertical(
                 manga = manga,
                 type = 2,
-                linkedData = null,
-                similarData = null,
-                onClick = null
             )
         }
         if(binding.tabLayout.tabCount == 0){

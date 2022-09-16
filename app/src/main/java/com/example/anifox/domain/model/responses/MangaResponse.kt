@@ -7,5 +7,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class MangaResponse(
     @SerialName("data")
-    val `data`: List<Manga> = listOf()
+    val `data`: List<Manga> = listOf(),
+    @SerialName("message")
+    val message: String? = null
 )

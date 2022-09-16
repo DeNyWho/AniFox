@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.OvershootInterpolator
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
@@ -11,10 +12,11 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.anifox.R
 import com.example.anifox.common.adapters.common.SmallerAnimeItem
-import com.example.anifox.databinding.FragmentOnGoingTabBinding
 import com.example.anifox.common.listeners.ItemClickListenerGoToDetail
+import com.example.anifox.databinding.FragmentOnGoingTabBinding
 import com.example.anifox.presentation.morePage.MorePageViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import jp.wasabeef.recyclerview.adapters.AlphaInAnimationAdapter
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onEach

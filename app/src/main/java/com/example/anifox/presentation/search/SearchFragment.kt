@@ -80,9 +80,19 @@ class SearchFragment : Fragment() {
 
             override fun onTextChanged(s: CharSequence, start: Int,
                                        before: Int, count: Int) {
-                if(count > 2){
-                    viewModel.setQueries(query = s.toString())
-                    viewModel.getSearch()
+                when{
+                    count > 2 -> {
+                        binding.tilSearch.isHelperTextEnabled = false
+                        viewModel.clearData()
+                        viewModel.setQueries(query = s.toString())
+                        viewModel.getSearch()
+                    }
+                    count < 3 -> {
+                        binding.tilSearch.helperText = getString(R.string.search_min_size_field)
+                        viewModel.getPopularOnGoing()
+                        viewModel.getPopularOnFinal()
+                        viewModel.clearSearch()
+                    }
                 }
             }
         })
@@ -102,7 +112,15 @@ class SearchFragment : Fragment() {
     private fun observeOnState() {
         viewModel.state.onEach { state ->
             val list: List<Group> = mutableListOf<Group>().apply {
-                if(state.search.data != null) {
+                if(state.randomState.data != null){
+                    binding.tilSearch.hint = "${getString(R.string.search_hint)} «${state.randomState.data.title}»"
+                }
+                if(state.search.data?.isNotEmpty() == true) {
+                    println("BASICS = ${state.search.data}")
+                    this += HeaderLightItem(
+                        image = R.drawable.searcher,
+                        title = requireContext().getString(R.string.search_result)
+                    )
                     this += Section(
                         SearchResultItem(
                         listData = state.search.data,
@@ -113,38 +131,40 @@ class SearchFragment : Fragment() {
                         }
                     )
                     )
-                }
-                if(state.onGoing.data?.isNotEmpty() == true) {
-                    this += HeaderLightItem(
-                        image = R.drawable.book,
-                        title = requireContext().getString(R.string.ongoing)
-                    )
-                    this += HorizontalItem(
-                        listData = state.onGoing.data,
-                        type = Constants.STYLE_SMALLER_RECYCLER,
-                        onClick = object : ItemClickListenerGoToDetail {
-                            override fun navigationToDetail(id: Int) {
-                                navigationToDetailInAdapter(id)
+                } else {
+                    if(state.onGoing.data?.isNotEmpty() == true) {
+                        this += HeaderLightItem(
+                            image = R.drawable.ongoing,
+                            title = requireContext().getString(R.string.ongoing)
+                        )
+                        this += HorizontalItem(
+                            listData = state.onGoing.data,
+                            type = Constants.STYLE_SMALLER_RECYCLER,
+                            onClick = object : ItemClickListenerGoToDetail {
+                                override fun navigationToDetail(id: Int) {
+                                    navigationToDetailInAdapter(id)
+                                }
                             }
-                        }
-                    )
+                        )
+                    }
+
+                    if(state.onFinal.data?.isNotEmpty() == true) {
+                        this += HeaderLightItem(
+                            image = R.drawable.completed,
+                            title = requireContext().getString(R.string.completed)
+                        )
+                        this += HorizontalItem(
+                            listData = state.onFinal.data,
+                            type = Constants.STYLE_SMALLER_RECYCLER,
+                            onClick = object : ItemClickListenerGoToDetail {
+                                override fun navigationToDetail(id: Int) {
+                                    navigationToDetailInAdapter(id)
+                                }
+                            }
+                        )
+                    }
                 }
 
-                if(state.onFinal.data?.isNotEmpty() == true) {
-                    this += HeaderLightItem(
-                        image = R.drawable.book,
-                        title = requireContext().getString(R.string.completed)
-                    )
-                    this += HorizontalItem(
-                        listData = state.onFinal.data,
-                        type = Constants.STYLE_SMALLER_RECYCLER,
-                        onClick = object : ItemClickListenerGoToDetail {
-                            override fun navigationToDetail(id: Int) {
-                                navigationToDetailInAdapter(id)
-                            }
-                        }
-                    )
-                }
 
 
 

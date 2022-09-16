@@ -21,7 +21,10 @@ class RandomSearchUseCase @Inject constructor(
             if (res.isSuccessful){
                 val data = res.body()?.data?.map { it.toData() }.orEmpty()
                 Timber.d("DATA = $data")
-                val state = RandomSearchState(data, isLoading = false)
+                val b = data.sortedBy {
+                    it.title.length
+                }
+                val state = RandomSearchState(b[0], isLoading = false)
                 emit(state)
             } else {
                 val state = RandomSearchState(isLoading = false, error = res.message())

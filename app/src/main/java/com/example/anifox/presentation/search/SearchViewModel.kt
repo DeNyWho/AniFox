@@ -49,6 +49,37 @@ class SearchViewModel @Inject constructor(
         _queries.tryEmit(query)
     }
 
+    fun clearSearch(){
+        _state.tryEmit(
+            _state.value.copy(
+                search = _state.value.search.copy(
+                    isLoading = true,
+                    data = null,
+
+                )
+            )
+        )
+    }
+
+    fun clearData(){
+        _state.tryEmit(
+            _state.value.copy(
+                onGoing = _state.value.onGoing.copy(
+                    isLoading = true,
+                    data = null
+                )
+            )
+        )
+        _state.tryEmit(
+            _state.value.copy(
+                onFinal = _state.value.onFinal.copy(
+                    isLoading = true,
+                    data = null
+                )
+            )
+        )
+    }
+
     fun getPopularOnGoing(){
         getOnGoing.invoke(genre = null, order = SORT_BY_RATE, status = STATUS_BY_ONGOING, countCard = REVIEW_LIMIT).onEach { value ->
             _state.tryEmit(

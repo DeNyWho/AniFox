@@ -59,7 +59,7 @@
         <entry key="..\:/Users/denis/AndroidStudioProjects/AniFox/app/src/main/res/layout/favourite_dialog.xml" value="0.33" />
         <entry key="..\:/Users/denis/AndroidStudioProjects/AniFox/app/src/main/res/layout/fragment_change_password.xml" value="0.33" />
         <entry key="..\:/Users/denis/AndroidStudioProjects/AniFox/app/src/main/res/layout/fragment_check_mail.xml" value="0.33" />
-        <entry key="..\:/Users/denis/AndroidStudioProjects/AniFox/app/src/main/res/layout/fragment_detail_fragment.xml" value="0.33" />
+        <entry key="..\:/Users/denis/AndroidStudioProjects/AniFox/app/src/main/res/layout/fragment_detail_fragment.xml" value="0.22" />
         <entry key="..\:/Users/denis/AndroidStudioProjects/AniFox/app/src/main/res/layout/fragment_detail_screen.xml" value="0.2015625" />
         <entry key="..\:/Users/denis/AndroidStudioProjects/AniFox/app/src/main/res/layout/fragment_favourite_on_all.xml" value="0.18768996960486323" />
         <entry key="..\:/Users/denis/AndroidStudioProjects/AniFox/app/src/main/res/layout/fragment_favourite_on_completed.xml" value="0.18768996960486323" />
@@ -93,9 +93,9 @@
         <entry key="..\:/Users/denis/AndroidStudioProjects/AniFox/app/src/main/res/layout/genres_details_item.xml" value="0.18819655521783182" />
         <entry key="..\:/Users/denis/AndroidStudioProjects/AniFox/app/src/main/res/layout/genres_details_small_item.xml" value="0.67" />
         <entry key="..\:/Users/denis/AndroidStudioProjects/AniFox/app/src/main/res/layout/genres_item.xml" value="0.24954710144927536" />
-        <entry key="..\:/Users/denis/AndroidStudioProjects/AniFox/app/src/main/res/layout/header_details_item.xml" value="0.33" />
+        <entry key="..\:/Users/denis/AndroidStudioProjects/AniFox/app/src/main/res/layout/header_details_item.xml" value="0.22" />
         <entry key="..\:/Users/denis/AndroidStudioProjects/AniFox/app/src/main/res/layout/header_item.xml" value="0.18" />
-        <entry key="..\:/Users/denis/AndroidStudioProjects/AniFox/app/src/main/res/layout/header_light_item.xml" value="0.2" />
+        <entry key="..\:/Users/denis/AndroidStudioProjects/AniFox/app/src/main/res/layout/header_light_item.xml" value="0.33" />
         <entry key="..\:/Users/denis/AndroidStudioProjects/AniFox/app/src/main/res/layout/header_more_item.xml" value="0.25" />
         <entry key="..\:/Users/denis/AndroidStudioProjects/AniFox/app/src/main/res/layout/horizontal_bigger_item.xml" value="0.1" />
         <entry key="..\:/Users/denis/AndroidStudioProjects/AniFox/app/src/main/res/layout/horizontal_item.xml" value="0.21920289855072464" />

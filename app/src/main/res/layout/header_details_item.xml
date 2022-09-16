@@ -9,7 +9,6 @@
     tools:context=".presentation.detail.DetailFragment">
 
     <LinearLayout
-        android:layout_marginHorizontal="12dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">

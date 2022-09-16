@@ -1,33 +1,12 @@
 <resources>
     <string name="app_name">AniFox</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <!-- Strings related to login -->
-    <string name="prompt_email">Email</string>
-    <string name="prompt_password">Password</string>
-    <string name="action_sign_in">Sign in or register</string>
-    <string name="action_sign_in_short">Sign in</string>
-    <string name="welcome">"Welcome!"</string>
-    <string name="invalid_username">Not a valid username</string>
-    <string name="invalid_password">Password must be >5 characters</string>
-    <string name="login_failed">"Login failed"</string>
-    <string name="descriptionLogin">We felt your obsence, log in to\ncontinue</string>
-    <string name="descriptionAuthCode">Enter code from the website</string>
-    <string name="headingLogin">Welcome back\nAnime researcher!</string>
-    <string name="buttonLogin">Sign In</string>
-    <string name="buttonCode">Get code</string>
-    <string name="shikimori_redirect_scheme">shimori</string>
-    <string name="shikimori_redirect_host">oauth</string>
-    <string name="shikimori_redirect_path">/shikimori</string>
-    <string name="auth_canceled">Authentication failed</string>
-    <string name="enter_code">Enter code</string>
-    <string name="empty_view">Enter your code here from the website</string>
     <string name="popular_anime">Popular anime</string>
     <string name="top_airing">Top Airing</string>
     <string name="most_read">Популярные</string>
     <string name="title_Magic">Магия</string>
     <string name="title_recommendation">Рекомендации</string>
     <string name="title_linked">Связанные</string>
+    <string name="title_genres">Жанры</string>
     <string name="most_rated">Популярно сейчас</string>
     <string name="announces">Popular Announces</string>
     <string name="toolbar_manga">Манга</string>
@@ -112,6 +91,10 @@
     <string name="username_already_registered">* Это имя пользователя недоступно</string>
     <string name="email_already_registered">* Эта почта уже зарегистрирована, если она принадлежит вам, то попробуйте восстановить пароль</string>
 
+    <string name="search_min_size_field">* Вы должны ввести минимум 3 символа</string>
+    <string name="search_hint">Попробуйте</string>
+    <string name="search_title">Поиск</string>
+    <string name="search_result">Найденный результат</string>
 
 
 </resources>
