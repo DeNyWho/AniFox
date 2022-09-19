@@ -55,7 +55,7 @@ class SearchViewModel @Inject constructor(
                 search = _state.value.search.copy(
                     isLoading = true,
                     data = null,
-
+                    message = null
                 )
             )
         )
@@ -112,7 +112,8 @@ class SearchViewModel @Inject constructor(
                 _state.value.copy(
                     search = _state.value.search.copy(
                         isLoading = false,
-                        data = value.data
+                        data = value.data,
+                        message = value.message
                     )
                 )
             )

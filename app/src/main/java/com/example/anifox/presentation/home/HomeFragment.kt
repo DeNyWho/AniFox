@@ -187,12 +187,12 @@ open class HomeFragment : Fragment() {
             }
             if(state.monsters.data?.isNotEmpty() == true) {
                 this += HeaderMoreItem(
-                    title = requireContext().getString(R.string.Genre_Monsters),
+                    title = requireContext().getString(R.string.title_Monsters),
                     image = R.drawable.monster,
                     onClick = object : ItemClickListenerMorePage {
                         override fun navigationToMorePages(genre: String) {
                             navigationToMorePagesInAdapter(
-                                genre = requireContext().getString(R.string.Genre_Monsters)
+                                genre = requireContext().getString(R.string.title_Monsters)
                             )
                         }
                     }
@@ -209,16 +209,15 @@ open class HomeFragment : Fragment() {
             }
             if(state.middleAgesState.data?.isNotEmpty() == true) {
                 this += HeaderMoreItem(
-                    title = requireContext().getString(R.string.Genre_MiddleAges),
+                    title = requireContext().getString(R.string.title_MiddleAge),
                     image = R.drawable.knight,
                     onClick = object : ItemClickListenerMorePage {
                         override fun navigationToMorePages(genre: String) {
                             navigationToMorePagesInAdapter(
-                                genre = requireContext().getString(R.string.Genre_MiddleAges)
+                                genre = requireContext().getString(R.string.title_MiddleAge)
                             )
                         }
                     }
-
                 )
                 this += HorizontalItem(
                     listData = state.middleAgesState.data,
@@ -229,25 +228,25 @@ open class HomeFragment : Fragment() {
                         }
                     }
                 )
+                if(state.randomState.data != null) {
+                    this += RandomizeItem(
+                        title = requireContext().getString(R.string.Randomize),
+                        image = R.drawable.treasure,
+                        listData = state.randomState.data,
+                        onClick = object : ItemClickListenerGoToDetail {
+                            override fun navigationToDetail(id: Int) {
+                                navigationToDetailInAdapter(id)
+                            }
+                        },
+                        headerClick = object : ItemClickListenerRandom {
+                            override fun randomize() {
+                                viewModel.getRandom()
+                            }
+                        }
+                    )
+                }
             }
 
-            if(state.randomState.data != null) {
-                this += RandomizeItem(
-                    title = requireContext().getString(R.string.Randomize),
-                    image = R.drawable.treasure,
-                    listData = state.randomState.data,
-                    onClick = object : ItemClickListenerGoToDetail {
-                        override fun navigationToDetail(id: Int) {
-                            navigationToDetailInAdapter(id)
-                        }
-                    },
-                    headerClick = object : ItemClickListenerRandom {
-                        override fun randomize() {
-                            viewModel.getRandom()
-                        }
-                    }
-                )
-            }
             if(state.airingPopularState.data?.isNotEmpty() == true && state.popularState.data?.isNotEmpty() == true && state.mostRead.data?.isNotEmpty() == true && state.popularCompleted.data?.isNotEmpty() == true){
                 this += HeaderLightItem(
                     title = requireContext().getString(R.string.Ranking),

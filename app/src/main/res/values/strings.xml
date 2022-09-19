@@ -3,10 +3,13 @@
     <string name="popular_anime">Popular anime</string>
     <string name="top_airing">Top Airing</string>
     <string name="most_read">Популярные</string>
+
     <string name="title_Magic">Магия</string>
     <string name="title_recommendation">Рекомендации</string>
     <string name="title_linked">Связанные</string>
     <string name="title_genres">Жанры</string>
+    <string name="title_MiddleAge">Средневековье</string>
+    <string name="title_Monsters">Монстры</string>
     <string name="most_rated">Популярно сейчас</string>
     <string name="announces">Popular Announces</string>
     <string name="toolbar_manga">Манга</string>
@@ -20,9 +23,9 @@
     <string name="Genre_Horror">Ужасы</string>
     <string name="Genre_Mystic">Мистика</string>
     <string name="Genre_All_Genres">Все жанры</string>
-    <string name="Genre_Magic">Магия</string>
-    <string name="Genre_Monsters">Монстры</string>
-    <string name="Genre_MiddleAges">Средневековье</string>
+    <string name="Genre_Magic">#Магия</string>
+    <string name="Genre_Monsters">#Монстры</string>
+    <string name="Genre_MiddleAges">#Средневековье</string>
 
     <string name="Ranking">Рейтинг</string>
     <string name="Randomize">Найдите свое сокровище</string>
@@ -62,7 +65,11 @@
     <string name="send">Отправить</string>
     <string name="SignUpButton">Зарегистрироваться</string>
     <string name="skip">Пропустить</string>
+
     <string name="warning_needRegistration">Лисёнок плачет, потому-что вы не можете увидеть то, что находится здесь.\nвам требуется зарегистрироваться по кнопке снизу</string>
+    <string name="warning_search_start">К сожалению, по запросу «</string>
+    <string name="warning_search_end">» ничего не найдено</string>
+
     <string name="manga">Manga</string>
     <string name="go_back">Назад</string>
     <string name="reset_email_description">Введите адрес электронной почты, связанный с вашей учетной записью, и мы отправим электронное письмо с инструкциями о том, как сбросить ваш пароль.</string>

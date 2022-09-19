@@ -12,6 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.anifox.R
+import com.example.anifox.common.adapters.common.ErrorItem
 import com.example.anifox.common.adapters.common.HeaderLightItem
 import com.example.anifox.common.adapters.common.HorizontalItem
 import com.example.anifox.common.adapters.search.SearchResultItem
@@ -131,38 +132,44 @@ class SearchFragment : Fragment() {
                         }
                     )
                     )
-                } else {
-                    if(state.onGoing.data?.isNotEmpty() == true) {
-                        this += HeaderLightItem(
-                            image = R.drawable.ongoing,
-                            title = requireContext().getString(R.string.ongoing)
-                        )
-                        this += HorizontalItem(
-                            listData = state.onGoing.data,
-                            type = Constants.STYLE_SMALLER_RECYCLER,
-                            onClick = object : ItemClickListenerGoToDetail {
-                                override fun navigationToDetail(id: Int) {
-                                    navigationToDetailInAdapter(id)
-                                }
+                }
+                println("WTF STATE  4 = ${state.search}")
+                if(state.search.message == "Not Found"){
+                    println("WTF STATE = ${state.search}")
+                    this += ErrorItem(
+                        errorMessage = "${getString(R.string.warning_search_start)}${binding.etSearch.text}${getString(R.string.warning_search_end)}"
+                    )
+                }
+                if(state.onGoing.data?.isNotEmpty() == true) {
+                    this += HeaderLightItem(
+                        image = R.drawable.ongoing,
+                        title = requireContext().getString(R.string.ongoing)
+                    )
+                    this += HorizontalItem(
+                        listData = state.onGoing.data,
+                        type = Constants.STYLE_SMALLER_RECYCLER,
+                        onClick = object : ItemClickListenerGoToDetail {
+                            override fun navigationToDetail(id: Int) {
+                                navigationToDetailInAdapter(id)
                             }
-                        )
-                    }
+                        }
+                    )
+                }
 
-                    if(state.onFinal.data?.isNotEmpty() == true) {
-                        this += HeaderLightItem(
-                            image = R.drawable.completed,
-                            title = requireContext().getString(R.string.completed)
-                        )
-                        this += HorizontalItem(
-                            listData = state.onFinal.data,
-                            type = Constants.STYLE_SMALLER_RECYCLER,
-                            onClick = object : ItemClickListenerGoToDetail {
-                                override fun navigationToDetail(id: Int) {
-                                    navigationToDetailInAdapter(id)
-                                }
+                if(state.onFinal.data?.isNotEmpty() == true) {
+                    this += HeaderLightItem(
+                        image = R.drawable.completed,
+                        title = requireContext().getString(R.string.completed)
+                    )
+                    this += HorizontalItem(
+                        listData = state.onFinal.data,
+                        type = Constants.STYLE_SMALLER_RECYCLER,
+                        onClick = object : ItemClickListenerGoToDetail {
+                            override fun navigationToDetail(id: Int) {
+                                navigationToDetailInAdapter(id)
                             }
-                        )
-                    }
+                        }
+                    )
                 }
 
 
