@@ -3,8 +3,8 @@ package com.example.anifox.common.adapters.home
 import android.view.View
 import androidx.annotation.DrawableRes
 import com.example.anifox.R
-import com.example.anifox.databinding.HeaderMoreItemBinding
 import com.example.anifox.common.listeners.ItemClickListenerMorePage
+import com.example.anifox.databinding.HeaderMoreItemBinding
 import com.xwray.groupie.viewbinding.BindableItem
 
 open class HeaderMoreItem(
@@ -26,11 +26,11 @@ open class HeaderMoreItem(
         viewBinding.ivImageSmile.setImageResource(image)
 
         viewBinding.tvSeeMore.setOnClickListener {
-            onClick.navigationToMorePages(genre = title)
+            onClick.navigationToMorePages()
         }
 
         viewBinding.ivImageGoIn.setOnClickListener {
-            onClick.navigationToMorePages(genre = title)
+            onClick.navigationToMorePages()
         }
     }
 }

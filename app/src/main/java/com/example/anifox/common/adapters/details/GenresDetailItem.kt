@@ -3,14 +3,14 @@ package com.example.anifox.common.adapters.details
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.anifox.R
+import com.example.anifox.common.listeners.ItemClickListenerMorePageWithGenre
 import com.example.anifox.databinding.GenresDetailsItemBinding
 import com.example.anifox.domain.model.manga.Manga
-import com.example.anifox.common.listeners.ItemClickListenerMorePage
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
 import com.xwray.groupie.viewbinding.BindableItem
 
-class GenresDetailItem(var manga: Manga, private val onClick: ItemClickListenerMorePage) : BindableItem<GenresDetailsItemBinding>() {
+class GenresDetailItem(var manga: Manga, private val onClick: ItemClickListenerMorePageWithGenre) : BindableItem<GenresDetailsItemBinding>() {
     private val horizontalAdapter by lazy { GroupAdapter <GroupieViewHolder>() }
 
     override fun getLayout(): Int {

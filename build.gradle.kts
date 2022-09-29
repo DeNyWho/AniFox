@@ -23,9 +23,3 @@ allprojects {
         maven { url = uri(Config.Repositories.jitpack) }
     }
 }
-
-tasks {
-    val clean by registering(Delete::class) {
-        delete(buildDir)
-    }
-}

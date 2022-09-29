@@ -3,6 +3,7 @@ package com.example.anifox.common.adapters.details
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.anifox.R
+import com.example.anifox.common.listeners.ItemClickListenerGoToReader
 import com.example.anifox.databinding.DetailTabsItemsVerticalBinding
 import com.example.anifox.domain.model.manga.Manga
 import com.xwray.groupie.GroupAdapter
@@ -12,7 +13,8 @@ import com.xwray.groupie.viewbinding.BindableItem
 
 class DetailTabsItemsVertical(
     private val manga: Manga,
-    private var type: Int
+    private var type: Int,
+    private val onClick: ItemClickListenerGoToReader?
 ) : BindableItem<DetailTabsItemsVerticalBinding>() {
     private val verticalAdapter by lazy { GroupAdapter <GroupieViewHolder>() }
 
@@ -29,7 +31,8 @@ class DetailTabsItemsVertical(
         val list = mutableListOf<Item<*>>().apply {
             this += DetailsTabsItem(
                 manga = manga,
-                type = type
+                type = type,
+                onClick = onClick,
             )
         }
 

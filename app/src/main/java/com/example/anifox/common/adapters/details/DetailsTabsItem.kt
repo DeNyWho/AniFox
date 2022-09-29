@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.core.view.updateLayoutParams
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.anifox.R
+import com.example.anifox.common.listeners.ItemClickListenerGoToReader
 import com.example.anifox.databinding.DetailsTabItemBinding
 import com.example.anifox.domain.model.manga.Manga
 import com.xwray.groupie.GroupAdapter
@@ -16,7 +17,8 @@ import kotlin.math.roundToInt
 
 class DetailsTabsItem(
     private var manga: Manga,
-    private var type: Int
+    private var type: Int,
+    private val onClick: ItemClickListenerGoToReader?
 ): BindableItem<DetailsTabItemBinding>() {
     private val verticalAdapter by lazy { GroupAdapter <GroupieViewHolder>() }
 
@@ -59,8 +61,13 @@ class DetailsTabsItem(
             }
 
             val list = mutableListOf<Item<*>>().apply {
-                for( i in 0 until manga.chaptersCount){
-                    this += ChaptersItem(title = manga.chapters.title[i], date = manga.chapters.date[i], url = manga.chapters.url[i] )
+                for( i in 0 until manga.chaptersCount) {
+                    this += ChaptersItem(
+                        title = manga.chapters.title[i],
+                        date = manga.chapters.date[i],
+                        url = manga.chapters.url[i],
+                        onClick = onClick!!
+                    )
                 }
             }
 

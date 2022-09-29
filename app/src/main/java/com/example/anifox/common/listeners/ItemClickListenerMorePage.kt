@@ -1,5 +1,9 @@
 package com.example.anifox.common.listeners
 
 interface ItemClickListenerMorePage {
-    fun navigationToMorePages(genre: String)
+    fun navigationToMorePages()
+}
+
+interface ItemClickListenerMorePageWithGenre {
+    fun navigationToMorePagesWithGenre(genre: String)
 }

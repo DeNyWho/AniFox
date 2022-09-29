@@ -19,8 +19,9 @@ import com.example.anifox.common.adapters.details.GenresDetailItem
 import com.example.anifox.common.adapters.details.HeaderDetailsItem
 import com.example.anifox.common.dialogs.detail.FavouriteDialogFragment
 import com.example.anifox.common.listeners.ItemClickListenerGoToDetail
-import com.example.anifox.common.listeners.ItemClickListenerMorePage
-import com.example.anifox.databinding.FragmentDetailFragmentBinding
+import com.example.anifox.common.listeners.ItemClickListenerGoToReader
+import com.example.anifox.common.listeners.ItemClickListenerMorePageWithGenre
+import com.example.anifox.databinding.FragmentDetailBinding
 import com.example.anifox.util.Constants
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
@@ -34,7 +35,7 @@ import kotlinx.coroutines.flow.onEach
 class DetailFragment : Fragment() {
     private val args: DetailFragmentArgs by navArgs()
 
-    private var _binding: FragmentDetailFragmentBinding? = null
+    private var _binding: FragmentDetailBinding? = null
     private val binding get() = _binding!!
 
     private val viewModel: DetailFragmentViewModel by activityViewModels()
@@ -47,7 +48,7 @@ class DetailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentDetailFragmentBinding.inflate(inflater, container, false)
+        _binding = FragmentDetailBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -66,7 +67,6 @@ class DetailFragment : Fragment() {
     }
 
     private fun initListeners(){
-
         binding.ivBack.setOnClickListener {
             findNavController().popBackStack()
         }
@@ -80,6 +80,13 @@ class DetailFragment : Fragment() {
                 FavouriteDialogFragment(mangaID = args.animeId, token = token).show(parentFragmentManager, "favouriteDialog")
             }
         }
+    }
+
+    private fun navigationToReaderInAdapter(url: String){
+        val bundle = Bundle()
+        bundle.putString("url", url)
+
+        findNavController().navigate(R.id.readerFragment, bundle)
     }
 
     private fun navigationToDetailInAdapter(id: Int){
@@ -110,13 +117,18 @@ class DetailFragment : Fragment() {
                     this += HeaderDetailsItem(state.contentDetailsState.data)
                     this += GenresDetailItem(
                         manga = state.contentDetailsState.data,
-                        onClick = object : ItemClickListenerMorePage {
-                        override fun navigationToMorePages(genre: String) {
+                        onClick = object : ItemClickListenerMorePageWithGenre {
+                            override fun navigationToMorePagesWithGenre(genre: String) {
                             navigationToMorePagesInAdapter(genre)
                         }
                     })
                     this += DetailTabsItems(
-                        manga = state.contentDetailsState.data
+                        manga = state.contentDetailsState.data,
+                        onClick = object : ItemClickListenerGoToReader {
+                            override fun navigationToReader(url: String) {
+                                navigationToReaderInAdapter(url)
+                            }
+                        }
                     )
                     if(state.detailLinkedState.data?.isNotEmpty() == true){
                         this += HeaderItem(titleStringResId = R.string.title_linked)

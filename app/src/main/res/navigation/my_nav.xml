@@ -8,7 +8,7 @@
         android:id="@+id/homeFragment"
         android:name="com.example.anifox.presentation.home.HomeFragment"
         android:label="fragment_home_fragment"
-        tools:layout="@layout/fragment_home_fragment" >
+        tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/action_homeFragment_to_morePageFragment"
             app:destination="@id/morePageFragment"/>
@@ -49,13 +49,16 @@
         android:id="@+id/detailFragment"
         android:name="com.example.anifox.presentation.detail.DetailFragment"
         android:label="fragment_detail_fragment"
-        tools:layout="@layout/fragment_detail_fragment" >
+        tools:layout="@layout/fragment_detail" >
         <argument
             android:name="animeId"
             app:argType="integer" />
         <action
             android:id="@+id/action_detailFragment_to_morePageFragment"
             app:destination="@id/morePageFragment" />
+        <action
+            android:id="@+id/action_detailFragment_to_readerFragment2"
+            app:destination="@id/readerFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
@@ -153,4 +156,13 @@
         android:name="com.example.anifox.presentation.recoveryPassword.ChangePassword"
         android:label="fragment_change_password"
         tools:layout="@layout/fragment_change_password" />
+    <fragment
+        android:id="@+id/readerFragment"
+        android:name="com.example.anifox.presentation.reader.ReaderFragment"
+        android:label="fragment_reader"
+        tools:layout="@layout/fragment_reader" >
+        <argument
+            android:name="url"
+            app:argType="string" />
+    </fragment>
 </navigation>

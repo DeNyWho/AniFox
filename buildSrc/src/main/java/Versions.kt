@@ -12,6 +12,8 @@ object Versions {
 
     const val tabSync = "1.0.1"
     const val showMoreTextview = "1.0.3"
+    const val subScaleView = "3.10.0"
+    const val jsoup = "1.15.3"
     const val advancedCardView = "1.0.1"
     const val swipeRefresh = "1.1.0"
     const val serializationJson = "1.3.3"

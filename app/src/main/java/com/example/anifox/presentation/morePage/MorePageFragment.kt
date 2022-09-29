@@ -43,9 +43,9 @@ class MorePageFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.setQueriesOnCompleted(genre = if(args.genre != getString(R.string.Genre_All_Genres)) args.genre else null)
-        viewModel.setQueriesOnGoing(genre = if(args.genre != getString(R.string.Genre_All_Genres)) args.genre else null)
         viewModel.setQueriesOnPopular(genre = if(args.genre != getString(R.string.Genre_All_Genres)) args.genre else null)
+        viewModel.setQueriesOnGoing(genre = if(args.genre != getString(R.string.Genre_All_Genres)) args.genre else null)
+        viewModel.setQueriesOnCompleted(genre = if(args.genre != getString(R.string.Genre_All_Genres)) args.genre else null)
 
         initListeners()
         initPager()

@@ -20,7 +20,7 @@ import com.example.anifox.common.listeners.ItemClickListenerGoToDetail
 import com.example.anifox.common.listeners.ItemClickListenerMorePage
 import com.example.anifox.common.listeners.ItemClickListenerMorePageGenres
 import com.example.anifox.common.listeners.ItemClickListenerRandom
-import com.example.anifox.databinding.FragmentHomeFragmentBinding
+import com.example.anifox.databinding.FragmentHomeBinding
 import com.example.anifox.domain.model.common.GenresCard
 import com.example.anifox.util.Constants
 import com.xwray.groupie.Group
@@ -35,7 +35,7 @@ import kotlinx.coroutines.flow.onEach
 @AndroidEntryPoint
 open class HomeFragment : Fragment() {
 
-    private var _binding: FragmentHomeFragmentBinding? = null
+    private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
     private val groupAdapter = GroupAdapter<GroupieViewHolder>()
@@ -46,7 +46,7 @@ open class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentHomeFragmentBinding.inflate(inflater, container, false)
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -103,6 +103,7 @@ open class HomeFragment : Fragment() {
         }
 
     }
+
     private fun initRecycler(){
         binding.HomeRecycler.adapter = groupAdapter
         binding.HomeRecycler.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
@@ -170,8 +171,10 @@ open class HomeFragment : Fragment() {
                     image = R.drawable.magician_hat,
                     title = requireContext().getString(R.string.title_Magic),
                     onClick = object : ItemClickListenerMorePage {
-                        override fun navigationToMorePages(genre: String) {
-                            navigationToMorePagesInAdapter(genre)
+                        override fun navigationToMorePages() {
+                            navigationToMorePagesInAdapter(
+                                genre = requireContext().getString(R.string.Genre_Magic)
+                            )
                         }
                     }
                 )
@@ -190,9 +193,9 @@ open class HomeFragment : Fragment() {
                     title = requireContext().getString(R.string.title_Monsters),
                     image = R.drawable.monster,
                     onClick = object : ItemClickListenerMorePage {
-                        override fun navigationToMorePages(genre: String) {
+                        override fun navigationToMorePages() {
                             navigationToMorePagesInAdapter(
-                                genre = requireContext().getString(R.string.title_Monsters)
+                                genre = requireContext().getString(R.string.Genre_Monsters)
                             )
                         }
                     }
@@ -212,9 +215,9 @@ open class HomeFragment : Fragment() {
                     title = requireContext().getString(R.string.title_MiddleAge),
                     image = R.drawable.knight,
                     onClick = object : ItemClickListenerMorePage {
-                        override fun navigationToMorePages(genre: String) {
+                        override fun navigationToMorePages() {
                             navigationToMorePagesInAdapter(
-                                genre = requireContext().getString(R.string.title_MiddleAge)
+                                genre = requireContext().getString(R.string.Genre_MiddleAges)
                             )
                         }
                     }
@@ -228,7 +231,7 @@ open class HomeFragment : Fragment() {
                         }
                     }
                 )
-                if(state.randomState.data != null) {
+                if(state.randomState.data?.isNotEmpty() == true) {
                     this += RandomizeItem(
                         title = requireContext().getString(R.string.Randomize),
                         image = R.drawable.treasure,
@@ -247,7 +250,7 @@ open class HomeFragment : Fragment() {
                 }
             }
 
-            if(state.airingPopularState.data?.isNotEmpty() == true && state.popularState.data?.isNotEmpty() == true && state.mostRead.data?.isNotEmpty() == true && state.popularCompleted.data?.isNotEmpty() == true){
+            if(state.airingPopularState.data?.isNotEmpty() == true && state.popularState.data?.isNotEmpty() == true && state.mostRead.data?.isNotEmpty() == true && state.popularCompleted.data?.isNotEmpty() == true && state.middleAgesState.data?.isNotEmpty() == true){
                 this += HeaderLightItem(
                     title = requireContext().getString(R.string.Ranking),
                     image = R.drawable.ranking,

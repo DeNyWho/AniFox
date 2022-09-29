@@ -13,6 +13,11 @@ object Libraries {
         const val tabSync = "io.github.ahmad-hamwi:tabsync:${Versions.tabSync}"
         const val recyclerViewAnimation = "jp.wasabeef:recyclerview-animators:${Versions.recyclerViewAnimation}"
         const val showMoreTextview = "com.github.sanjaydraws:ShowMoreTextView:${Versions.showMoreTextview}"
+        const val subScaleView = "com.davemorrissey.labs:subsampling-scale-image-view-androidx:${Versions.subScaleView}"
+    }
+
+    object Jsoup {
+        const val jsoup = "org.jsoup:jsoup:${Versions.jsoup}"
     }
 
     object Room {
@@ -80,7 +85,6 @@ object Libraries {
         const val okhttp = "com.squareup.okhttp3:okhttp:${Versions.okHttp}"
         const val okHttpLogging = "com.squareup.okhttp3:logging-interceptor:${Versions.okHttp}"
     }
-
 
     object Lifecycle {
         const val ViewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"

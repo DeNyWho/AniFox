@@ -6,9 +6,9 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.anifox.common.listeners.ItemClickListenerGoToDetail
 import com.example.anifox.databinding.CardItemAnimeSmallerBinding
 import com.example.anifox.domain.model.manga.Manga
-import com.example.anifox.common.listeners.ItemClickListenerGoToDetail
 
 class SmallerAnimeItem( onClicked: ItemClickListenerGoToDetail ) : PagingDataAdapter<Manga, SmallerAnimeItemViewHolder>(
     ArticleDiffItemCallback
@@ -19,6 +19,7 @@ class SmallerAnimeItem( onClicked: ItemClickListenerGoToDetail ) : PagingDataAda
     }
 
     override fun onBindViewHolder(holder: SmallerAnimeItemViewHolder, position: Int) {
+        println("COUNTERSFD = $itemCount")
         holder.bind(getItem(position), onClick)
     }
 }

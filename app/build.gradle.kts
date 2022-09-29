@@ -49,6 +49,10 @@ android {
 }
 
 dependencies {
+
+    implementation(Libraries.Jsoup.jsoup)
+
+    implementation(Libraries.UI.subScaleView)
     implementation(Libraries.UI.advancedCardView)
     implementation(Libraries.UI.tabSync)
     implementation(Libraries.UI.recyclerViewAnimation)
@@ -94,7 +98,6 @@ dependencies {
     implementation(Libraries.Retrofit.Gson)
     implementation(Libraries.Retrofit.okhttp)
     implementation(Libraries.Retrofit.okHttpLogging)
-    implementation("com.squareup.okhttp3:logging-interceptor:4.10.0")
 
     implementation(Libraries.Serialization.serialization)
 
