@@ -1,22 +1,11 @@
-<androidx.cardview.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="@dimen/chip_genres_height"
-    app:cardCornerRadius="12dp"
-    app:cardElevation="0dp"
-    app:cardBackgroundColor="@drawable/button_selector"
-    android:layout_marginEnd="6dp"
-    android:layout_marginBottom="6dp"
-    android:id="@+id/cardView">
+<com.google.android.material.radiobutton.MaterialRadioButton style="@style/CheckedRadioButtonRight"
+    android:id="@+id/rbChip"
+    android:layout_margin="5sp"
+    android:layout_width="match_parent"
+    android:elevation="3sp"
+    android:textAppearance="@style/Text.DialogStatus"
+    android:text="@string/tab_list_watching"
+    android:gravity="center"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android" />
 
-    <TextView
-        android:id="@+id/tvTitle"
-        android:textColor="@color/textColor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Romance"
-        android:layout_marginHorizontal="20dp"
-        android:layout_gravity="center_vertical"
-        style="@style/Text.Card"/>
-
-</androidx.cardview.widget.CardView>

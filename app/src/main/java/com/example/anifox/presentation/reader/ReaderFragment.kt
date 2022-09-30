@@ -37,6 +37,7 @@ class ReaderFragment : Fragment() {
 
     private fun initListeners (){
         var tempUrl = ""
+        var pages = 0
         val thread = Thread {
             val connection =
                 Jsoup.connect(args.url)
@@ -45,7 +46,6 @@ class ReaderFragment : Fragment() {
             connection.timeout(0)
 
             val document = connection.get()
-            println("DOC = ${document.body()}")
 
             tempUrl = document.select("img.reader-viewer-img").first()!!.absUrl("src")
         }
@@ -54,6 +54,7 @@ class ReaderFragment : Fragment() {
         thread.join()
 
         if(!thread.isAlive){
+            println("Pages = $pages")
             val url = GlideUrl(
                 tempUrl, LazyHeaders.Builder()
                     .addHeader(
@@ -63,6 +64,7 @@ class ReaderFragment : Fragment() {
                     .addHeader("Referer", args.url.take(19))
                     .build()
             )
+            println("ZXC Width = ${args.url}")
             Glide
                 .with(requireContext())
                 .download(url)

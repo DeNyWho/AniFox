@@ -1,5 +1,6 @@
 package com.example.anifox.common.adapters.reader
 
+import android.graphics.BitmapFactory
 import android.graphics.PointF
 import android.graphics.drawable.Drawable
 import android.net.Uri
@@ -14,10 +15,15 @@ class MangaReaderViewTarget(binding: FragmentReaderBinding)
     : CustomViewTarget<SubsamplingScaleImageView, File>(binding.imageView) {
     override fun onResourceReady(resource: File, transition: Transition<in File>?) {
         val uri = ImageSource.uri(Uri.fromFile(resource))
+        val options = BitmapFactory.Options()
+        options.inJustDecodeBounds = true
+        BitmapFactory.decodeFile(resource.absolutePath, options)
+        val imageWidth = options.outWidth
+        val imageHeight = options.outHeight
+        val scaling = (imageHeight.toFloat() / view.height.toFloat()) * (imageWidth.toFloat() / view.width.toFloat())
         view.setImage(uri)
-        view.setScaleAndCenter(1.5f, PointF(0F, 0F))
+        view.setScaleAndCenter((imageHeight.toFloat() / view.height.toFloat()) / scaling, PointF(0F, 0F))
         view.isZoomEnabled = false
-
     }
 
     override fun onLoadFailed(errorDrawable: Drawable?) {

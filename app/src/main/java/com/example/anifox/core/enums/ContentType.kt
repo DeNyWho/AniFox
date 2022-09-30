@@ -1,4 +1,4 @@
-package com.example.anifox.core.enum
+package com.example.anifox.core.enums
 
 enum class ContentType {
     Anime,

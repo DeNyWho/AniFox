@@ -11,8 +11,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.anifox.R
 import com.example.anifox.common.adapters.common.SmallerAnimeItem
-import com.example.anifox.databinding.FragmentOnCompletedTabBinding
 import com.example.anifox.common.listeners.ItemClickListenerGoToDetail
+import com.example.anifox.databinding.FragmentOnCompletedTabBinding
 import com.example.anifox.presentation.myList.MyListViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.Flow
@@ -36,7 +36,7 @@ class OnFavouriteOnHoldTab : Fragment() {
         val bundle = Bundle()
         bundle.putInt("animeId", id)
 
-        findNavController().navigate(R.id.action_morePageFragment_to_detailFragment, bundle)
+        findNavController().navigate(R.id.action_myListFragment2_to_detailFragment, bundle)
     }
 
     private val viewModel: MyListViewModel by activityViewModels()

@@ -1,13 +1,11 @@
-package com.example.anifox.common.adapters.home
+package com.example.anifox.common.adapters.morePages
 
 import android.view.View
 import com.example.anifox.R
 import com.example.anifox.databinding.ChipGenresBinding
 import com.xwray.groupie.viewbinding.BindableItem
 
-open class GenresTypeItem(
-    private val genre: String?
-): BindableItem<ChipGenresBinding>() {
+open class GenresTypeItem(private val genre: String) : BindableItem<ChipGenresBinding>() {
 
     override fun getLayout(): Int {
         return R.layout.chip_genres
@@ -18,8 +16,6 @@ open class GenresTypeItem(
     }
 
     override fun bind(viewBinding: ChipGenresBinding, position: Int) {
-        viewBinding.tvTitle.text = genre
-
-
+        viewBinding.rbChip.text = genre
     }
 }

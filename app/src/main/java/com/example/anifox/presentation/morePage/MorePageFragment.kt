@@ -10,8 +10,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.anifox.R
-import com.example.anifox.common.adapters.home.GenresTypeItem
+import com.example.anifox.common.adapters.morePages.GenresTypeItem
 import com.example.anifox.common.adapters.morePages.MorePageAdapter
+import com.example.anifox.core.enums.GenreConstants
 import com.example.anifox.databinding.FragmentMorePageBinding
 import com.example.anifox.util.viewpager.LifecycleViewPager
 import com.google.android.material.tabs.TabLayoutMediator
@@ -28,7 +29,7 @@ class MorePageFragment : Fragment() {
     private val binding get() = _binding!!
     private var mediator: TabLayoutMediator? = null
 
-    private val groupAdapter = GroupAdapter<GroupieViewHolder>()
+    private val genreAdapter = GroupAdapter<GroupieViewHolder>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -54,24 +55,19 @@ class MorePageFragment : Fragment() {
     }
 
     private fun initRecycler() {
-        binding.recyclerGenres.adapter = groupAdapter
-        binding.recyclerGenres.layoutManager = GridLayoutManager(context, 3)
+        binding.recyclerGenres.adapter = genreAdapter
+
+        binding.recyclerGenres.apply {
+            layoutManager = GridLayoutManager(context, 3)
+        }
 
         val list = mutableListOf<Item<*>>().apply {
-            this += GenresTypeItem(
-                genre = getString(R.string.Genre_Comedy)
-            )
-            this += GenresTypeItem(
-                genre = getString(R.string.Genre_Fantasy)
-            )
-            this += GenresTypeItem(
-                genre = getString(R.string.Genre_Comedy)
-            )
-            this += GenresTypeItem(
-                genre = getString(R.string.Genre_Comedy)
-            )
+            val genreList = GenreConstants.values().map {
+                it.toReadableName(requireContext())
+            }
+            this += genreList.map { GenresTypeItem(it) }
         }
-        groupAdapter.update(list)
+        genreAdapter.update(list)
 
     }
 

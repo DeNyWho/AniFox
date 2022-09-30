@@ -36,7 +36,7 @@ class OnFavouriteCompleteTab : Fragment() {
         val bundle = Bundle()
         bundle.putInt("animeId", id)
 
-        findNavController().navigate(R.id.action_morePageFragment_to_detailFragment, bundle)
+        findNavController().navigate(R.id.action_myListFragment2_to_detailFragment, bundle)
     }
 
     private val viewModel: MyListViewModel by activityViewModels()

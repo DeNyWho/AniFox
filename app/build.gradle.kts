@@ -20,6 +20,7 @@ android {
         testInstrumentationRunner = Config.testRunner
         vectorDrawables.useSupportLibrary = true
 
+
         buildConfigField("String", "BASE_URL_Main_API", "\"http://192.168.0.43:8080/api2/\"")
     }
 

@@ -13,6 +13,7 @@
         app:elevation="0dp"
         android:layout_height="wrap_content"
         android:background="@color/backgroundColor">
+
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:id="@+id/collapsing_toolbar"
             android:layout_width="match_parent"
@@ -25,6 +26,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -53,10 +55,11 @@
                 <ImageView
                     android:id="@+id/ivSearch"
                     android:layout_marginBottom="1dp"
-                    android:layout_width="25dp"
+                    android:layout_width="30sp"
                     android:layout_gravity="center_vertical"
-                    android:layout_height="25dp"
+                    android:layout_height="30sp"
                     android:src="@drawable/search"/>
+
             </LinearLayout>
 
             <com.google.android.material.tabs.TabLayout
@@ -73,13 +76,14 @@
                 app:tabIndicatorColor="@drawable/selector_tablayout"
                 android:layout_height="wrap_content"/>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerGenres"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="12dp"
-                android:orientation="horizontal"
-                tools:listitem="@layout/chip_genres" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerGenres"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="12dp"
+                    android:orientation="horizontal"
+                    tools:listitem="@layout/chip_genres" />
 
             </LinearLayout>
 
