@@ -164,5 +164,8 @@
         <argument
             android:name="url"
             app:argType="string" />
+        <argument
+            android:name="manga"
+            app:argType="com.example.anifox.domain.model.manga.Manga" />
     </fragment>
 </navigation>

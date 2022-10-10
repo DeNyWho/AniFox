@@ -1,12 +1,15 @@
 package com.example.anifox.domain.model.manga
 
+import android.os.Parcelable
 import com.example.anifox.domain.model.common.Chapters
 import com.example.anifox.domain.model.common.Genres
 import com.example.anifox.domain.model.common.Types
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 import kotlinx.serialization.Serializable
 
 @Serializable
+@Parcelize
 data class Manga(
     @SerializedName("id")
     val id: Int = 0,
@@ -32,7 +35,7 @@ data class Manga(
     val rate: String = "",
     @SerializedName("countRate")
     val countRate: String = "",
-)
+): Parcelable
 
 fun Manga.toData(): Manga {
     return Manga(

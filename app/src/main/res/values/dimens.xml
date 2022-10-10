@@ -25,4 +25,8 @@
     <dimen name="marginDescription">20sp</dimen>
     <dimen name="marginDescriptionBottom">24sp</dimen>
     <dimen name="marginFragment">50sp</dimen>
+    <dimen name="marginBottomReader">50sp</dimen>
+    <dimen name="marginTopReader">50sp</dimen>
+    <dimen name="marginBottomElementReader">50sp</dimen>
+    <dimen name="appbarReaderSize">50sp</dimen>
 </resources>

@@ -110,6 +110,7 @@
         </RadioGroup>
 
         <com.google.android.material.textview.MaterialTextView
+            android:visibility="gone"
             style="@style/TextView.Header"
             android:textSize="20sp"
             android:layout_marginTop="12sp"

@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardElevation="4sp"
     app:cardUseCompatPadding="true"
-    android:layout_height="40dp">
+    android:layout_height="45dp">
 
     <LinearLayout
         android:layout_width="match_parent"

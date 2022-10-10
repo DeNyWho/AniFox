@@ -22,6 +22,7 @@ import com.example.anifox.common.listeners.ItemClickListenerGoToDetail
 import com.example.anifox.common.listeners.ItemClickListenerGoToReader
 import com.example.anifox.common.listeners.ItemClickListenerMorePageWithGenre
 import com.example.anifox.databinding.FragmentDetailBinding
+import com.example.anifox.domain.model.manga.Manga
 import com.example.anifox.util.Constants
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
@@ -82,9 +83,10 @@ class DetailFragment : Fragment() {
         }
     }
 
-    private fun navigationToReaderInAdapter(url: String){
+    private fun navigationToReaderInAdapter(url: String, manga: Manga){
         val bundle = Bundle()
         bundle.putString("url", url)
+        bundle.putParcelable("manga", manga)
 
         findNavController().navigate(R.id.readerFragment, bundle)
     }
@@ -125,8 +127,8 @@ class DetailFragment : Fragment() {
                     this += DetailTabsItems(
                         manga = state.contentDetailsState.data,
                         onClick = object : ItemClickListenerGoToReader {
-                            override fun navigationToReader(url: String) {
-                                navigationToReaderInAdapter(url)
+                            override fun navigationToReader(url: String, manga: Manga) {
+                                navigationToReaderInAdapter(url, manga)
                             }
                         }
                     )
@@ -162,8 +164,6 @@ class DetailFragment : Fragment() {
                     binding.fabButton.visibility = View.VISIBLE
                 } else binding.fabButton.visibility = View.GONE
             }
-
-
 
             groupAdapter.update(list)
 

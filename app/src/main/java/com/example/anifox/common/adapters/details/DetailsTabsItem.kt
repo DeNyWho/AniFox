@@ -14,7 +14,6 @@ import com.xwray.groupie.Item
 import com.xwray.groupie.viewbinding.BindableItem
 import kotlin.math.roundToInt
 
-
 class DetailsTabsItem(
     private var manga: Manga,
     private var type: Int,
@@ -63,10 +62,12 @@ class DetailsTabsItem(
             val list = mutableListOf<Item<*>>().apply {
                 for( i in 0 until manga.chaptersCount) {
                     this += ChaptersItem(
+                        manga = manga,
                         title = manga.chapters.title[i],
                         date = manga.chapters.date[i],
                         url = manga.chapters.url[i],
-                        onClick = onClick!!
+                        onClick = onClick!!,
+                        onClickReader = null
                     )
                 }
             }
