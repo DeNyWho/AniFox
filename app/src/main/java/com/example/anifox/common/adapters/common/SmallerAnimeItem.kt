@@ -19,7 +19,6 @@ class SmallerAnimeItem( onClicked: ItemClickListenerGoToDetail ) : PagingDataAda
     }
 
     override fun onBindViewHolder(holder: SmallerAnimeItemViewHolder, position: Int) {
-        println("COUNTERSFD = $itemCount")
         holder.bind(getItem(position), onClick)
     }
 }

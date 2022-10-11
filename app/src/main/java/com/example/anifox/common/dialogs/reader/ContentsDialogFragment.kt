@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.anifox.common.adapters.details.ChaptersItem
 import com.example.anifox.common.dialogs.MaterialDialogFragment
+import com.example.anifox.common.listeners.ItemClickListenerDialogDismiss
 import com.example.anifox.common.listeners.ItemClickListenerReaderChapters
 import com.example.anifox.databinding.ContentDialogBinding
 import com.example.anifox.domain.model.manga.Manga
@@ -57,7 +58,6 @@ class ContentsDialogFragment(private val manga: Manga, private val onClick: Item
     }
 
     private fun initListeners() {
-
         binding.ivExit.setOnClickListener {
             dismiss()
         }
@@ -69,7 +69,12 @@ class ContentsDialogFragment(private val manga: Manga, private val onClick: Item
                     date = manga.chapters.date[i],
                     url = manga.chapters.url[i],
                     onClick = null,
-                    onClickReader = onClick
+                    onClickReader = onClick,
+                    onDismiss = object : ItemClickListenerDialogDismiss {
+                        override fun dialogDismiss() {
+                            dismiss()
+                        }
+                    }
                 )
             }
         }

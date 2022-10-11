@@ -31,9 +31,6 @@ class AnimeDataSource @AssistedInject constructor(
         val page = params.key ?: STARTING_PAGE_INDEX
         val pageSize = params.loadSize.coerceAtMost(MORE_PAGE_SIZE)
         return try {
-
-            println("page = $page, loadSize = ${pageSize}, order = $order, status = $status, genre = $genre, token = $token")
-
             val response = if(token == null){ mangaApi.getManga(
                 page = page,
                 countCard = pageSize,

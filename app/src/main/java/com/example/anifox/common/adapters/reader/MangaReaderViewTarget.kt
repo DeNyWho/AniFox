@@ -12,7 +12,7 @@ import com.example.anifox.databinding.FragmentReaderBinding
 import java.io.File
 
 class MangaReaderViewTarget(binding: FragmentReaderBinding)
-    : CustomViewTarget<SubsamplingScaleImageView, File>(binding.imageView) {
+    : CustomViewTarget<SubsamplingScaleImageView, File>(binding.ivRead) {
     override fun onResourceReady(resource: File, transition: Transition<in File>?) {
         val uri = ImageSource.uri(Uri.fromFile(resource))
         val options = BitmapFactory.Options()

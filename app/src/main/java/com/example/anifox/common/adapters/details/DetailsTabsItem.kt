@@ -62,12 +62,13 @@ class DetailsTabsItem(
             val list = mutableListOf<Item<*>>().apply {
                 for( i in 0 until manga.chaptersCount) {
                     this += ChaptersItem(
-                        manga = manga,
-                        title = manga.chapters.title[i],
                         date = manga.chapters.date[i],
+                        title = manga.chapters.title[i],
                         url = manga.chapters.url[i],
                         onClick = onClick!!,
-                        onClickReader = null
+                        onClickReader = null,
+                        manga = manga,
+                        onDismiss = null
                     )
                 }
             }

@@ -1,9 +1,8 @@
 package com.example.anifox.presentation.reader
 
+import android.annotation.SuppressLint
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -22,11 +21,16 @@ import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 import org.jsoup.Jsoup
 
+
 class ReaderFragment : Fragment() {
 
     private val args: ReaderFragmentArgs by navArgs()
     private var _binding: FragmentReaderBinding? = null
     private val binding get() = _binding!!
+
+    private var url = ""
+    private var page = 1
+    private var chapter: ChapterSupport = ChapterSupport()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,22 +42,21 @@ class ReaderFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        url = args.url
         jsoup(args.url)
         observeOnState()
         initListeners()
     }
 
-    private fun readerListener(url: String){
-        println("URL ZXC = $url")
+    private fun readerListener(link: String){
+        chapter = normalizeUrls(link)
+        page = 1
+        url = "${chapter.tempUrl}/vol${chapter.vol}/${chapter.chapter}?page=$page"
+
+        jsoup(url)
     }
 
-
     private fun initListeners (){
-
-        var page = 1
-        var url = args.url
-        var chapter: ChapterSupport
 
         binding.ivBack.setOnClickListener {
             findNavController().navigateUp()
@@ -70,21 +73,56 @@ class ReaderFragment : Fragment() {
             ).show(parentFragmentManager, "contentsDialog")
         }
 
-        binding.ivNextChapter.setOnClickListener {
-            chapter = normalizeUrls(url)
-            page++
-            url = "${chapter.tempUrl}/vol${chapter.vol}/${chapter.chapter}?page=$page"
+        binding.ivRead.setOnTouchListener (
+            ViewOnTouchListener()
+        )
 
-            jsoup(url)
+        binding.ivNextChapter.setOnClickListener {
+            nextChapter()
         }
 
         binding.ivBackChapter.setOnClickListener {
-            chapter = normalizeUrls(url)
-            if(page > 1 ) page--
-            url = "${chapter.tempUrl}/vol${chapter.vol}/${chapter.chapter}?page=$page"
-            if(page > 0) {
-                jsoup(url)
-            }
+            prevChapter()
+        }
+    }
+
+    private fun nextChapter(){
+        chapter = normalizeUrls(url)
+        page++
+        url = "${chapter.tempUrl}/vol${chapter.vol}/${chapter.chapter}?page=$page"
+
+        jsoup(url)
+    }
+
+    private fun prevChapter(){
+        chapter = normalizeUrls(url)
+        if(page > 1 ) page--
+        url = "${chapter.tempUrl}/vol${chapter.vol}/${chapter.chapter}?page=$page"
+        if(page > 0) {
+            jsoup(url)
+        }
+    }
+
+    inner class ViewOnTouchListener : View.OnTouchListener {
+        private var gestureDetector =
+            GestureDetector(requireContext(), object : GestureDetector.SimpleOnGestureListener() {
+                override fun onSingleTapUp(e: MotionEvent): Boolean {
+                    val x = e.x
+                    if(x > view!!.width/ 2) {
+//                      Right
+                        nextChapter()
+                    } else {
+//                      Left
+                        prevChapter()
+                    }
+                    return super.onSingleTapUp(e)
+                }
+            })
+
+        @SuppressLint("ClickableViewAccessibility")
+        override fun onTouch(view: View, motionEvent: MotionEvent): Boolean {
+            gestureDetector.onTouchEvent(motionEvent)
+            return false
         }
     }
 

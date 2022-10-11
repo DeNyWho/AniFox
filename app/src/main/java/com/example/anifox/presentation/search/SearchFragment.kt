@@ -117,7 +117,6 @@ class SearchFragment : Fragment() {
                     binding.tilSearch.hint = "${getString(R.string.search_hint)} «${state.randomState.data.title}»"
                 }
                 if(state.search.data?.isNotEmpty() == true) {
-                    println("BASICS = ${state.search.data}")
                     this += HeaderLightItem(
                         image = R.drawable.searcher,
                         title = requireContext().getString(R.string.search_result)
@@ -133,9 +132,7 @@ class SearchFragment : Fragment() {
                     )
                     )
                 }
-                println("WTF STATE  4 = ${state.search}")
                 if(state.search.message == "Not Found"){
-                    println("WTF STATE = ${state.search}")
                     this += ErrorItem(
                         errorMessage = "${getString(R.string.warning_search_start)}${binding.etSearch.text}${getString(R.string.warning_search_end)}"
                     )

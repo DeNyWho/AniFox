@@ -3,6 +3,7 @@ package com.example.anifox.common.adapters.details
 import android.view.Gravity
 import android.view.View
 import com.example.anifox.R
+import com.example.anifox.common.listeners.ItemClickListenerDialogDismiss
 import com.example.anifox.common.listeners.ItemClickListenerGoToReader
 import com.example.anifox.common.listeners.ItemClickListenerReaderChapters
 import com.example.anifox.databinding.ChaptersItemBinding
@@ -15,7 +16,8 @@ class ChaptersItem(
     private var url: String,
     private val onClick: ItemClickListenerGoToReader?,
     private val onClickReader: ItemClickListenerReaderChapters?,
-    private val manga: Manga?
+    private val manga: Manga?,
+    private val onDismiss: ItemClickListenerDialogDismiss?
 ): BindableItem<ChaptersItemBinding>() {
     override fun bind(binding: ChaptersItemBinding, position: Int) {
         if(onClick != null) {
@@ -30,6 +32,7 @@ class ChaptersItem(
             binding.tvTitle.text = title
             binding.root.setOnClickListener {
                 onClickReader!!.navigationToReader(url)
+                onDismiss!!.dialogDismiss()
             }
         }
     }

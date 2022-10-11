@@ -15,7 +15,6 @@ class SignUpFindByNameUseCase @Inject constructor(
         return flow {
             emit(NameExistsState(isLoading = true))
             val res = repository.authorizedFindByUsername(name)
-            println("RESZXC = $res")
             if (res.isSuccessful){
                 val data = res.body()?.data
 

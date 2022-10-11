@@ -88,7 +88,7 @@ class DetailFragment : Fragment() {
         bundle.putString("url", url)
         bundle.putParcelable("manga", manga)
 
-        findNavController().navigate(R.id.readerFragment, bundle)
+        findNavController().navigate(R.id.action_detailFragment_to_readerFragment2, bundle)
     }
 
     private fun navigationToDetailInAdapter(id: Int){
