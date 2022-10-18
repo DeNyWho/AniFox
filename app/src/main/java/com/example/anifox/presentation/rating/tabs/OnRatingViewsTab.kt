@@ -1,4 +1,4 @@
-package com.example.anifox.presentation.morePage.tabs
+package com.example.anifox.presentation.rating.tabs
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,16 +12,16 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.anifox.R
 import com.example.anifox.common.adapters.common.SmallerAnimeItem
 import com.example.anifox.common.listeners.ItemClickListenerGoToDetail
-import com.example.anifox.databinding.FragmentOnCompletedTabBinding
-import com.example.anifox.presentation.morePage.MorePageViewModel
+import com.example.anifox.databinding.FragmentOnRatingOngoingTabBinding
+import com.example.anifox.presentation.rating.RatingViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onEach
 
 @AndroidEntryPoint
-class OnCompletedTab : Fragment() {
-    private var _binding: FragmentOnCompletedTabBinding? = null
+class OnRatingViewsTab : Fragment() {
+    private var _binding: FragmentOnRatingOngoingTabBinding? = null
     private val binding get() = _binding!!
 
     private val adapter by lazy(LazyThreadSafetyMode.NONE) {
@@ -36,16 +36,16 @@ class OnCompletedTab : Fragment() {
         val bundle = Bundle()
         bundle.putInt("animeId", id)
 
-        findNavController().navigate(R.id.action_morePageFragment_to_detailFragment, bundle)
+        findNavController().navigate(R.id.action_ratingFragment_to_detailFragment, bundle)
     }
 
-    private val viewModel: MorePageViewModel by activityViewModels()
+    private val viewModel: RatingViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentOnCompletedTabBinding.inflate(inflater, container, false)
+        _binding = FragmentOnRatingOngoingTabBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -57,7 +57,7 @@ class OnCompletedTab : Fragment() {
     }
 
     private fun observeOnState(){
-        viewModel.getMangasOnCompletedPaging().onEach {
+        viewModel.getMangasOnViewsPaging().onEach {
             adapter.submitData(it)
         }.launchWhenStarted()
     }

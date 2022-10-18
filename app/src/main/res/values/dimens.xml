@@ -8,8 +8,8 @@
     <dimen name="fragment_login_textInputEditText">56dp</dimen>
     <dimen name="card_width">120dp</dimen>
     <dimen name="card_width_smaller">120dp</dimen>
-    <dimen name="card_height">180dp</dimen>
-    <dimen name="card_height_smaller">200dp</dimen>
+    <dimen name="card_height">200dp</dimen>
+    <dimen name="card_height_smaller">180dp</dimen>
     <dimen name="discover_height">180dp</dimen>
     <dimen name="cardImage_width">120dp</dimen>
     <dimen name="cardImage_height">180dp</dimen>

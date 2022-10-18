@@ -40,7 +40,12 @@
                     android:src="@drawable/arrow_back"/>
                 <com.google.android.material.textview.MaterialTextView style="@style/TextView.Secondary"
                     android:layout_weight="1"
-                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:scrollHorizontally="true"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:ellipsize="marquee"
                     android:id="@+id/tvTitle"
                     android:maxLines="1" />
 

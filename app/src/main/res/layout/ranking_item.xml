@@ -1,8 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.recyclerview.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:id="@+id/recycler"
     android:orientation="vertical"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
-</androidx.recyclerview.widget.RecyclerView>
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:id="@+id/recycler"
+        android:orientation="vertical"
+        android:layout_height="wrap_content"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="105sp"
+        android:id="@+id/abRatingMore"
+        android:layout_marginBottom="30sp"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content"
+        android:background="@drawable/just_rounds_middle"
+        android:text="@string/morePage"
+        android:gravity="center"
+        style="@style/TextView.DetailsHeader"/>
+</LinearLayout>

@@ -16,10 +16,7 @@ import com.example.anifox.common.adapters.home.GenresItem
 import com.example.anifox.common.adapters.home.HeaderMoreItem
 import com.example.anifox.common.adapters.home.RandomizeItem
 import com.example.anifox.common.adapters.home.RankingItems
-import com.example.anifox.common.listeners.ItemClickListenerGoToDetail
-import com.example.anifox.common.listeners.ItemClickListenerMorePage
-import com.example.anifox.common.listeners.ItemClickListenerMorePageGenres
-import com.example.anifox.common.listeners.ItemClickListenerRandom
+import com.example.anifox.common.listeners.*
 import com.example.anifox.databinding.FragmentHomeBinding
 import com.example.anifox.domain.model.common.GenresCard
 import com.example.anifox.util.Constants
@@ -65,6 +62,13 @@ open class HomeFragment : Fragment() {
         observeOnState()
         initRecycler()
         initListeners()
+    }
+
+    private fun navigationToRatingPagesInAdapter(status: String){
+        val bundle = Bundle()
+        bundle.putString("status", status)
+
+        findNavController().navigate(R.id.action_homeFragment_to_ratingFragment, bundle)
     }
 
     private fun navigationToMorePagesInAdapter(genre: String){
@@ -264,7 +268,18 @@ open class HomeFragment : Fragment() {
                         override fun navigationToDetail(id: Int) {
                             navigationToDetailInAdapter(id)
                         }
-                    }
+                    },
+                    onClickRating = object : ItemClickListenerRatingWithStatus {
+                        override fun navigationToMorePagesWithGenre(status: String) {
+                            navigationToRatingPagesInAdapter(status)
+                        }
+                    },
+                    status = listOf(
+                        getString(R.string.views),
+                        getString(R.string.popular),
+                        getString(R.string.ongoing),
+                        getString(R.string.completed),
+                    ),
                 )
             }
         }

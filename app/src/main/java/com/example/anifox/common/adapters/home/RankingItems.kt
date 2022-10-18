@@ -7,9 +7,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import com.ahmadhamwi.tabsync.TabbedListMediator
 import com.example.anifox.R
+import com.example.anifox.common.listeners.ItemClickListenerGoToDetail
+import com.example.anifox.common.listeners.ItemClickListenerRatingWithStatus
 import com.example.anifox.databinding.RankingItemsBinding
 import com.example.anifox.domain.model.manga.Manga
-import com.example.anifox.common.listeners.ItemClickListenerGoToDetail
 import com.google.android.material.internal.ViewUtils.dpToPx
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
@@ -21,7 +22,9 @@ class RankingItems(
     private val listData2: List<Manga>,
     private val listData3: List<Manga>,
     private val listData4: List<Manga>,
-    private val onClick: ItemClickListenerGoToDetail
+    private val onClick: ItemClickListenerGoToDetail,
+    private val onClickRating: ItemClickListenerRatingWithStatus,
+    private val status: List<String>
 ) : BindableItem<RankingItemsBinding>() {
     private val horizontalAdapter by lazy { GroupAdapter <GroupieViewHolder>() }
 
@@ -37,10 +40,10 @@ class RankingItems(
         }
 
         val list = mutableListOf<Item<*>>().apply {
-            this += RankingItem(listData1, onClick)
-            this += RankingItem(listData2, onClick)
-            this += RankingItem(listData3, onClick)
-            this += RankingItem(listData4, onClick)
+            this += RankingItem(listData1, onClick, onClickRating, status[0])
+            this += RankingItem(listData2, onClick, onClickRating, status[1])
+            this += RankingItem(listData3, onClick, onClickRating, status[2])
+            this += RankingItem(listData4, onClick, onClickRating, status[3])
         }
         if(binding.tabLayout.tabCount == 0){
             binding.tabLayout.addTab(binding.tabLayout.newTab().setText(R.string.views))

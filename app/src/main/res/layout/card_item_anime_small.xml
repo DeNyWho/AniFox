@@ -38,6 +38,4 @@
         android:layout_gravity="center_horizontal"
         android:textColor="@color/textColor"/>
 
-
-
 </LinearLayout>

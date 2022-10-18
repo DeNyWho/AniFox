@@ -87,19 +87,101 @@ class ReaderFragment : Fragment() {
     }
 
     private fun nextChapter(){
-        chapter = normalizeUrls(url)
-        page++
-        url = "${chapter.tempUrl}/vol${chapter.vol}/${chapter.chapter}?page=$page"
+        return try {
+            chapter = normalizeUrls(url)
+            page++
+            url = "${chapter.tempUrl}/vol${chapter.vol}/${chapter.chapter}?page=$page"
 
-        jsoup(url)
+            jsoup(url)
+        } catch (e: Exception){
+            try {
+                page = 1
+                chapter = ChapterSupport(
+                    chapter = chapter.chapter + 1,
+                    vol = chapter.vol,
+                    tempUrl = chapter.tempUrl
+                )
+                url = "${chapter.tempUrl}/vol${chapter.vol}/${chapter.chapter}?page=$page"
+
+                jsoup(url)
+            } catch (e: Exception){
+                try {
+                    page = 1
+                    chapter = ChapterSupport(
+                        chapter = chapter.chapter,
+                        vol = chapter.vol + 1,
+                        tempUrl = chapter.tempUrl
+                    )
+                    url = "${chapter.tempUrl}/vol${chapter.vol}/${chapter.chapter}?page=$page"
+
+                    jsoup(url)
+                } catch (e: Exception){
+                    page = 1
+                    chapter = ChapterSupport(
+                        chapter = chapter.chapter + 1,
+                        vol = chapter.vol + 1,
+                        tempUrl = chapter.tempUrl
+                    )
+                    url = "${chapter.tempUrl}/vol${chapter.vol}/${chapter.chapter}?page=$page"
+                    try {
+                        jsoup(url)
+                    } catch (e: Exception){
+
+                    }
+                }
+            }
+        }
     }
 
     private fun prevChapter(){
-        chapter = normalizeUrls(url)
-        if(page > 1 ) page--
-        url = "${chapter.tempUrl}/vol${chapter.vol}/${chapter.chapter}?page=$page"
-        if(page > 0) {
-            jsoup(url)
+        return try {
+            chapter = normalizeUrls(url)
+            if(page == 1){
+                try {
+                    chapter = ChapterSupport(
+                        chapter = chapter.chapter - 1,
+                        vol = chapter.vol,
+                        tempUrl = chapter.tempUrl
+                    )
+                    url = "${chapter.tempUrl}/vol${chapter.vol}/${chapter.chapter}?page=$page"
+
+                    jsoup(url)
+                } catch (e: Exception) {
+                    try {
+                        page = 1
+                        chapter = ChapterSupport(
+                            chapter = chapter.chapter,
+                            vol = chapter.vol - 1,
+                            tempUrl = chapter.tempUrl
+                        )
+                        url = "${chapter.tempUrl}/vol${chapter.vol}/${chapter.chapter}?page=$page"
+                        jsoup(url)
+                    } catch (e: Exception){
+                        page = 1
+                        chapter = ChapterSupport(
+                            chapter = chapter.chapter - 1,
+                            vol = chapter.vol - 1,
+                            tempUrl = chapter.tempUrl
+                        )
+                        url = "${chapter.tempUrl}/vol${chapter.vol}/${chapter.chapter}?page=$page"
+                        try {
+                            jsoup(url)
+                        } catch (e: Exception){
+
+                        }
+                    }
+                }
+            }
+            if(page > 1 ) page--
+            url = "${chapter.tempUrl}/vol${chapter.vol}/${chapter.chapter}?page=$page"
+
+            try {
+                jsoup(url)
+            } catch (e: Exception){
+
+            }
+        } catch (e: Exception){
+
         }
     }
 

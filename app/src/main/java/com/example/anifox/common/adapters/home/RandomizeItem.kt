@@ -3,11 +3,11 @@ package com.example.anifox.common.adapters.home
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.anifox.R
-import com.example.anifox.common.adapters.common.MangaItem
-import com.example.anifox.databinding.RandomizeItemBinding
-import com.example.anifox.domain.model.manga.Manga
+import com.example.anifox.common.adapters.common.SmallMangaItem
 import com.example.anifox.common.listeners.ItemClickListenerGoToDetail
 import com.example.anifox.common.listeners.ItemClickListenerRandom
+import com.example.anifox.databinding.RandomizeItemBinding
+import com.example.anifox.domain.model.manga.Manga
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
 import com.xwray.groupie.viewbinding.BindableItem
@@ -36,7 +36,7 @@ class RandomizeItem(
             adapter = randomizeAdapter
         }
 
-        randomizeAdapter.update(listData.map { MangaItem(it, onClick) })
+        randomizeAdapter.update(listData.map { SmallMangaItem(it, onClick) })
     }
 
     override fun initializeViewBinding(view: View): RandomizeItemBinding {

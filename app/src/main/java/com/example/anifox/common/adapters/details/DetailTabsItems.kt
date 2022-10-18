@@ -36,11 +36,16 @@ class DetailTabsItems(
                 type = 1,
                 onClick = null
             )
-            this += DetailTabsItemsVertical(
-                manga = manga,
-                type = 2,
-                onClick = onClick
-            )
+            if(manga.chaptersCount > 0 ) {
+                this += DetailTabsItemsVertical(
+                    manga = manga,
+                    type = 2,
+                    onClick = onClick
+                )
+            } else {
+                binding.tabLayout.removeAllTabs()
+                binding.tabLayout.addTab(binding.tabLayout.newTab().setText(R.string.description))
+            }
         }
         if(binding.tabLayout.tabCount == 0){
             binding.tabLayout.addTab(binding.tabLayout.newTab().setText(R.string.description))

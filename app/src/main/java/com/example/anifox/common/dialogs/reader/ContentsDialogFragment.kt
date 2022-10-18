@@ -62,7 +62,7 @@ class ContentsDialogFragment(private val manga: Manga, private val onClick: Item
             dismiss()
         }
         val list = mutableListOf<Item<*>>().apply {
-            for( i in 0 until manga.chaptersCount) {
+            for( i in 0 until manga.chapters.url.size) {
                 this += ChaptersItem(
                     manga = manga,
                     title = manga.chapters.title[i],

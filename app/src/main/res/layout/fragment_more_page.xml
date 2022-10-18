@@ -68,6 +68,7 @@
                 app:tabMaxWidth="0dp"
                 app:tabGravity="fill"
                 app:tabMode="fixed"
+                app:tabRippleColor="@null"
                 app:tabPaddingStart="8dp"
                 app:tabPaddingEnd="8dp"
                 app:tabIndicatorAnimationMode="linear"
@@ -89,9 +90,6 @@
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
-
-
-
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPager"

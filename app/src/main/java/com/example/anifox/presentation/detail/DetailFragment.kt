@@ -116,6 +116,7 @@ class DetailFragment : Fragment() {
             val list = mutableListOf<Item<*>>().apply {
                 if(state.contentDetailsState.data != null){
                     binding.tvTitle.text = state.contentDetailsState.data.title
+                    binding.tvTitle.isSelected = true
                     this += HeaderDetailsItem(state.contentDetailsState.data)
                     this += GenresDetailItem(
                         manga = state.contentDetailsState.data,
