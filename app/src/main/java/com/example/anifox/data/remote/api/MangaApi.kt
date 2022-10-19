@@ -2,6 +2,7 @@ package com.example.anifox.data.remote.api
 
 import com.example.anifox.domain.model.manga.NewFavouriteManga
 import com.example.anifox.domain.model.responses.BasicBooleanResponse
+import com.example.anifox.domain.model.responses.BasicResponse
 import com.example.anifox.domain.model.responses.MangaResponse
 import com.example.anifox.domain.model.responses.PagingFavouriteResponse
 import retrofit2.Response
@@ -51,6 +52,9 @@ interface MangaApi {
     suspend fun getLinkedManga(
         @Path("id") id: Int
     ): Response<MangaResponse>
+
+    @GET("manga/genres")
+    suspend fun getMangaGenres(): Response<BasicResponse>
 
 
 

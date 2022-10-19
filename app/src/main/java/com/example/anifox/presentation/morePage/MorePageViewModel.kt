@@ -7,8 +7,10 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.PagingSource
 import com.example.anifox.domain.model.manga.Manga
+import com.example.anifox.domain.useCase.morePage.MangaGenresUseCase
 import com.example.anifox.domain.useCase.morePage.MorePageUseCase
-import com.example.anifox.presentation.morePage.state.PagerQueryState
+import com.example.anifox.presentation.morePage.state.MorePagerState
+import com.example.anifox.presentation.morePage.state.genres.OnGenres
 import com.example.anifox.presentation.morePage.state.onCompleted.OnCompletedQuery
 import com.example.anifox.presentation.morePage.state.onGoing.OnGoingQuery
 import com.example.anifox.presentation.morePage.state.onPopular.OnPopularQuery
@@ -24,22 +26,37 @@ import javax.inject.Inject
 @HiltViewModel
 class MorePageViewModel @Inject constructor(
     private val getMorePage: MorePageUseCase,
+    private val getMangaGenres: MangaGenresUseCase
 ) : ViewModel() {
 
-    private val _queries = MutableStateFlow(PagerQueryState(
-            onGoingQuery = OnGoingQuery(ORDER_BY_POPULAR, STATUS_BY_ONGOING, null),
-            onPopularQuery = OnPopularQuery(ORDER_BY_POPULAR, null, null),
-            onCompletedQuery = OnCompletedQuery(ORDER_BY_POPULAR, STATUS_BY_FINAL, null,)
-        )
-    )
+    private val _state = MutableStateFlow(MorePagerState(
+        onGoingQuery = OnGoingQuery(ORDER_BY_POPULAR, STATUS_BY_ONGOING, null),
+        onPopularQuery = OnPopularQuery(ORDER_BY_POPULAR, null, null),
+        onCompletedQuery = OnCompletedQuery(ORDER_BY_POPULAR, STATUS_BY_FINAL, null),
+        onGenres = OnGenres()
+    ))
+    val state = _state.asStateFlow()
 
     private var newPagingSource: PagingSource<*, *>? = null
 
+    fun getGenres(){
+        getMangaGenres.invoke().onEach { value ->
+            _state.tryEmit(
+                _state.value.copy(
+                    onGenres = _state.value.onGenres.copy(
+                        isLoading = false,
+                        data = value.data
+                    )
+                )
+            )
+        }.launchIn(viewModelScope)
+    }
+
 
     fun setQueriesOnGoing(genre: String?) {
-        _queries.tryEmit(
-            _queries.value.copy(
-                onGoingQuery = _queries.value.onGoingQuery.copy(
+        _state.tryEmit(
+            _state.value.copy(
+                onGoingQuery = _state.value.onGoingQuery.copy(
                     genre = genre
                 )
             )
@@ -47,9 +64,9 @@ class MorePageViewModel @Inject constructor(
     }
 
     fun setQueriesOnPopular(genre: String?) {
-        _queries.tryEmit(
-            _queries.value.copy(
-                onPopularQuery = _queries.value.onPopularQuery.copy(
+        _state.tryEmit(
+            _state.value.copy(
+                onPopularQuery = _state.value.onPopularQuery.copy(
                     genre = genre,
                 )
             )
@@ -57,9 +74,9 @@ class MorePageViewModel @Inject constructor(
     }
 
     fun setQueriesOnCompleted( genre: String?) {
-        _queries.tryEmit(
-            _queries.value.copy(
-                onCompletedQuery = _queries.value.onCompletedQuery.copy(
+        _state.tryEmit(
+            _state.value.copy(
+                onCompletedQuery = _state.value.onCompletedQuery.copy(
                     genre = genre
                 )
             )
@@ -68,7 +85,7 @@ class MorePageViewModel @Inject constructor(
 
     @OptIn(ExperimentalCoroutinesApi::class)
     fun getMangasOnGoingPaging(): StateFlow<PagingData<Manga>> {
-        return _queries
+        return _state
             .map(::newPagerOnGoing)
             .flatMapLatest { pager -> pager.flow }
             .stateIn(viewModelScope, SharingStarted.Lazily, PagingData.empty())
@@ -76,7 +93,7 @@ class MorePageViewModel @Inject constructor(
 
     @OptIn(ExperimentalCoroutinesApi::class)
     fun getMangasOnPopularPaging(): StateFlow<PagingData<Manga>> {
-        return _queries
+        return _state
             .map(::newPagerOnPopular)
             .flatMapLatest { pager -> pager.flow }
             .stateIn(viewModelScope, SharingStarted.Lazily, PagingData.empty())
@@ -84,14 +101,14 @@ class MorePageViewModel @Inject constructor(
 
     @OptIn(ExperimentalCoroutinesApi::class)
     fun getMangasOnCompletedPaging(): StateFlow<PagingData<Manga>> {
-        return  _queries
+        return  _state
             .map(::newPagerOnCompleted)
             .flatMapLatest { pager -> pager.flow }
             .stateIn(viewModelScope, SharingStarted.Lazily, PagingData.empty())
     }
 
 
-    private fun newPagerOnGoing(queries: PagerQueryState): Pager<Int, Manga> {
+    private fun newPagerOnGoing(queries: MorePagerState): Pager<Int, Manga> {
         return Pager(PagingConfig(Constants.MORE_PAGE_SIZE, enablePlaceholders = false)) {
             getMorePage.invoke(
                 order = queries.onGoingQuery.order,
@@ -102,7 +119,7 @@ class MorePageViewModel @Inject constructor(
         }
     }
 
-    private fun newPagerOnPopular(queries: PagerQueryState): Pager<Int, Manga> {
+    private fun newPagerOnPopular(queries: MorePagerState): Pager<Int, Manga> {
         return Pager(PagingConfig(Constants.MORE_PAGE_SIZE, enablePlaceholders = false)) {
             getMorePage.invoke(
                 order = queries.onPopularQuery.order,
@@ -113,7 +130,7 @@ class MorePageViewModel @Inject constructor(
         }
     }
 
-    private fun newPagerOnCompleted(queries: PagerQueryState): Pager<Int, Manga> {
+    private fun newPagerOnCompleted(queries: MorePagerState): Pager<Int, Manga> {
         return Pager(PagingConfig(Constants.MORE_PAGE_SIZE, enablePlaceholders = false)) {
             getMorePage.invoke(
                 order = queries.onCompletedQuery.order,

@@ -8,17 +8,16 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.anifox.R
 import com.example.anifox.common.adapters.morePages.GenresTypeItem
 import com.example.anifox.common.adapters.morePages.MorePageAdapter
+import com.example.anifox.common.listeners.ItemClickListenerMoreGenre
 import com.example.anifox.core.enums.GenreConstants
 import com.example.anifox.databinding.FragmentMorePageBinding
 import com.example.anifox.util.viewpager.LifecycleViewPager
 import com.google.android.material.tabs.TabLayoutMediator
-import com.xwray.groupie.GroupAdapter
-import com.xwray.groupie.GroupieViewHolder
-import com.xwray.groupie.Item
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -29,7 +28,11 @@ class MorePageFragment : Fragment() {
     private val binding get() = _binding!!
     private var mediator: TabLayoutMediator? = null
 
-    private val genreAdapter = GroupAdapter<GroupieViewHolder>()
+    private val genreAdapter = GenresTypeItem(onClick = object : ItemClickListenerMoreGenre {
+        override fun newGenre(genre: String) {
+            setNewGenre(genre)
+        } }
+    )
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,7 +46,7 @@ class MorePageFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        viewModel.getGenres()
         viewModel.setQueriesOnPopular(genre = if(args.genre != getString(R.string.Genre_All_Genres)) args.genre else null)
         viewModel.setQueriesOnGoing(genre = if(args.genre != getString(R.string.Genre_All_Genres)) args.genre else null)
         viewModel.setQueriesOnCompleted(genre = if(args.genre != getString(R.string.Genre_All_Genres)) args.genre else null)
@@ -54,20 +57,27 @@ class MorePageFragment : Fragment() {
         setUpTitle()
     }
 
+    private fun setNewGenre(genre: String) {
+        viewModel.setQueriesOnPopular(genre = genre)
+        viewModel.setQueriesOnGoing(genre = genre)
+        viewModel.setQueriesOnCompleted(genre = genre)
+
+        viewModel.getMangasOnGoingPaging()
+        viewModel.getMangasOnPopularPaging()
+        viewModel.getMangasOnCompletedPaging()
+        binding.viewPager.adapter = MorePageAdapter(fragment = this)
+    }
+
     private fun initRecycler() {
-        binding.recyclerGenres.adapter = genreAdapter
-
         binding.recyclerGenres.apply {
-            layoutManager = GridLayoutManager(context, 3)
+            layoutManager = StaggeredGridLayoutManager(3, LinearLayoutManager.VERTICAL)
         }
+        val genreList = GenreConstants.values().map {
+            it.toReadableName(requireContext())
+        }
+        genreAdapter.submitList(genreList)
 
-        val list = mutableListOf<Item<*>>().apply {
-            val genreList = GenreConstants.values().map {
-                it.toReadableName(requireContext())
-            }
-            this += genreList.map { GenresTypeItem(it) }
-        }
-        genreAdapter.update(list)
+        binding.recyclerGenres.adapter = genreAdapter
 
     }
 
@@ -78,6 +88,12 @@ class MorePageFragment : Fragment() {
 
         binding.ivSearch.setOnClickListener {
             findNavController().navigate(R.id.action_morePageFragment_to_searchFragment)
+        }
+
+        binding.ivFilter.setOnClickListener {
+            if(binding.recyclerGenres.visibility == View.GONE) {
+                binding.recyclerGenres.visibility = View.VISIBLE
+            } else binding.recyclerGenres.visibility = View.GONE
         }
 
     }

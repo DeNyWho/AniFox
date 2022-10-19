@@ -2,6 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/animeFragment"
+        android:title="@string/anime"
+        android:enabled="true"
+        android:icon="@drawable/anime_bottom" />
+    <item
         android:id="@+id/homeFragment"
         android:title="@string/manga"
         android:enabled="true"
@@ -11,6 +16,11 @@
         android:title="@string/list"
         android:enabled="true"
         android:icon="@drawable/grid" />
+    <item
+        android:id="@+id/profileFragment"
+        android:title="@string/profile"
+        android:enabled="true"
+        android:icon="@drawable/profile" />
 
 
 </menu>

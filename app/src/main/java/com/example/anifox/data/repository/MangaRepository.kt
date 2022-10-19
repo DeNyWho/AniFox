@@ -6,6 +6,7 @@ import com.example.anifox.data.remote.api.MangaApi
 import com.example.anifox.domain.model.manga.Manga
 import com.example.anifox.domain.model.manga.NewFavouriteManga
 import com.example.anifox.domain.model.responses.BasicBooleanResponse
+import com.example.anifox.domain.model.responses.BasicResponse
 import com.example.anifox.domain.model.responses.MangaResponse
 import com.example.anifox.domain.model.responses.PagingFavouriteResponse
 import com.example.anifox.domain.repository.RemoteDataSource
@@ -34,6 +35,10 @@ class MangaRepository @Inject constructor(
 
     override suspend fun getLinkedManga(id: Int): Response<MangaResponse> {
         return mangaApi.getLinkedManga(id)
+    }
+
+    override suspend fun getGenresManga(): Response<BasicResponse> {
+        return mangaApi.getMangaGenres()
     }
 
     override suspend fun getManga(genre: String?, order: String?, status: String?, countCard: Int): Response<MangaResponse>{

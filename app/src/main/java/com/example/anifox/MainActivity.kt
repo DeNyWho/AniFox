@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
-                R.id.homeFragment, R.id.myListFragment2 -> {
+                R.id.homeFragment, R.id.myListFragment2, R.id.profileFragment, R.id.animeFragment -> {
                     bottomNavigationView.visibility = View.VISIBLE
 
                     fragment.updateLayoutParams<ViewGroup.MarginLayoutParams> {

@@ -113,9 +113,7 @@ class SearchFragment : Fragment() {
     private fun observeOnState() {
         viewModel.state.onEach { state ->
             val list: List<Group> = mutableListOf<Group>().apply {
-                println("ZXC = ${state.randomState.data}")
                 if(state.randomState.data != null){
-                    println("ZXC = ${state.randomState.data.title}")
                     binding.tilSearch.hint = "${getString(R.string.search_hint)} «${state.randomState.data.title}»"
                 }
                 if(state.search.data?.isNotEmpty() == true) {

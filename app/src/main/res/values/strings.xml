@@ -49,6 +49,8 @@
     <string name="views">Просмотры</string>
     <string name="comic">comic</string>
     <string name="list">MyList</string>
+    <string name="profile">Profile</string>
+    <string name="anime">Anime</string>
     <string name="search">SEARCH</string>
 
     <string name="tab_status_airing">Новинки</string>
